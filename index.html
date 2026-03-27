@@ -39,14 +39,47 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-headline{font-family:var(--serif);font-size:clamp(42px,6vw,76px);line-height:1.08;font-weight:400;color:var(--white);margin-bottom:1.75rem;opacity:0;animation:fadeUp .7s .2s forwards}
 .hero-headline em{font-style:italic;color:var(--accent)}
 .hero-sub{font-size:16px;font-weight:300;color:var(--gray-5);line-height:1.7;max-width:560px;margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s .3s forwards}
-.hero-actions{display:flex;align-items:center;gap:1.5rem;opacity:0;animation:fadeUp .7s .4s forwards}
+.hero-actions{display:flex;align-items:center;gap:1.5rem;opacity:0;animation:fadeUp .7s .4s forwards;flex-wrap:wrap}
 .btn-primary{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:14px 32px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-block}
 .btn-primary:hover{background:var(--accent-dim);transform:translateY(-1px)}
-.btn-ghost{font-size:13px;font-weight:400;color:var(--gray-5);letter-spacing:.02em;display:flex;align-items:center;gap:8px;text-decoration:none;transition:color .2s;background:none;border:none;cursor:pointer}
+.btn-ghost{font-size:13px;font-weight:400;color:var(--gray-5);letter-spacing:.02em;display:flex;align-items:center;gap:8px;text-decoration:none;transition:color .2s;background:none;border:none;cursor:pointer;font-family:var(--sans)}
 .btn-ghost:hover{color:var(--white)}
 .btn-ghost svg{transition:transform .2s}
 .btn-ghost:hover svg{transform:translateX(3px)}
 .hero-spec{position:absolute;bottom:5rem;right:3rem;font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.1em;text-align:right;line-height:2;opacity:0;animation:fadeIn .8s .6s forwards;border-left:1px solid var(--gray-3);padding-left:16px}
+/* LIVE PANEL */
+.live-panel{display:none;max-width:900px;margin:2.5rem 0 0;background:var(--gray-1);border:1px solid var(--gray-3)}
+.live-panel.visible{display:block;animation:fadeUp .4s ease forwards}
+.live-header{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.5rem;border-bottom:1px solid var(--gray-3)}
+.live-header-left{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-5)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite;flex-shrink:0}
+.live-header-right{font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.08em}
+.live-pairs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gray-3)}
+.live-pair{background:var(--gray-1);padding:2rem 1.5rem}
+.live-pair-name{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-5);margin-bottom:1.25rem}
+.live-direction{font-family:var(--serif);font-size:34px;font-weight:400;margin-bottom:.75rem;line-height:1;transition:color .5s}
+.live-direction.long{color:var(--green)}
+.live-direction.short{color:var(--danger)}
+.live-direction.neutral{color:var(--gray-5)}
+.live-score-wrap{margin:1rem 0}
+.live-score-top{font-family:var(--mono);font-size:10px;color:var(--gray-5);letter-spacing:.08em;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.live-score-num{font-size:13px;font-weight:500;color:var(--white)}
+.live-bar{height:3px;background:var(--gray-3);overflow:hidden}
+.live-bar-fill{height:100%;transition:width .9s cubic-bezier(.4,0,.2,1),background .5s}
+.live-bar-fill.high{background:var(--green)}
+.live-bar-fill.mid{background:var(--accent)}
+.live-bar-fill.low{background:var(--gray-4)}
+.live-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-top:1.5rem}
+.lm-key{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-4);margin-bottom:4px}
+.lm-val{font-family:var(--mono);font-size:12px;color:var(--white)}
+.lm-val.g{color:var(--green)}
+.lm-val.a{color:var(--accent)}
+.lm-val.d{color:var(--danger)}
+.live-foot{padding:.875rem 1.5rem;border-top:1px solid var(--gray-3);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.live-foot-note{font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.06em}
+.live-foot-btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:none;border:1px solid var(--gray-3);padding:6px 14px;cursor:pointer;transition:border-color .2s;white-space:nowrap}
+.live-foot-btn:hover{border-color:var(--accent)}
+/* SECTIONS */
 .section{padding:7rem 3rem}
 .section-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-4);margin-bottom:3rem;display:flex;align-items:center;gap:12px}
 .section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gray-3)}
@@ -82,7 +115,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .forwhom-list li::before{flex-shrink:0;margin-top:2px}
 .yes .forwhom-list li::before{content:'↗';color:var(--green);font-size:12px}
 .no .forwhom-list li::before{content:'—';color:var(--danger);font-size:12px}
-/* PLANS */
 .plans-section{padding:7rem 3rem}
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-3);border:1px solid var(--gray-3);max-width:900px;margin-top:3rem}
 .plan{background:var(--gray-1);padding:2.5rem 2rem;display:flex;flex-direction:column}
@@ -97,7 +129,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .plan-features li:last-child{border-bottom:none}
 .plan-features li::before{content:'—';color:var(--gray-4);flex-shrink:0}
 .plan-features li.ok::before{content:'✓';color:var(--green)}
-.plan-cta{margin-top:2rem;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 20px;text-align:center;cursor:pointer;border:1px solid var(--gray-3);color:var(--gray-5);background:transparent;transition:all .2s}
+.plan-cta{margin-top:2rem;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 20px;text-align:center;cursor:pointer;border:1px solid var(--gray-3);color:var(--gray-5);background:transparent;transition:all .2s;width:100%}
 .plan-cta:hover{border-color:var(--accent);color:var(--accent)}
 .plan.featured .plan-cta{background:var(--accent);color:#fff;border-color:var(--accent)}
 .plan.featured .plan-cta:hover{background:var(--accent-dim)}
@@ -107,7 +139,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .final-headline{font-family:var(--serif);font-size:clamp(34px,5vw,60px);line-height:1.1;font-weight:400;color:var(--white);margin-bottom:1.5rem}
 .final-sub{font-size:15px;color:var(--gray-5);margin-bottom:3rem}
 .final-note{margin-top:1.5rem;font-family:var(--mono);font-size:11px;color:var(--gray-4);letter-spacing:.06em}
-/* MODAL */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(6px)}
 .overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--gray-1);border:1px solid var(--gray-3);padding:40px;width:100%;max-width:480px;position:relative;transform:translateY(24px);transition:transform .25s}
@@ -131,34 +162,6 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 .footer-btn:hover{color:var(--white)}
 .toast{position:fixed;bottom:32px;right:32px;z-index:999;background:var(--green-dim);border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:12px;padding:14px 20px;letter-spacing:.04em;transform:translateY(80px);opacity:0;transition:all .3s}
 .toast.show{transform:translateY(0);opacity:1}
-/* LIVE PANEL */
-.live-panel{display:none;max-width:900px;margin:3rem 0 0;background:var(--gray-1);border:1px solid var(--gray-3);padding:0}
-.live-panel.visible{display:block;animation:fadeUp .4s ease forwards}
-.live-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--gray-3)}
-.live-header-left{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-5)}
-.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite;flex-shrink:0}
-.live-header-right{font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.08em}
-.live-pairs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gray-3)}
-.live-pair{background:var(--gray-1);padding:2rem 1.5rem}
-.live-pair-name{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-5);margin-bottom:1.25rem}
-.live-direction{font-family:var(--serif);font-size:32px;font-weight:400;margin-bottom:.5rem;transition:color .4s}
-.live-direction.long{color:var(--green)}
-.live-direction.short{color:var(--danger)}
-.live-direction.neutral{color:var(--gray-5)}
-.live-score-bar-wrap{margin:1rem 0;position:relative}
-.live-score-label{font-family:var(--mono);font-size:10px;color:var(--gray-5);letter-spacing:.1em;margin-bottom:6px;display:flex;justify-content:space-between}
-.live-score-bar{height:3px;background:var(--gray-3);position:relative;overflow:hidden}
-.live-score-fill{height:100%;background:var(--accent);transition:width .8s cubic-bezier(.4,0,.2,1)}
-.live-score-fill.high{background:var(--green)}
-.live-score-fill.low{background:var(--gray-4)}
-.live-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-top:1.25rem}
-.live-meta-item{font-family:var(--mono);font-size:11px}
-.live-meta-key{color:var(--gray-4);margin-bottom:3px;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
-.live-meta-val{color:var(--white);font-size:12px}
-.live-meta-val.green{color:var(--green)}
-.live-meta-val.accent{color:var(--accent)}
-.live-footer{padding:.875rem 1.5rem;border-top:1px solid var(--gray-3);font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.08em;display:flex;justify-content:space-between;align-items:center}
-@media(max-width:768px){.live-pairs{grid-template-columns:1fr}.live-meta{grid-template-columns:1fr 1fr}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -169,10 +172,12 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   .hero-ticker,.hero-spec{display:none}
   .section,.how-section,.proof-section,.forwhom,.plans-section,.final-cta{padding:5rem 1.5rem}
   .pain-grid,.how-steps,.plans-grid{grid-template-columns:1fr}
+  .live-pairs{grid-template-columns:1fr}
   .forwhom-grid{grid-template-columns:1fr;gap:3rem}
   .proof-metrics{flex-direction:column;gap:1.5rem}
   footer{flex-direction:column;gap:1rem;text-align:center}
   .modal{margin:16px;padding:24px 20px}
+  .live-meta{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -194,11 +199,11 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   <div class="hero-ticker">
     <div class="ticker-item">
       <span class="ticker-dot"></span>
-      BTCUSDT-M &nbsp; SCORE <span class="ticker-score" id="t-btc">78</span> &nbsp; <span id="t-btc-r">TRENDING</span>
+      BTCUSDT-M &nbsp; SCORE <span class="ticker-score" id="t-btc">85</span> &nbsp; <span id="t-btc-r">TRENDING</span>
     </div>
     <div class="ticker-item">
       <span class="ticker-dot red"></span>
-      ETHUSDT-M &nbsp; SCORE <span class="ticker-score low" id="t-eth">31</span> &nbsp; <span id="t-eth-r">MIXED</span>
+      ETHUSDT-M &nbsp; SCORE <span class="ticker-score low" id="t-eth">38</span> &nbsp; <span id="t-eth-r">MIXED</span>
     </div>
     <div class="ticker-item" style="color:var(--gray-3)">——— atualizado por tick ———</div>
   </div>
@@ -222,33 +227,33 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         <div class="live-pair">
           <div class="live-pair-name">BTCUSDT · Futuros USDT-M</div>
           <div class="live-direction long" id="lp-btc-dir">LONG ↑</div>
-          <div class="live-score-bar-wrap">
-            <div class="live-score-label"><span>Score de evidência</span><span id="lp-btc-sc">85 / 100</span></div>
-            <div class="live-score-bar"><div class="live-score-fill high" id="lp-btc-bar" style="width:85%"></div></div>
+          <div class="live-score-wrap">
+            <div class="live-score-top"><span>Score de evidência</span><span class="live-score-num" id="lp-btc-sc">85 / 100</span></div>
+            <div class="live-bar"><div class="live-bar-fill high" id="lp-btc-bar" style="width:85%"></div></div>
           </div>
           <div class="live-meta">
-            <div class="live-meta-item"><div class="live-meta-key">Quality</div><div class="live-meta-val green" id="lp-btc-q">STRONG</div></div>
-            <div class="live-meta-item"><div class="live-meta-key">Regime</div><div class="live-meta-val accent" id="lp-btc-r">TRENDING</div></div>
-            <div class="live-meta-item"><div class="live-meta-key">Confidence</div><div class="live-meta-val" id="lp-btc-c">HIGH</div></div>
+            <div><div class="lm-key">Quality</div><div class="lm-val g" id="lp-btc-q">STRONG</div></div>
+            <div><div class="lm-key">Regime</div><div class="lm-val a" id="lp-btc-r">TRENDING</div></div>
+            <div><div class="lm-key">Confidence</div><div class="lm-val" id="lp-btc-c">HIGH</div></div>
           </div>
         </div>
         <div class="live-pair">
           <div class="live-pair-name">ETHUSDT · Futuros USDT-M</div>
           <div class="live-direction neutral" id="lp-eth-dir">NEUTRAL</div>
-          <div class="live-score-bar-wrap">
-            <div class="live-score-label"><span>Score de evidência</span><span id="lp-eth-sc">31 / 100</span></div>
-            <div class="live-score-bar"><div class="live-score-fill low" id="lp-eth-bar" style="width:31%"></div></div>
+          <div class="live-score-wrap">
+            <div class="live-score-top"><span>Score de evidência</span><span class="live-score-num" id="lp-eth-sc">38 / 100</span></div>
+            <div class="live-bar"><div class="live-bar-fill low" id="lp-eth-bar" style="width:38%"></div></div>
           </div>
           <div class="live-meta">
-            <div class="live-meta-item"><div class="live-meta-key">Quality</div><div class="live-meta-val" id="lp-eth-q">WEAK</div></div>
-            <div class="live-meta-item"><div class="live-meta-key">Regime</div><div class="live-meta-val" id="lp-eth-r">MIXED</div></div>
-            <div class="live-meta-item"><div class="live-meta-key">Confidence</div><div class="live-meta-val" id="lp-eth-c">LOW</div></div>
+            <div><div class="lm-key">Quality</div><div class="lm-val" id="lp-eth-q">WEAK</div></div>
+            <div><div class="lm-key">Regime</div><div class="lm-val" id="lp-eth-r">MIXED</div></div>
+            <div><div class="lm-key">Confidence</div><div class="lm-val" id="lp-eth-c">LOW</div></div>
           </div>
         </div>
       </div>
-      <div class="live-footer">
-        <span>Dados simulados · API real disponível mediante acesso</span>
-        <button onclick="openModal('pro')" style="background:none;border:1px solid var(--gray-3);color:var(--accent);font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:5px 12px;cursor:pointer">SOLICITAR ACESSO</button>
+      <div class="live-foot">
+        <span class="live-foot-note">Dados simulados para demonstração · API real disponível mediante acesso</span>
+        <button class="live-foot-btn" onclick="openModal('pro')">Solicitar acesso</button>
       </div>
     </div>
 
@@ -386,7 +391,9 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
           <option value="outro">Outro</option>
         </select>
       </div>
-      <div class="field"><label>Mensagem <span style="color:var(--gray-4)">(opcional)</span></label><textarea id="f-msg" placeholder="Como pretende usar o RSQ Signal?"></textarea></div>
+      <div class="field"><label>Mensagem <span style="color:var(--gray-4)">(opcional)</span></label>
+        <textarea id="f-msg" placeholder="Como pretende usar o RSQ Signal?"></textarea>
+      </div>
       <button type="submit" class="modal-btn" id="m-btn">Enviar solicitação</button>
     </form>
   </div>
@@ -395,114 +402,116 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 <div class="toast" id="toast">✓ Solicitação enviada. Falaremos em breve.</div>
 
 <script>
-function toggleLive(){
-  const panel=document.getElementById('live-panel');
-  const btn=document.getElementById('live-btn');
-  const isOpen=panel.classList.contains('visible');
-  if(isOpen){
-    panel.classList.remove('visible');
-    btn.textContent='Ver leitura ao vivo';
-  } else {
-    panel.classList.add('visible');
-    btn.textContent='Fechar painel';
-    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
-    startLive();
-  }
-}
+// NAV
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.borderBottomColor=window.scrollY>40?'rgba(79,143,255,.15)':'rgba(79,143,255,.08)';
+});
 
-let liveInterval=null;
-function startLive(){
-  if(liveInterval) return;
-  updateLive();
-  liveInterval=setInterval(updateLive,2500);
-}
-
+// LIVE PANEL
 const btcData=[
   {sc:85,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
   {sc:91,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
   {sc:72,dir:'LONG',q:'MODERATE',r:'TRENDING',c:'MEDIUM'},
   {sc:48,dir:'NEUTRAL',q:'WEAK',r:'MIXED',c:'LOW'},
   {sc:82,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
-  {sc:55,dir:'SHORT',q:'MODERATE',r:'MIXED',c:'MEDIUM'},
+  {sc:61,dir:'SHORT',q:'MODERATE',r:'MIXED',c:'MEDIUM'},
   {sc:93,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
-  {sc:38,dir:'SHORT',q:'WEAK',r:'MIXED',c:'LOW'},
+  {sc:35,dir:'SHORT',q:'WEAK',r:'MIXED',c:'LOW'},
+  {sc:78,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
 ];
 const ethData=[
-  {sc:31,dir:'NEUTRAL',q:'WEAK',r:'MIXED',c:'LOW'},
+  {sc:38,dir:'NEUTRAL',q:'WEAK',r:'MIXED',c:'LOW'},
   {sc:62,dir:'LONG',q:'MODERATE',r:'TRENDING',c:'MEDIUM'},
-  {sc:78,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
+  {sc:79,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
   {sc:29,dir:'SHORT',q:'WEAK',r:'LATERAL',c:'LOW'},
   {sc:51,dir:'NEUTRAL',q:'MODERATE',r:'MIXED',c:'MEDIUM'},
   {sc:84,dir:'LONG',q:'STRONG',r:'TRENDING',c:'HIGH'},
-  {sc:44,dir:'SHORT',q:'WEAK',r:'MIXED',c:'LOW'},
+  {sc:41,dir:'SHORT',q:'WEAK',r:'MIXED',c:'LOW'},
   {sc:67,dir:'LONG',q:'MODERATE',r:'TRENDING',c:'MEDIUM'},
+  {sc:33,dir:'SHORT',q:'WEAK',r:'MIXED',c:'LOW'},
 ];
-let li=0;
+let li=0,liveInterval=null;
+
+function toggleLive(){
+  const panel=document.getElementById('live-panel');
+  const btn=document.getElementById('live-btn');
+  const open=panel.classList.contains('visible');
+  if(open){
+    panel.classList.remove('visible');
+    btn.textContent='Ver leitura ao vivo';
+    if(liveInterval){clearInterval(liveInterval);liveInterval=null;}
+  } else {
+    panel.classList.add('visible');
+    btn.textContent='Fechar painel';
+    updateLive();
+    liveInterval=setInterval(updateLive,2500);
+  }
+}
 
 function updateLive(){
   li=(li+1)%btcData.length;
-  const b=btcData[li],e=ethData[li];
-  setPair('btc',b);
-  setPair('eth',e);
-  const now=new Date();
-  const el=document.getElementById('live-time');
-  if(el)el.textContent=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' UTC-3';
+  setPair('btc',btcData[li]);
+  setPair('eth',ethData[li]);
+  const t=document.getElementById('live-time');
+  if(t){const n=new Date();t.textContent=n.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
 }
 
 function setPair(sym,d){
-  const dir=document.getElementById('lp-'+sym+'-dir');
-  const sc=document.getElementById('lp-'+sym+'-sc');
-  const bar=document.getElementById('lp-'+sym+'-bar');
-  const q=document.getElementById('lp-'+sym+'-q');
-  const r=document.getElementById('lp-'+sym+'-r');
-  const c=document.getElementById('lp-'+sym+'-c');
+  const get=id=>document.getElementById('lp-'+sym+'-'+id);
+  const dir=get('dir'),sc=get('sc'),bar=get('bar'),q=get('q'),r=get('r'),c=get('c');
   if(!dir)return;
   const arrow=d.dir==='LONG'?' ↑':d.dir==='SHORT'?' ↓':'';
   dir.textContent=d.dir+arrow;
   dir.className='live-direction '+(d.dir==='LONG'?'long':d.dir==='SHORT'?'short':'neutral');
   sc.textContent=d.sc+' / 100';
   bar.style.width=d.sc+'%';
-  bar.className='live-score-fill '+(d.sc>=70?'high':d.sc>=40?'':'low');
-  q.textContent=d.q;
-  q.className='live-meta-val '+(d.q==='STRONG'?'green':d.q==='MODERATE'?'accent':'');
-  r.textContent=d.r;
-  r.className='live-meta-val '+(d.r==='TRENDING'?'accent':'');
-  c.textContent=d.c;
+  bar.className='live-bar-fill '+(d.sc>=70?'high':d.sc>=40?'mid':'low');
+  q.textContent=d.q;q.className='lm-val '+(d.q==='STRONG'?'g':d.q==='MODERATE'?'a':'');
+  r.textContent=d.r;r.className='lm-val '+(d.r==='TRENDING'?'a':'');
+  c.textContent=d.c;c.className='lm-val '+(d.c==='HIGH'?'g':d.c==='MEDIUM'?'a':'');
 }
 
+// TICKER
+const tBtc=[85,91,72,82,93,61,78];
+const tEth=[38,62,29,51,84,41,67];
+let ti=0;
+setInterval(()=>{
+  ti=(ti+1)%tBtc.length;
+  const be=document.getElementById('t-btc'),ee=document.getElementById('t-eth');
+  const br=document.getElementById('t-btc-r'),er=document.getElementById('t-eth-r');
+  if(be){be.textContent=tBtc[ti];be.style.color=tBtc[ti]>60?'var(--green)':'var(--gray-5)';be.className=tBtc[ti]>60?'ticker-score':'ticker-score low';}
+  if(ee){ee.textContent=tEth[ti];ee.style.color=tEth[ti]>60?'var(--green)':'var(--gray-5)';ee.className=tEth[ti]>60?'ticker-score':'ticker-score low';}
+  if(br)br.textContent=tBtc[ti]>65?'TRENDING':'MIXED';
+  if(er)er.textContent=tEth[ti]>55?'TRENDING':'MIXED';
+},2800);
+
+// MODAL
 function openModal(plano){
   const titles={free:'Solicitar acesso free',pro:'Solicitar acesso Pro',enterprise:'Falar com a equipe'};
-  const subs={free:'Acesso gratuito com delay de 5 minutos.',pro:'Plano Pro — R$197/mês. Tempo real + webhook Telegram. 30 dias grátis para os primeiros 50.',enterprise:'Licença enterprise com SLA e suporte dedicado.'};
+  const subs={free:'Acesso gratuito com delay de 5 minutos. Lista de espera aberta.',pro:'Plano Pro — R$197/mês. Tempo real + webhook Telegram. 30 dias grátis para os primeiros 50.',enterprise:'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.'};
   document.getElementById('m-title').textContent=titles[plano]||'Entre em contato';
   document.getElementById('m-sub').textContent=subs[plano]||'Preencha os dados e entraremos em contato em até 24h.';
   if(plano)document.getElementById('f-plano').value=plano;
   document.getElementById('overlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeModal(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function closeModal(){
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
 function submitForm(e){
   e.preventDefault();
   const btn=document.getElementById('m-btn');
   btn.textContent='Enviando...';btn.disabled=true;
+  // Integrar Formspree: fetch('https://formspree.io/f/SEU_ID',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome:document.getElementById('f-nome').value,email:document.getElementById('f-email').value,plano:document.getElementById('f-plano').value,msg:document.getElementById('f-msg').value})});
   setTimeout(()=>{
     closeModal();
     const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
     btn.textContent='Enviar solicitação';btn.disabled=false;e.target.reset();
   },900);
 }
-const btcS=[78,82,75,91,85,88,72,69,93];
-const ethS=[31,28,45,52,38,61,29,44,57];
-let ti=0;
-setInterval(()=>{
-  ti=(ti+1)%btcS.length;
-  const be=document.getElementById('t-btc'),ee=document.getElementById('t-eth');
-  const br=document.getElementById('t-btc-r'),er=document.getElementById('t-eth-r');
-  if(be){be.textContent=btcS[ti];be.style.color=btcS[ti]>60?'var(--green)':'var(--gray-5)';}
-  if(ee){ee.textContent=ethS[ti];ee.style.color=ethS[ti]>60?'var(--green)':'var(--gray-5)';}
-  if(br)br.textContent=btcS[ti]>65?'TRENDING':'MIXED';
-  if(er)er.textContent=ethS[ti]>50?'TRENDING':'MIXED';
-},2800);
 </script>
 </body>
 </html>
