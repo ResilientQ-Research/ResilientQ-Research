@@ -241,30 +241,14 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         <div class="live-pair">
           <div class="live-pair-name">BTCUSDT · Futuros USDT-M</div>
           <div class="live-direction long" id="lp-btc-dir">LONG ↑</div>
-          <div class="live-conf-wrap">
-            <div class="live-conf-label">Intensidade de sinal</div>
-            <div class="live-bar"><div class="live-bar-fill high" id="lp-btc-bar" style="width:75%"></div></div>
-          </div>
-          <div class="live-meta">
-            <div><div class="lm-key">Regime</div><div class="lm-val a" id="lp-btc-r">TRENDING</div></div>
-            <div><div class="lm-key">TTL</div><div class="lm-val" id="lp-btc-ttl">10s</div></div>
-          </div>
         </div>
         <div class="live-pair">
           <div class="live-pair-name">ETHUSDT · Futuros USDT-M</div>
           <div class="live-direction neutral" id="lp-eth-dir">NEUTRAL</div>
-          <div class="live-conf-wrap">
-            <div class="live-conf-label">Intensidade de sinal</div>
-            <div class="live-bar"><div class="live-bar-fill low" id="lp-eth-bar" style="width:32%"></div></div>
-          </div>
-          <div class="live-meta">
-            <div><div class="lm-key">Regime</div><div class="lm-val" id="lp-eth-r">MIXED</div></div>
-            <div><div class="lm-key">TTL</div><div class="lm-val" id="lp-eth-ttl">10s</div></div>
-          </div>
         </div>
       </div>
       <div class="live-foot">
-        <span class="live-foot-note">Dados simulados para demonstração · API real disponível mediante acesso</span>
+        <span class="live-foot-note">Leitura ao vivo · acesso completo mediante assinatura</span>
         <button class="live-foot-btn" onclick="openModal('pro')">Solicitar acesso</button>
       </div>
     </div>
@@ -709,17 +693,10 @@ function updateLive(){
 
 function setPair(sym,d){
   const dir=document.getElementById('lp-'+sym+'-dir');
-  const bar=document.getElementById('lp-'+sym+'-bar');
-  const r=document.getElementById('lp-'+sym+'-r');
   if(!dir)return;
   const arrow=d.dir==='LONG'?' ↑':d.dir==='SHORT'?' ↓':'';
   dir.textContent=d.dir+arrow;
   dir.className='live-direction '+(d.dir==='LONG'?'long':d.dir==='SHORT'?'short':'neutral');
-  const pct=Math.round(d.conf*100);
-  bar.style.width=pct+'%';
-  bar.className='live-bar-fill '+(d.conf>=.70?'high':d.conf>=.40?'mid':'low');
-  r.textContent=d.r;
-  r.className='lm-val '+(d.r==='TRENDING'?'a':'');
 }
 
 /* Ticker — barra sem número */
