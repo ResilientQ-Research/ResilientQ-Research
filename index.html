@@ -192,6 +192,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <a href="#como-funciona">Como funciona</a>
     <a href="#para-quem">Para quem é</a>
     <a href="#planos">Planos</a>
+    <a href="#docs">Docs</a>
     <button class="nav-cta" onclick="openModal()">Solicitar acesso</button>
   </div>
 </nav>
@@ -269,7 +270,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
       </div>
     </div>
   </div>
-  <div class="hero-spec">BTC · ETH<br>Futuros USDT-M<br>Atualização por tick<br>Patent BR 10 2025 027334 9</div>
+  <div class="hero-spec">BTC · ETH<br>Futuros USDT-M<br>Atualização por tick</div>
 </section>
 
 <section class="section">
@@ -302,7 +303,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
       <div class="step-num">03</div>
       <div class="step-title">Diagnóstico estruturado</div>
       <div class="step-text">Evidência acumulada convertida em direção (LONG/SHORT/NEUTRAL) e regime de mercado (TRENDING/MIXED/LATERAL). Você recebe a leitura. A decisão é sua.</div>
-      <div class="step-spec">Algoritmo patenteado · BR 10 2025 027334 9</div>
+      <div class="step-spec">Algoritmo proprietário · evidência por order flow</div>
     </div>
   </div>
 </section>
@@ -385,10 +386,241 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   <div class="final-note">BTC · ETH · Futuros USDT-M · Atualização por tick</div>
 </section>
 
+<section class="section" id="docs">
+  <div class="section-label">Documentação</div>
+  
+  <div style="max-width:900px">
+    
+    <!-- ENDPOINT -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Endpoint
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3);
+                  padding:1.25rem 1.5rem;font-family:var(--mono);
+                  font-size:13px;color:var(--white)">
+        GET https://api.rsq.digital/signal?symbol=BTCUSDT
+      </div>
+      <div style="margin-top:.75rem;font-size:13px;color:var(--gray-5)">
+        Pares disponíveis: <span style="font-family:var(--mono);
+        color:var(--accent)">BTCUSDT</span> · 
+        <span style="font-family:var(--mono);
+        color:var(--accent)">ETHUSDT</span>
+      </div>
+    </div>
+
+    <!-- AUTENTICAÇÃO -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Autenticação
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3);
+                  padding:1.25rem 1.5rem;font-family:var(--mono);
+                  font-size:13px;color:var(--white)">
+        X-API-Key: rsq_pro_sua_chave_aqui
+      </div>
+      <div style="margin-top:.75rem;font-size:13px;color:var(--gray-5)">
+        Chave entregue por email após assinatura Pro.
+      </div>
+    </div>
+
+    <!-- EXEMPLO CURL -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Exemplo de request
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3);
+                  padding:1.25rem 1.5rem;font-family:var(--mono);
+                  font-size:13px;color:var(--white);
+                  white-space:pre-wrap;line-height:1.8">curl -H "X-API-Key: rsq_pro_sua_chave_aqui" \
+"https://api.rsq.digital/signal?symbol=BTCUSDT"</div>
+    </div>
+
+    <!-- RESPONSE -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Response
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3);
+                  padding:1.25rem 1.5rem;font-family:var(--mono);
+                  font-size:13px;color:var(--white);
+                  white-space:pre-wrap;line-height:1.8">{
+  "symbol":             "BTCUSDT",
+  "direction":          "LONG",
+  "regime":             "MIXED",
+  "confidence":         0.83,
+  "signal_ttl_seconds": 10,
+  "timestamp":          "2026-04-01T13:12:07Z",
+  "request_id":         "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+}</div>
+    </div>
+
+    <!-- CAMPOS -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Campos
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3)">
+        <div style="display:grid;grid-template-columns:160px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">direction</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            Direção do sinal — 
+            <span style="color:var(--green)">LONG</span> · 
+            <span style="color:var(--danger)">SHORT</span> · 
+            <span style="color:var(--gray-5)">NEUTRAL</span>
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:160px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">regime</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            Regime de mercado — 
+            <span style="color:var(--accent)">TRENDING</span> · 
+            MIXED · LATERAL
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:160px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">confidence</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            Força do sinal — 0.0 a 1.0. 
+            Quanto maior, maior a evidência acumulada.
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:160px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">signal_ttl_seconds</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            Validade recomendada do sinal em segundos.
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:160px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">request_id</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            ID único da requisição para auditoria e suporte.
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:160px 1fr;
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">timestamp</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            UTC ISO-8601 — momento de geração do sinal.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RATE LIMITS -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Rate limits
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3)">
+        <div style="display:grid;grid-template-columns:120px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--gray-5)">Free</span>
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--white)">6 req/min</span>
+        </div>
+        <div style="display:grid;grid-template-columns:120px 1fr;
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">Pro</span>
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--white)">60 req/min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERROS -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Erros
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3)">
+        <div style="display:grid;grid-template-columns:80px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--danger)">401</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            API key inválida ou ausente.
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:80px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--danger)">429</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            Rate limit excedido. Aguarde e tente novamente.
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:80px 1fr;
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--danger)">503</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            Oracle inicializando. Tente novamente em segundos.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEALTH -->
+    <div style="margin-bottom:1rem">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;
+                  letter-spacing:.1em;text-transform:uppercase;
+                  color:var(--accent);margin-bottom:1rem">
+        Health check
+      </div>
+      <div style="background:var(--gray-1);border:1px solid var(--gray-3);
+                  padding:1.25rem 1.5rem;font-family:var(--mono);
+                  font-size:13px;color:var(--white)">
+        GET https://api.rsq.digital/health
+      </div>
+      <div style="margin-top:.75rem;font-size:13px;color:var(--gray-5)">
+        Sem autenticação. Retorna status do oracle, 
+        pares ativos e uptime.
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <footer>
   <div class="footer-logo">RSQ Signal</div>
   <div class="footer-copy">Diagnóstico de order flow. Não previsão.</div>
-  <div class="footer-patent">Patent BR 10 2025 027334 9</div>
+  <div class="footer-patent"></div>
   <button class="footer-btn" onclick="openModal()">Contato</button>
 </footer>
 
