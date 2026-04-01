@@ -6,6 +6,7 @@
 <title>RSQ Signal — Diagnóstico de Order Flow em Tempo Real</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -359,7 +360,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         <li class="ok">Tempo real absoluto</li>
         <li class="ok">request_id para auditoria</li>
       </ul>
-      <button class="plan-cta" onclick="openModal('pro')">Garantir vaga Pro</button>
+      <button class="plan-cta" onclick="window.open('https://buy.stripe.com/cNiaEY8afc9VaSK4NP9oc00','_blank')">Garantir vaga Pro</button>
     </div>
     <div class="plan">
       <div class="plan-name">Enterprise</div>
@@ -380,7 +381,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   <div class="final-eyebrow">Lançamento — acesso prioritário</div>
   <h2 class="final-headline">Veja o book falar<br>antes do candle fechar.</h2>
   <p class="final-sub">Inscreva-se agora para acesso prioritário ao plano Pro no lançamento.</p>
-  <button class="btn-primary" onclick="openModal('pro')" style="font-size:14px;padding:16px 40px">Garantir acesso prioritário</button>
+  <button class="btn-primary" onclick="window.open('https://buy.stripe.com/cNiaEY8afc9VaSK4NP9oc00','_blank')" style="font-size:14px;padding:16px 40px">Garantir acesso prioritário</button>
   <div class="final-note">BTC · ETH · Futuros USDT-M · Atualização por tick</div>
 </section>
 
@@ -409,6 +410,10 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
       </div>
       <div class="field"><label>Mensagem <span style="color:var(--gray-4)">(opcional)</span></label>
         <textarea id="f-msg" placeholder="Como pretende usar o RSQ Signal?"></textarea>
+      </div>
+      <div class="cf-turnstile" 
+        data-sitekey="TURNSTILE_SITEKEY_PLACEHOLDER" 
+        data-theme="dark">
       </div>
       <button type="submit" class="modal-btn" id="m-btn">Enviar solicitação</button>
     </form>
@@ -522,6 +527,12 @@ function submitForm(e){
   e.preventDefault();
   const btn=document.getElementById('m-btn');
   btn.textContent='Enviando...';btn.disabled=true;
+  const cfToken=document.querySelector('[name=\"cf-turnstile-response\"]')?.value;
+  if(!cfToken){
+    btn.textContent='Confirme que não é um robô';
+    btn.disabled=false;
+    return;
+  }
   fetch('https://formspree.io/f/xaqlnraj',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
@@ -529,7 +540,8 @@ function submitForm(e){
       nome:document.getElementById('f-nome').value,
       email:document.getElementById('f-email').value,
       plano:document.getElementById('f-plano').value,
-      mensagem:document.getElementById('f-msg').value
+      mensagem:document.getElementById('f-msg').value,
+      turnstile_token:cfToken
     })
   }).then(r=>{
     if(r.ok){
