@@ -158,7 +158,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .footer-logo{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--gray-4);letter-spacing:.1em;text-transform:uppercase}
 .footer-copy{font-size:12px;color:var(--gray-4)}
-.footer-patent{font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.06em}
 .footer-btn{background:none;border:none;color:var(--gray-5);font-family:var(--mono);font-size:11px;cursor:pointer;letter-spacing:.06em;transition:color .2s}
 .footer-btn:hover{color:var(--white)}
 .toast{position:fixed;bottom:32px;right:32px;z-index:999;background:var(--green-dim);border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:12px;padding:14px 20px;letter-spacing:.04em;transform:translateY(80px);opacity:0;transition:all .3s}
@@ -200,7 +199,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <!-- TICKER: barra visual + regime — sem score numérico -->
+  <!-- TICKER: barra visual + regime — sem número -->
   <div class="hero-ticker">
     <div class="ticker-item">
       <span class="ticker-dot"></span>
@@ -222,9 +221,9 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   </div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">Order flow · Futuros USDT-M</div>
-    <h1 class="hero-headline">Order flow em tempo real.<br><em>Diagnóstico.</em> Não previsão.</h1>
-    <p class="hero-sub">RSQ Signal não diz o que vai acontecer. Entrega a leitura mais honesta e rápida do que o book está fazendo agora — baseado em evidência acumulada, atualizado por tick, direto nos futuros.</p>
+    <div class="hero-eyebrow">Order flow · Futuros USDT-M · Tick a tick</div>
+    <h1 class="hero-headline">O fluxo fala antes<br>do preço se mover.</h1>
+    <p class="hero-sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: direção do fluxo, regime de mercado, intensidade do sinal. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
     <div class="hero-actions">
       <button class="btn-primary" id="live-btn" onclick="toggleLive()">Ver leitura ao vivo</button>
       <a href="#como-funciona" class="btn-ghost">Como funciona
@@ -270,7 +269,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
       </div>
     </div>
   </div>
-  <div class="hero-spec">BTC · ETH<br>Futuros USDT-M<br>Atualização por tick</div>
+  <div class="hero-spec">BTC · ETH · Futuros USDT-M<br>Tick a tick · &lt;2ms latência<br>Segredo industrial protegido</div>
 </section>
 
 <section class="section">
@@ -281,7 +280,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <div class="pain-item accent-item"><div class="pain-number">03</div><div class="pain-text">O dedo trava no gatilho.</div><div class="pain-desc">Você tem o setup. A estratégia diz entrar. Mas já viu rompimento falso demais para apertar sem confirmação.</div></div>
     <div class="pain-item"><div class="pain-number">04</div><div class="pain-text">A janela de liquidez não espera.</div><div class="pain-desc">Abertura NY, London fix — o move acontece antes do candle confirmar. Ou era fakeout. Difícil saber sem book.</div></div>
   </div>
-  <p class="pain-statement">A diferença entre um sinal e um <em>diagnóstico</em><br>é a fonte dos dados.</p>
+  <p class="pain-statement">A diferença entre reagir ao preço<br>e ler o <em>fluxo</em> que o antecede.</p>
 </section>
 
 <section class="how-section" id="como-funciona">
@@ -290,20 +289,20 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-title">Fonte direta</div>
-      <div class="step-text">WebSocket conectado diretamente nos futuros USDT-M. Sem intermediário, sem delay de agregador. Book bruto, como ele é.</div>
+      <div class="step-text">Conexão direta aos futuros USDT-M. Sem intermediário, sem delay de agregador. Cada evento do book capturado como acontece, no momento em que acontece.</div>
       <div class="step-spec">BTC · ETH · Futuros USDT-M</div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <div class="step-title">Cálculo por tick</div>
-      <div class="step-text">Pressão compradora e vendedora mensuradas continuamente a cada atualização do book. Não em intervalos fixos — por tick, em tempo real.</div>
+      <div class="step-title">Leitura evento a evento</div>
+      <div class="step-text">Cada evento é capturado e pesado pelo contexto dos ticks anteriores. Pressão compradora e vendedora mensuradas continuamente — não em intervalos fixos. Metodologia proprietária.</div>
       <div class="step-spec">Atualização por tick</div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <div class="step-title">Diagnóstico estruturado</div>
-      <div class="step-text">Evidência acumulada convertida em direção (LONG/SHORT/NEUTRAL) e regime de mercado (TRENDING/MIXED/LATERAL). Você recebe a leitura. A decisão é sua.</div>
-      <div class="step-spec">Algoritmo proprietário · evidência por order flow</div>
+      <div class="step-title">Leitura estruturada</div>
+      <div class="step-text">Direção do fluxo, regime de mercado e intensidade do sinal — entregues via API em menos de 2ms. Você recebe a leitura. A decisão é sua.</div>
+      <div class="step-spec">Direção · Regime · Intensidade · &lt;2ms</div>
     </div>
   </div>
 </section>
@@ -311,8 +310,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 <section class="proof-section">
   <div class="section-label">Evidência</div>
   <div class="proof-inner">
-    <blockquote class="proof-quote">Quando o book mostrava desequilíbrio de pressão consistente, o move seguiu na direção do sinal. O candle veio depois.</blockquote>
-    <div class="proof-context">Comportamento observado em testes — BTC Futuros USDT-M · Desequilíbrio de book persistente</div>
+    <blockquote class="proof-quote">O desequilíbrio apareceu no fluxo. O candle confirmou depois. Essa sequência se repetiu — em produção, com dado real.</blockquote>
+    <div class="proof-context">Dado Binance Futures USDT-M — produção real, sem simulação · 900+ operações registradas</div>
     <div class="proof-metrics">
       <div class="metric"><div class="metric-val">0.0–1.0</div><div class="metric-label">Confiança baseada em evidência acumulada</div></div>
       <div class="metric"><div class="metric-val">Por tick</div><div class="metric-label">Frequência de atualização sem delay de intervalo fixo</div></div>
@@ -326,11 +325,11 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   <div class="forwhom-grid">
     <div class="forwhom-col yes">
       <h3>É para você se</h3>
-      <p class="forwhom-phrase">Você já opera com estratégia definida e quer a leitura de book mais rápida e honesta disponível antes de apertar o gatilho.</p>
+<p class="forwhom-phrase">Você já opera com estratégia definida e quer confirmação de fluxo antes de entrar — o que mesas profissionais leem, em formato de API.</p>
     </div>
     <div class="forwhom-col no">
       <h3>Não é para você se</h3>
-      <p class="forwhom-phrase">Você busca uma ferramenta que decida por você ou que prometa resultado garantido.</p>
+<p class="forwhom-phrase">Você busca automação de decisão ou promessa de resultado garantido. RSQ Signal lê o fluxo — a decisão continua sendo sua.</p>
     </div>
   </div>
 </section>
@@ -379,9 +378,9 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 </section>
 
 <section class="final-cta">
-  <div class="final-eyebrow">Lançamento — acesso prioritário</div>
-  <h2 class="final-headline">Veja o book falar<br>antes do candle fechar.</h2>
-  <p class="final-sub">Inscreva-se agora para acesso prioritário ao plano Pro no lançamento.</p>
+  <div class="final-eyebrow">Order flow intelligence via API</div>
+  <h2 class="final-headline">O fluxo fala antes<br>do preço se mover.</h2>
+  <p class="final-sub">Key demo disponível para testar o endpoint antes de assinar. Pro: R$297/mês · 60 req/min · BTC + ETH Futuros USDT-M.</p>
   <button class="btn-primary" onclick="window.open('https://buy.stripe.com/cNiaEY8afc9VaSK4NP9oc00','_blank')" style="font-size:14px;padding:16px 40px">Garantir acesso prioritário</button>
   <div class="final-note">BTC · ETH · Futuros USDT-M · Atualização por tick</div>
 </section>
@@ -618,10 +617,15 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 </section>
 
 <footer>
-  <div class="footer-logo">RSQ Signal</div>
-  <div class="footer-copy">Diagnóstico de order flow. Não previsão.</div>
-  <div class="footer-patent"></div>
-  <button class="footer-btn" onclick="openModal()">Contato</button>
+<div class="footer-logo">RSQ Signal</div>
+<div class="footer-copy">Diagnóstico de order flow. Não previsão.</div>
+<button class="footer-btn" onclick="openModal()">Contato</button>
+<div style="width:100%;text-align:center;font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.04em;margin-top:.5rem;padding-top:.75rem;border-top:1px solid var(--gray-3)">
+RSQ Signal entrega diagnóstico de order flow.
+Não constitui recomendação de investimento.
+Resultados passados não garantem
+resultados futuros.
+</div>
 </footer>
 
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
