@@ -436,12 +436,11 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                   padding:1.25rem 1.5rem;font-family:var(--mono);
                   font-size:13px;color:var(--white);
                   white-space:pre-wrap;line-height:1.8">{
-  "symbol":          "BTCUSDT",
-  "bias":            "buy",
-  "market_state":    "active",
-  "signal_strength": 0.83,
-  "as_of":           "2026-04-01T13:12Z",
-  "request_id":      "f47ac10b-..."
+  "symbol":     "BTCUSDT",
+  "direction":  "LONG",
+  "confidence": 0.83,
+  "timestamp":  "2026-04-01T13:12Z",
+  "request_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
 }</div>
     </div>
 
@@ -457,34 +456,25 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     border-bottom:1px solid var(--gray-3);
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
-                       color:var(--accent)">bias</span>
+                       color:var(--accent)">direction</span>
           <span style="font-size:13px;color:var(--gray-5)">
-            Direção do sinal — buy · sell · neutral
+            Direção do sinal — LONG · SHORT · NEUTRAL
           </span>
         </div>
         <div style="display:grid;grid-template-columns:160px 1fr;
                     border-bottom:1px solid var(--gray-3);
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
-                       color:var(--accent)">market_state</span>
+                       color:var(--accent)">confidence</span>
           <span style="font-size:13px;color:var(--gray-5)">
-            Condição atual do mercado — active · transitioning · quiet
+            Força do sinal — 0.0 a 1.0.
           </span>
         </div>
         <div style="display:grid;grid-template-columns:160px 1fr;
                     border-bottom:1px solid var(--gray-3);
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
-                       color:var(--accent)">signal_strength</span>
-          <span style="font-size:13px;color:var(--gray-5)">
-            Intensidade do sinal — 0.0 a 1.0.
-          </span>
-        </div>
-        <div style="display:grid;grid-template-columns:160px 1fr;
-                    border-bottom:1px solid var(--gray-3);
-                    padding:.875rem 1.5rem;gap:1rem">
-          <span style="font-family:var(--mono);font-size:12px;
-                       color:var(--accent)">as_of</span>
+                       color:var(--accent)">timestamp</span>
           <span style="font-size:13px;color:var(--gray-5)">
             Momento de geração do sinal (UTC).
           </span>
