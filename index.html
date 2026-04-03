@@ -223,7 +223,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   <div class="hero-content">
     <div class="hero-eyebrow">Order flow · Futuros USDT-M · Tick a tick</div>
     <h1 class="hero-headline">O fluxo fala antes<br>do preço se mover.</h1>
-    <p class="hero-sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: direção do fluxo, regime de mercado, intensidade do sinal. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
+    <p class="hero-sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: bias, market_state e signal_strength. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
     <div class="hero-actions">
       <button class="btn-primary" id="live-btn" onclick="toggleLive()">Ver leitura ao vivo</button>
       <a href="#como-funciona" class="btn-ghost">Como funciona
@@ -336,7 +336,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <div class="plan featured">
       <div class="plan-badge">Mais escolhido</div>
       <div class="plan-name">Pro</div>
-      <div class="plan-price">R$197<sub>/mês</sub></div>
+      <div class="plan-price">R$297<sub>/mês</sub></div>
       <div class="plan-note">O padrão operacional</div>
       <ul class="plan-features">
         <li class="ok">BTC + ETH Futuros USDT-M</li>
@@ -436,11 +436,12 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                   padding:1.25rem 1.5rem;font-family:var(--mono);
                   font-size:13px;color:var(--white);
                   white-space:pre-wrap;line-height:1.8">{
-  "symbol":     "BTCUSDT",
-  "direction":  "LONG",
-  "confidence": 0.83,
-  "timestamp":  "2026-04-01T13:12Z",
-  "request_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  "symbol":          "BTCUSDT",
+  "bias":            "buy",
+  "market_state":    "active",
+  "signal_strength": 0.83,
+  "as_of":           "2026-04-01T13:12Z",
+  "request_id":      "f47ac10b-..."
 }</div>
     </div>
 
@@ -456,35 +457,44 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     border-bottom:1px solid var(--gray-3);
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
-                       color:var(--accent)">direction</span>
+                       color:var(--accent)">bias</span>
           <span style="font-size:13px;color:var(--gray-5)">
-            Direção do sinal — LONG · SHORT · NEUTRAL
+            Direção do sinal — buy · sell · neutral
           </span>
         </div>
         <div style="display:grid;grid-template-columns:160px 1fr;
                     border-bottom:1px solid var(--gray-3);
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
-                       color:var(--accent)">confidence</span>
+                       color:var(--accent)">market_state</span>
+          <span style="font-size:13px;color:var(--gray-5)">
+            Estado do mercado — active · transitioning · quiet
+          </span>
+        </div>
+        <div style="display:grid;grid-template-columns:160px 1fr;
+                    border-bottom:1px solid var(--gray-3);
+                    padding:.875rem 1.5rem;gap:1rem">
+          <span style="font-family:var(--mono);font-size:12px;
+                       color:var(--accent)">signal_strength</span>
           <span style="font-size:13px;color:var(--gray-5)">
             Força do sinal — 0.0 a 1.0.
           </span>
         </div>
         <div style="display:grid;grid-template-columns:160px 1fr;
-                    border-bottom:1px solid var(--gray-3);
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
-                       color:var(--accent)">timestamp</span>
+                       color:var(--accent)">as_of</span>
           <span style="font-size:13px;color:var(--gray-5)">
-            Momento de geração do sinal (UTC).
+            UTC sem segundos.
           </span>
         </div>
         <div style="display:grid;grid-template-columns:160px 1fr;
+                    border-top:1px solid var(--gray-3);
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--accent)">request_id</span>
           <span style="font-size:13px;color:var(--gray-5)">
-            Identificador único para auditoria e suporte.
+            ID único para suporte.
           </span>
         </div>
       </div>
@@ -597,7 +607,7 @@ resultados futuros.
       <div class="field"><label>Interesse</label>
         <select id="f-plano">
           <option value="free">Acesso Free</option>
-          <option value="pro">Plano Pro — R$197/mês</option>
+          <option value="pro">Plano Pro — R$297/mês</option>
           <option value="enterprise">Enterprise — licença</option>
           <option value="outro">Outro</option>
         </select>
@@ -697,7 +707,7 @@ setInterval(()=>{
 
 function openModal(plano){
   const titles={free:'Solicitar acesso free',pro:'Solicitar acesso Pro',enterprise:'Falar com a equipe'};
-  const subs={free:'Acesso gratuito. Lista de espera aberta — capacidade limitada.',pro:'Plano Pro — R$197/mês. Tempo real, 60 req/min. Acesso prioritário no lançamento.',enterprise:'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.'};
+  const subs={free:'Acesso gratuito. Lista de espera aberta — capacidade limitada.',pro:'Plano Pro — R$297/mês. Tempo real, 60 req/min. Acesso prioritário no lançamento.',enterprise:'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.'};
   document.getElementById('m-title').textContent=titles[plano]||'Entre em contato';
   document.getElementById('m-sub').textContent=subs[plano]||'Preencha os dados e entraremos em contato em até 24h.';
   if(plano)document.getElementById('f-plano').value=plano;
