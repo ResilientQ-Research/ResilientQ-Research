@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" 
+        content="width=device-width">
+  <title>RSQ Signal · Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #0a0a0a;
+      --bg2:     #111111;
+      --bg3:     #1a1a1a;
+      --border:  #222222;
+      --text:    #e8e8e8;
+      --dim:     #555555;
+      --green:   #00ff88;
+      --red:     #ff4444;
+      --yellow:  #ffaa00;
+      --mono:    'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13px;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    #login-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      gap: 24px;
+    }
+
+    .login-box {
+      border: 1px solid var(--border);
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .login-logo {
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .login-logo span {
+      color: var(--green);
+    }
+
+    .login-label {
+      font-size: 10px;
+      letter-spacing: .15em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .login-input {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 12px 16px;
+      outline: none;
+      letter-spacing: .05em;
+    }
+
+    .login-input:focus {
+      border-color: var(--green);
+    }
+
+    .login-btn {
+      width: 100%;
+      margin-top: 16px;
+      background: var(--green);
+      color: #000;
+      border: none;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 14px;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      background: #00cc66;
+    }
+
+    .login-error {
+      font-size: 11px;
+      color: var(--red);
+      margin-top: 12px;
+      display: none;
+    }
+
+    .login-demo {
+      font-size: 10px;
+      color: var(--dim);
+      text-align: center;
+      letter-spacing: .05em;
+    }
+
+    .login-demo a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    #dashboard-screen {
+      display: none;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .dash-logo {
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    .dash-logo span { color: var(--green); }
+
+    .dash-live {
+      font-size: 10px;
+      letter-spacing: .15em;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .dash-live::before {
+      content: '●  ';
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .dash-time {
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: .05em;
+      margin-top: 4px;
+    }
+
+    .pair-card {
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 12px;
+      background: var(--bg2);
+    }
+
+    .pair-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .pair-name {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .pair-price {
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+
+    .bias-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid currentColor;
+    }
+
+    .bias-buy    { color: var(--green); }
+    .bias-sell   { color: var(--red); }
+    .bias-neutral{ color: var(--dim); }
+
+    .pair-state {
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .strength-label {
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .strength-track {
+      height: 3px;
+      background: var(--bg3);
+      width: 100%;
+    }
+
+    .strength-fill {
+      height: 3px;
+      background: var(--green);
+      transition: width .6s ease;
+    }
+
+    .strength-fill.weak   { background: var(--red); }
+    .strength-fill.medium { background: var(--yellow); }
+    .strength-fill.strong { background: var(--green); }
+
+    .dash-footer {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dash-disclaimer {
+      font-size: 9px;
+      color: var(--dim);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .dash-logout {
+      font-size: 9px;
+      color: var(--dim);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--mono);
+    }
+
+    .dash-logout:hover { color: var(--red); }
+
+    .loading {
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .error-msg {
+      font-size: 11px;
+      color: var(--red);
+      letter-spacing: .05em;
+      padding: 16px;
+      border: 1px solid var(--red);
+      margin-bottom: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <span>RSQ</span> Signal · Dashboard
+    </div>
+    <div class="login-label">API Key</div>
+    <input 
+      type="password"
+      class="login-input"
+      id="api-key-input"
+      placeholder="rsq_pro_..."
+      autocomplete="off"
+    >
+    <div class="login-error" id="login-error">
+      Chave inválida ou sem permissão.
+    </div>
+    <button class="login-btn" 
+            onclick="connect()">
+      CONECTAR
+    </button>
+  </div>
+  <div class="login-demo">
+    Não tem acesso? 
+    <a href="/#planos">Assine o plano Pro</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:contato@rsq.digital">
+      contato@rsq.digital
+    </a>
+  </div>
+</div>
+
+<div id="dashboard-screen">
+  <div class="dash-header">
+    <div>
+      <div class="dash-logo">
+        <span>RSQ</span> Signal · Pro
+      </div>
+      <div class="dash-time" id="dash-time">
+        --
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="dash-live">Live</div>
+    </div>
+  </div>
+
+  <div class="error-msg" id="error-msg"></div>
+
+  <div class="pair-card" id="card-btc">
+    <div class="loading">
+      Conectando ao oracle...
+    </div>
+  </div>
+
+  <div class="pair-card" id="card-eth">
+    <div class="loading">
+      Conectando ao oracle...
+    </div>
+  </div>
+
+  <div class="dash-footer">
+    <div class="dash-disclaimer">
+      Diagnóstico de order flow.
+      Não constitui recomendação de investimento.
+    </div>
+    <button class="dash-logout" 
+            onclick="logout()">
+      Sair
+    </button>
+  </div>
+</div>
+
+<script>
+const API = 'https://api.rsq.digital';
+const SYMBOLS = ['BTCUSDT', 'ETHUSDT'];
+let apiKey = '';
+let intervalId = null;
+
+async function connect() {
+  const input = document.getElementById(
+    'api-key-input');
+  const key = input.value.trim();
+  if (!key) return;
+
+  const err = document.getElementById(
+    'login-error');
+  err.style.display = 'none';
+
+  try {
+    const r = await fetch(
+      `${API}/signal?symbol=BTCUSDT`, {
+      headers: { 'X-API-Key': key }
+    });
+
+    if (r.status === 401 || r.status === 403) {
+      err.style.display = 'block';
+      return;
+    }
+
+    apiKey = key;
+    document.getElementById(
+      'login-screen').style.display = 'none';
+    document.getElementById(
+      'dashboard-screen').style.display = 'block';
+
+    await fetchAll();
+    intervalId = setInterval(fetchAll, 5000);
+
+  } catch(e) {
+    err.textContent = 'Erro de conexão.';
+    err.style.display = 'block';
+  }
+}
+
+function logout() {
+  apiKey = '';
+  clearInterval(intervalId);
+  document.getElementById(
+    'dashboard-screen').style.display = 'none';
+  document.getElementById(
+    'login-screen').style.display = 'flex';
+  document.getElementById(
+    'api-key-input').value = '';
+}
+
+async function fetchAll() {
+  updateTime();
+  for (const sym of SYMBOLS) {
+    try {
+      const r = await fetch(
+        `${API}/signal?symbol=${sym}`, {
+        headers: { 'X-API-Key': apiKey }
+      });
+      if (r.ok) {
+        const data = await r.json();
+        renderCard(sym, data);
+      }
+    } catch(e) {}
+    await sleep(800);
+  }
+}
+
+function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+function renderCard(symbol, data) {
+  const id = symbol === 'BTCUSDT' 
+    ? 'card-btc' : 'card-eth';
+  const card = document.getElementById(id);
+
+  const bias  = data.bias || 'neutral';
+  const state = data.market_state 
+    || 'transitioning';
+  const str   = data.signal_strength || 0;
+  const asOf  = data.as_of || '--';
+
+  const name  = symbol.replace('USDT','') 
+    + '/USDT';
+
+  const biasLabel = {
+    buy:     'BUY ↑',
+    sell:    'SELL ↓',
+    neutral: 'NEUTRAL'
+  }[bias] || 'NEUTRAL';
+
+  const stateLabel = {
+    active:        'ACTIVE · TRENDING',
+    transitioning: 'TRANSITIONING · MIXED',
+    quiet:         'QUIET · LATERAL'
+  }[state] || state.toUpperCase();
+
+  const pct = Math.round(str * 100);
+  const fillClass = str >= 0.65 ? 'strong'
+    : str >= 0.45 ? 'medium' : 'weak';
+
+  card.innerHTML = `
+    <div class="pair-header">
+      <div>
+        <div class="pair-name">${name}</div>
+      </div>
+      <div class="bias-badge bias-${bias}">
+        ${biasLabel}
+      </div>
+    </div>
+    <div class="pair-state">${stateLabel}</div>
+    <div class="strength-label">
+      <span>Signal Strength</span>
+      <span>${pct}%</span>
+    </div>
+    <div class="strength-track">
+      <div 
+        class="strength-fill ${fillClass}"
+        style="width:${pct}%">
+      </div>
+    </div>
+  `;
+}
+
+function updateTime() {
+  const now = new Date();
+  const br  = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    day:   '2-digit',
+    month: '2-digit',
+    year:  'numeric',
+    hour:  '2-digit',
+    minute:'2-digit'
+  }).format(now);
+  document.getElementById(
+    'dash-time').textContent = br + ' Brasília';
+}
+
+document.addEventListener('DOMContentLoaded',
+() => {
+  document.getElementById('api-key-input')
+    .addEventListener('keydown', e => {
+      if (e.key === 'Enter') connect();
+    });
+});
+</script>
+</body>
+</html>
