@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSQ Signal — API de Order Flow Intelligence para Futuros BTC/ETH USDT‑M</title>
-<meta name="description" content="RSQ Signal é uma API REST de order flow intelligence para futuros USDT‑M (BTC/ETH) na Binance. Entrega bias (buy/sell/neutral), market_state (active/transitioning/quiet) e signal_strength (0–1) com atualização por tick e latência alvo <2ms." />
-<meta name="keywords" content="order flow, fluxo de ordens, livro de ofertas, order book, tape reading, footprint, DOM, depth of market, delta, liquidez, futuros binance, binance futures, USDT-M, BTCUSDT, ETHUSDT, trading algorítmico, crypto signals API, market microstructure, low latency API" />
-<link rel="canonical" href="https://rsq.digital/" />
+<title>RSQ Signal — Order Flow Intelligence API for BTC/ETH USDT‑M</title>
+<meta name="description" content="RSQ Signal is a REST API that delivers bias (buy/sell/neutral), market_state (active/transitioning/quiet), and signal_strength (0–1) for BTC/ETH USDT‑M on Binance. Tick-level updates, target latency <2ms." />
+<meta name="keywords" content="order flow API, order book, order flow signals, crypto futures signals, Binance futures, BTCUSDT, ETHUSDT, USDT-M, market microstructure, low latency trading signals, algorithmic trading" />
+<link rel="canonical" href="https://rsq.digital/index_en.html" />
 
 <meta property="og:type" content="website" />
-<meta property="og:locale" content="pt_BR" />
+<meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="RSQ Signal" />
-<meta property="og:url" content="https://rsq.digital/" />
-<meta property="og:title" content="RSQ Signal — Diagnóstico de Order Flow em Tempo Real via API" />
-<meta property="og:description" content="API REST que entrega bias, market_state e signal_strength (0–1) para BTC/ETH USDT‑M. Atualização por tick, latência alvo <2ms. Leitura do fluxo para integração em sistemas e research." />
+<meta property="og:url" content="https://rsq.digital/index_en.html" />
+<meta property="og:title" content="RSQ Signal — Order Flow Intelligence API for BTC/ETH USDT‑M" />
+<meta property="og:description" content="API that returns bias, market_state, and signal_strength (0–1) for BTC/ETH USDT‑M on Binance with tick-level updates and target latency <2ms." />
 <meta property="og:image" content="https://rsq.digital/assets/og/rsq-signal-1200x630.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="RSQ Signal — API de order flow intelligence para futuros BTC/ETH USDT‑M" />
+<meta property="og:image:alt" content="RSQ Signal — Order flow intelligence for BTC/ETH USDT‑M" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="RSQ Signal — API de Order Flow Intelligence (BTC/ETH USDT‑M)" />
-<meta name="twitter:description" content="Bias + estado de mercado + força do sinal (0–1), por tick, para BTC/ETH USDT‑M na Binance." />
+<meta name="twitter:title" content="RSQ Signal — Order Flow Intelligence (BTC/ETH USDT‑M)" />
+<meta name="twitter:description" content="Bias + market_state + signal_strength (0–1) for BTC/ETH USDT‑M via REST API." />
 <meta name="twitter:image" content="https://rsq.digital/assets/og/rsq-signal-1200x630.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -208,14 +209,13 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 <nav>
   <div class="nav-logo">RSQ<span>.</span>signal</div>
   <div class="nav-links">
-    <a href="#como-funciona">Como funciona</a>
+    <a href="#como-funciona">How it works</a>
     <a href="#para-quem">Para quem é</a>
-    <a href="#planos">Planos</a>
+    <a href="#Plans">Plans</a>
     <a href="#docs">Docs</a>
     <a href="#politicas">Políticas</a>
     <a href="/dashboard.html" class="nav-link">Dashboard</a>
-    <a href="index_en.html">EN</a>
-    <button class="nav-cta" onclick="openModal()">Solicitar acesso</button>
+    <button class="nav-cta" onclick="openModal()">Request access</button>
   </div>
 </nav>
 
@@ -249,7 +249,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <p class="hero-sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: bias, market_state e signal_strength. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
     <div class="hero-actions">
       <button class="btn-primary" id="live-btn" onclick="toggleLive()">Ver leitura ao vivo</button>
-      <a href="#como-funciona" class="btn-ghost">Como funciona
+      <a href="#como-funciona" class="btn-ghost">How it works
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -275,7 +275,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
       </div>
       <div class="live-foot">
         <span class="live-foot-note">Leitura ao vivo · acesso completo mediante assinatura</span>
-        <button class="live-foot-btn" onclick="openModal('pro')">Solicitar acesso</button>
+        <button class="live-foot-btn" onclick="openModal('pro')">Request access</button>
       </div>
     </div>
   </div>
@@ -294,7 +294,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 </section>
 
 <section class="how-section" id="como-funciona">
-  <div class="section-label">Como funciona</div>
+  <div class="section-label">How it works</div>
   <div class="how-steps">
     <div class="step">
       <div class="step-num">01</div>
@@ -344,8 +344,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   </div>
 </section>
 
-<section class="plans-section" id="planos">
-  <div class="section-label">Planos</div>
+<section class="plans-section" id="Plans">
+  <div class="section-label">Plans</div>
   <div class="plans-grid">
     <div class="plan">
       <div class="plan-name">Free</div>
@@ -357,7 +357,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         <li>Acesso limitado por capacidade</li>
         <li>Sem suporte</li>
       </ul>
-      <button class="plan-cta" onclick="openModal('free')">Solicitar acesso</button>
+      <button class="plan-cta" onclick="openModal('free')">Request access</button>
     </div>
     <div class="plan featured">
       <div class="plan-badge">Mais escolhido</div>
@@ -684,7 +684,7 @@ resultados futuros.
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-x" onclick="closeModal()">×</button>
-    <h3 id="m-title">Solicitar acesso</h3>
+    <h3 id="m-title">Request access</h3>
     <p class="modal-sub" id="m-sub">Preencha os dados e entraremos em contato em até 24h.</p>
     <form onsubmit="submitForm(event)">
       <div class="field"><label>Nome</label><input type="text" id="f-nome" placeholder="Seu nome" required></div>
@@ -757,7 +757,7 @@ function updateLive(){
   setPair('btc',btcData[li]);
   setPair('eth',ethData[li]);
   const t=document.getElementById('live-time');
-  if(t){const n=new Date();t.textContent=n.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
+  if(t){const n=new Date();t.textContent=n.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
 }
 
 function setPair(sym,d){
@@ -791,7 +791,7 @@ setInterval(()=>{
 },2800);
 
 function openModal(plano){
-  const titles={free:'Solicitar acesso free',pro:'Solicitar acesso Pro',enterprise:'Falar com a equipe'};
+  const titles={free:'Request access free',pro:'Request access Pro',enterprise:'Falar com a equipe'};
   const subs={free:'Acesso gratuito. Lista de espera aberta — capacidade limitada.',pro:'Plano Pro — R$297/mês. Tempo real, 60 req/min. Acesso prioritário no lançamento.',enterprise:'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.'};
   document.getElementById('m-title').textContent=titles[plano]||'Entre em contato';
   document.getElementById('m-sub').textContent=subs[plano]||'Preencha os dados e entraremos em contato em até 24h.';
@@ -840,3 +840,5 @@ function submitForm(e){
 </script>
 </body>
 </html>
+
+
