@@ -540,6 +540,12 @@ async function connect() {
       return;
     }
 
+    if (!r.ok) {
+      err.textContent = 'Erro no servidor. Tente novamente.';
+      err.style.display = 'block';
+      return;
+    }
+
     apiKey = key;
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('live-screen').style.display = 'flex';
