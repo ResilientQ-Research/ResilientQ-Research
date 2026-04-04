@@ -42,6 +42,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links{display:flex;gap:2rem;align-items:center}
 .nav-links a{font-size:13px;font-weight:400;color:var(--gray-5);text-decoration:none;letter-spacing:.02em;transition:color .2s}
 .nav-links a:hover{color:var(--white)}
+.lang-btn{background:none;border:none;font-size:13px;font-weight:400;color:var(--gray-5);letter-spacing:.02em;cursor:pointer;font-family:var(--sans);transition:color .2s;padding:0}.lang-btn.active{color:var(--white)}
 .nav-cta{font-family:var(--mono);font-size:12px;font-weight:500;color:#fff;background:var(--accent);border:none;padding:8px 20px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:background .2s}
 .nav-cta:hover{background:var(--accent-dim)}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 5rem;position:relative;overflow:hidden}
@@ -208,14 +209,14 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 <nav>
   <div class="nav-logo">RSQ<span>.</span>signal</div>
   <div class="nav-links">
-    <a href="#como-funciona">Como funciona</a>
-    <a href="#para-quem">Para quem é</a>
-    <a href="#planos">Planos</a>
+    <a href="#como-funciona" data-i18n="nav.how">Como funciona</a>
+    <a href="#para-quem" data-i18n="nav.who">Para quem é</a>
+    <a href="#planos" data-i18n="nav.pricing">Planos</a>
     <a href="#docs">Docs</a>
-    <a href="#politicas">Políticas</a>
+    <a href="#politicas" data-i18n="nav.policies">Políticas</a>
     <a href="/dashboard.html" class="nav-link">Dashboard</a>
-    <a href="index_en.html">EN</a>
-    <button class="nav-cta" onclick="openModal()">Solicitar acesso</button>
+    <button class="lang-btn" id="btn-lang-en" onclick="setLang('en')">EN</button><button class="lang-btn" id="btn-lang-pt" onclick="setLang('pt')">PT</button>
+    <button class="nav-cta" onclick="openModal()" data-i18n="nav.cta">Solicitar acesso</button>
   </div>
 </nav>
 
@@ -240,16 +241,16 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         <span class="ticker-regime" id="t-eth-r">MIXED</span>
       </div>
     </div>
-    <div class="ticker-item" style="color:var(--gray-3)">——— atualizado por tick ———</div>
+    <div class="ticker-item" style="color:var(--gray-3)" data-i18n="ticker.label">——— atualizado por tick ———</div>
   </div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">Order flow · Futuros USDT-M · Tick a tick</div>
-    <h1 class="hero-headline">O fluxo fala antes<br>do preço se mover.</h1>
-    <p class="hero-sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: bias, market_state e signal_strength. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Order flow · Futuros USDT-M · Tick a tick</div>
+    <h1 class="hero-headline" data-i18n-html="hero.headline">O fluxo fala antes<br>do preço se mover.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: bias, market_state e signal_strength. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
     <div class="hero-actions">
-      <button class="btn-primary" id="live-btn" onclick="toggleLive()">Ver leitura ao vivo</button>
-      <a href="#como-funciona" class="btn-ghost">Como funciona
+      <button class="btn-primary" id="live-btn" onclick="toggleLive()" data-i18n="live.btn.open">Ver leitura ao vivo</button>
+      <a href="#como-funciona" class="btn-ghost"><span data-i18n="hero.ghost">Como funciona</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -257,146 +258,146 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <!-- LIVE PANEL: direção + barra sem número + regime -->
     <div class="live-panel" id="live-panel">
       <div class="live-header">
-        <div class="live-header-left"><span class="live-dot"></span>Leitura ao vivo — demonstração</div>
+        <div class="live-header-left"><span class="live-dot"></span><span data-i18n="live.header.title">Leitura ao vivo — demonstração</span></div>
         <div style="display:flex;align-items:center;gap:12px;">
-          <span class="demo-badge">SIMULAÇÃO — dados ilustrativos</span>
+          <span class="demo-badge" data-i18n="live.badge">SIMULAÇÃO — dados ilustrativos</span>
           <div class="live-header-right" id="live-time">—</div>
         </div>
       </div>
       <div class="live-pairs">
         <div class="live-pair">
-          <div class="live-pair-name">BTCUSDT · Futuros USDT-M</div>
+          <div class="live-pair-name" data-i18n="live.btc.name">BTCUSDT · Futuros USDT-M</div>
           <div class="live-direction long" id="lp-btc-dir">LONG ↑</div>
         </div>
         <div class="live-pair">
-          <div class="live-pair-name">ETHUSDT · Futuros USDT-M</div>
+          <div class="live-pair-name" data-i18n="live.eth.name">ETHUSDT · Futuros USDT-M</div>
           <div class="live-direction neutral" id="lp-eth-dir">NEUTRAL</div>
         </div>
       </div>
       <div class="live-foot">
-        <span class="live-foot-note">Leitura ao vivo · acesso completo mediante assinatura</span>
-        <button class="live-foot-btn" onclick="openModal('pro')">Solicitar acesso</button>
+        <span class="live-foot-note" data-i18n="live.foot.note">Leitura ao vivo · acesso completo mediante assinatura</span>
+        <button class="live-foot-btn" onclick="openModal('pro')" data-i18n="live.foot.btn">Solicitar acesso</button>
       </div>
     </div>
   </div>
-  <div class="hero-spec">BTC · ETH · Futuros USDT-M<br>Tick a tick · &lt;2ms latência<br>Segredo industrial protegido</div>
+  <div class="hero-spec" data-i18n-html="hero.spec">BTC · ETH · Futuros USDT-M<br>Tick a tick · &lt;2ms latência<br>Segredo industrial protegido</div>
 </section>
 
 <section class="section">
-  <div class="section-label">O problema</div>
+  <div class="section-label" data-i18n="problem.label">O problema</div>
   <div class="pain-grid">
-    <div class="pain-item"><div class="pain-number">01</div><div class="pain-text">Análise técnica mostra o passado.</div><div class="pain-desc">Candles, médias, indicadores — todos calculados sobre o que já aconteceu. Você opera com retrovisor.</div></div>
-    <div class="pain-item accent-item"><div class="pain-number">02</div><div class="pain-text">Mais dados não resolve. Mais ruído, sim.</div><div class="pain-desc">O trader experiente não precisa de mais uma tela. Precisa de uma leitura objetiva no momento que importa.</div></div>
-    <div class="pain-item accent-item"><div class="pain-number">03</div><div class="pain-text">O dedo trava no gatilho.</div><div class="pain-desc">Você tem o setup. A estratégia diz entrar. Mas já viu rompimento falso demais para apertar sem confirmação.</div></div>
-    <div class="pain-item"><div class="pain-number">04</div><div class="pain-text">A janela de liquidez não espera.</div><div class="pain-desc">Abertura NY, London fix — o move acontece antes do candle confirmar. Ou era fakeout. Difícil saber sem book.</div></div>
+    <div class="pain-item"><div class="pain-number">01</div><div class="pain-text" data-i18n="pain1.title">Análise técnica mostra o passado.</div><div class="pain-desc" data-i18n="pain1.desc">Candles, médias, indicadores — todos calculados sobre o que já aconteceu. Você opera com retrovisor.</div></div>
+    <div class="pain-item accent-item"><div class="pain-number">02</div><div class="pain-text" data-i18n="pain2.title">Mais dados não resolve. Mais ruído, sim.</div><div class="pain-desc" data-i18n="pain2.desc">O trader experiente não precisa de mais uma tela. Precisa de uma leitura objetiva no momento que importa.</div></div>
+    <div class="pain-item accent-item"><div class="pain-number">03</div><div class="pain-text" data-i18n="pain3.title">O dedo trava no gatilho.</div><div class="pain-desc" data-i18n="pain3.desc">Você tem o setup. A estratégia diz entrar. Mas já viu rompimento falso demais para apertar sem confirmação.</div></div>
+    <div class="pain-item"><div class="pain-number">04</div><div class="pain-text" data-i18n="pain4.title">A janela de liquidez não espera.</div><div class="pain-desc" data-i18n="pain4.desc">Abertura NY, London fix — o move acontece antes do candle confirmar. Ou era fakeout. Difícil saber sem book.</div></div>
   </div>
-  <p class="pain-statement">A diferença entre reagir ao preço<br>e ler o <em>fluxo</em> que o antecede.</p>
+  <p class="pain-statement" data-i18n-html="problem.statement">A diferença entre reagir ao preço<br>e ler o <em>fluxo</em> que o antecede.</p>
 </section>
 
 <section class="how-section" id="como-funciona">
-  <div class="section-label">Como funciona</div>
+  <div class="section-label" data-i18n="how.label">Como funciona</div>
   <div class="how-steps">
     <div class="step">
       <div class="step-num">01</div>
-      <div class="step-title">Fonte direta</div>
-      <div class="step-text">Conexão direta aos futuros USDT-M. Sem intermediário, sem delay de agregador. Cada evento do book capturado como acontece, no momento em que acontece.</div>
-      <div class="step-spec">BTC · ETH · Futuros USDT-M</div>
+      <div class="step-title" data-i18n="how1.title">Fonte direta</div>
+      <div class="step-text" data-i18n="how1.text">Conexão direta aos futuros USDT-M. Sem intermediário, sem delay de agregador. Cada evento do book capturado como acontece, no momento em que acontece.</div>
+      <div class="step-spec" data-i18n="how1.spec">BTC · ETH · Futuros USDT-M</div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <div class="step-title">Leitura evento a evento</div>
-      <div class="step-text">Cada evento é capturado e pesado pelo contexto dos ticks anteriores. Pressão compradora e vendedora mensuradas continuamente — não em intervalos fixos. Metodologia proprietária.</div>
-      <div class="step-spec">Atualização por tick</div>
+      <div class="step-title" data-i18n="how2.title">Leitura evento a evento</div>
+      <div class="step-text" data-i18n="how2.text">Cada evento é capturado e pesado pelo contexto dos ticks anteriores. Pressão compradora e vendedora mensuradas continuamente — não em intervalos fixos. Metodologia proprietária.</div>
+      <div class="step-spec" data-i18n="how2.spec">Atualização por tick</div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <div class="step-title">Leitura estruturada</div>
-      <div class="step-text">Direção do fluxo, regime de mercado e intensidade do sinal — entregues via API em menos de 2ms. Você recebe a leitura. A decisão é sua.</div>
-      <div class="step-spec">Direção · Regime · Intensidade · &lt;2ms</div>
+      <div class="step-title" data-i18n="how3.title">Leitura estruturada</div>
+      <div class="step-text" data-i18n="how3.text">Direção do fluxo, regime de mercado e intensidade do sinal — entregues via API em menos de 2ms. Você recebe a leitura. A decisão é sua.</div>
+      <div class="step-spec" data-i18n="how3.spec">Direção · Regime · Intensidade · &lt;2ms</div>
     </div>
   </div>
 </section>
 
 <section class="proof-section">
-  <div class="section-label">Evidência</div>
+  <div class="section-label" data-i18n="proof.label">Evidência</div>
   <div class="proof-inner">
-    <blockquote class="proof-quote">O desequilíbrio apareceu no fluxo. O candle confirmou depois. Essa sequência se repetiu — em produção, com dado real.</blockquote>
-    <div class="proof-context">Dado Binance Futures USDT-M — produção real, sem simulação · 900+ operações registradas</div>
+    <blockquote class="proof-quote" data-i18n="proof.quote">O desequilíbrio apareceu no fluxo. O candle confirmou depois. Essa sequência se repetiu — em produção, com dado real.</blockquote>
+    <div class="proof-context" data-i18n="proof.context">Dado Binance Futures USDT-M — produção real, sem simulação · 900+ operações registradas</div>
     <div class="proof-metrics">
-      <div class="metric"><div class="metric-val">0.0–1.0</div><div class="metric-label">Confiança baseada em evidência acumulada</div></div>
-      <div class="metric"><div class="metric-val">Por tick</div><div class="metric-label">Frequência de atualização sem delay de intervalo fixo</div></div>
-      <div class="metric"><div class="metric-val">BTC · ETH</div><div class="metric-label">Futuros USDT-M ativos</div></div>
+      <div class="metric"><div class="metric-val">0.0–1.0</div><div class="metric-label" data-i18n="proof.metric1">Confiança baseada em evidência acumulada</div></div>
+      <div class="metric"><div class="metric-val">Por tick</div><div class="metric-label" data-i18n="proof.metric2">Frequência de atualização sem delay de intervalo fixo</div></div>
+      <div class="metric"><div class="metric-val">BTC · ETH</div><div class="metric-label" data-i18n="proof.metric3">Futuros USDT-M ativos</div></div>
     </div>
   </div>
 </section>
 
 <section class="forwhom" id="para-quem">
-  <div class="section-label">Para quem é</div>
+  <div class="section-label" data-i18n="who.label">Para quem é</div>
   <div class="forwhom-grid">
     <div class="forwhom-col yes">
-      <h3>É para você se</h3>
-<p class="forwhom-phrase">Você já opera com estratégia definida e quer confirmação de fluxo antes de entrar — o que mesas profissionais leem, em formato de API.</p>
+      <h3 data-i18n="who.yes.title">É para você se</h3>
+<p class="forwhom-phrase" data-i18n="who.yes.text">Você já opera com estratégia definida e quer confirmação de fluxo antes de entrar — o que mesas profissionais leem, em formato de API.</p>
     </div>
     <div class="forwhom-col no">
-      <h3>Não é para você se</h3>
-<p class="forwhom-phrase">Você busca automação de decisão ou promessa de resultado garantido. RSQ Signal lê o fluxo — a decisão continua sendo sua.</p>
+      <h3 data-i18n="who.no.title">Não é para você se</h3>
+<p class="forwhom-phrase" data-i18n="who.no.text">Você busca automação de decisão ou promessa de resultado garantido. RSQ Signal lê o fluxo — a decisão continua sendo sua.</p>
     </div>
   </div>
 </section>
 
 <section class="plans-section" id="planos">
-  <div class="section-label">Planos</div>
+  <div class="section-label" data-i18n="plans.label">Planos</div>
   <div class="plans-grid">
     <div class="plan">
       <div class="plan-name">Free</div>
       <div class="plan-price">R$0<sub>/mês</sub></div>
-      <div class="plan-note">Lista de espera aberta</div>
+      <div class="plan-note" data-i18n="plan.free.note">Lista de espera aberta</div>
       <ul class="plan-features">
         <li class="ok">BTC + ETH Futuros USDT-M</li>
         <li class="ok">6 req/min</li>
-        <li>Acesso limitado por capacidade</li>
-        <li>Sem suporte</li>
+        <li data-i18n="plan.free.feat3">Acesso limitado por capacidade</li>
+        <li data-i18n="plan.free.feat4">Sem suporte</li>
       </ul>
-      <button class="plan-cta" onclick="openModal('free')">Solicitar acesso</button>
+      <button class="plan-cta" onclick="openModal('free')" data-i18n="plan.free.cta">Solicitar acesso</button>
     </div>
     <div class="plan featured">
-      <div class="plan-badge">Mais escolhido</div>
+      <div class="plan-badge" data-i18n="plan.pro.badge">Mais escolhido</div>
       <div class="plan-name">Pro</div>
       <div class="plan-price">R$297<sub>/mês</sub></div>
-      <div class="plan-note">O padrão operacional</div>
+      <div class="plan-note" data-i18n="plan.pro.note">O padrão operacional</div>
       <ul class="plan-features">
         <li class="ok">BTC + ETH Futuros USDT-M</li>
         <li class="ok">60 req/min</li>
-        <li class="ok">Tempo real absoluto</li>
-        <li class="ok">request_id para auditoria</li>
+        <li class="ok" data-i18n="plan.pro.feat3">Tempo real absoluto</li>
+        <li class="ok" data-i18n="plan.pro.feat4">request_id para auditoria</li>
       </ul>
-      <button class="plan-cta" onclick="window.open('https://buy.stripe.com/cNiaEY8afc9VaSK4NP9oc00','_blank')">Garantir vaga Pro</button>
+      <button class="plan-cta" onclick="window.open('https://buy.stripe.com/cNiaEY8afc9VaSK4NP9oc00','_blank')" data-i18n="plan.pro.cta">Garantir vaga Pro</button>
     </div>
     <div class="plan">
       <div class="plan-name">Enterprise</div>
       <div class="plan-price" style="font-size:26px">Consultar</div>
-      <div class="plan-note">Soluções white-label</div>
+      <div class="plan-note" data-i18n="plan.ent.note">Soluções white-label</div>
       <ul class="plan-features">
-        <li class="ok">Todos os pares via API</li>
+        <li class="ok" data-i18n="plan.ent.feat1">Todos os pares via API</li>
         <li class="ok">300 req/min</li>
-        <li class="ok">SLA contratual</li>
-        <li class="ok">Suporte dedicado</li>
+        <li class="ok" data-i18n="plan.ent.feat3">SLA contratual</li>
+        <li class="ok" data-i18n="plan.ent.feat4">Suporte dedicado</li>
       </ul>
-      <button class="plan-cta" onclick="openModal('enterprise')">Falar com a equipe</button>
+      <button class="plan-cta" onclick="openModal('enterprise')" data-i18n="plan.ent.cta">Falar com a equipe</button>
     </div>
   </div>
 </section>
 
 <section class="final-cta">
   <div class="final-eyebrow">Order flow intelligence via API</div>
-  <h2 class="final-headline">O fluxo fala antes<br>do preço se mover.</h2>
-  <p class="final-sub">Key demo disponível para testar o endpoint antes de assinar. Pro: R$297/mês · 60 req/min · BTC + ETH Futuros USDT-M.</p>
-  <button class="btn-primary" onclick="window.open('https://buy.stripe.com/cNiaEY8afc9VaSK4NP9oc00','_blank')" style="font-size:14px;padding:16px 40px">Garantir acesso prioritário</button>
-  <div class="final-note">BTC · ETH · Futuros USDT-M · Atualização por tick</div>
+  <h2 class="final-headline" data-i18n-html="final.headline">O fluxo fala antes<br>do preço se mover.</h2>
+  <p class="final-sub" data-i18n="final.sub">Key demo disponível para testar o endpoint antes de assinar. Pro: R$297/mês · 60 req/min · BTC + ETH Futuros USDT-M.</p>
+  <button class="btn-primary" onclick="window.open('https://buy.stripe.com/cNiaEY8afc9VaSK4NP9oc00','_blank')" style="font-size:14px;padding:16px 40px" data-i18n="final.cta">Garantir acesso prioritário</button>
+  <div class="final-note" data-i18n="final.note">BTC · ETH · Futuros USDT-M · Atualização por tick</div>
 </section>
 
 <section class="section" id="docs">
-  <div class="section-label">Documentação</div>
+  <div class="section-label" data-i18n="docs.label">Documentação</div>
   
   <div style="max-width:900px">
     
@@ -424,7 +425,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <div style="margin-bottom:3rem">
       <div style="font-family:var(--mono);font-size:11px;font-weight:500;
                   letter-spacing:.1em;text-transform:uppercase;
-                  color:var(--accent);margin-bottom:1rem">
+                  color:var(--accent);margin-bottom:1rem" data-i18n="docs.auth.label">
         Autenticação
       </div>
       <div style="background:var(--gray-1);border:1px solid var(--gray-3);
@@ -432,7 +433,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                   font-size:13px;color:var(--white)">
         X-API-Key: rsq_pro_sua_chave_aqui
       </div>
-      <div style="margin-top:.75rem;font-size:13px;color:var(--gray-5)">
+      <div style="margin-top:.75rem;font-size:13px;color:var(--gray-5)" data-i18n="docs.auth.note">
         Chave entregue por email após assinatura Pro.
       </div>
     </div>
@@ -441,7 +442,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <div style="margin-bottom:3rem">
       <div style="font-family:var(--mono);font-size:11px;font-weight:500;
                   letter-spacing:.1em;text-transform:uppercase;
-                  color:var(--accent);margin-bottom:1rem">
+                  color:var(--accent);margin-bottom:1rem" data-i18n="docs.example.label">
         Exemplo de request
       </div>
       <div style="background:var(--gray-1);border:1px solid var(--gray-3);
@@ -475,7 +476,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <div style="margin-bottom:3rem">
       <div style="font-family:var(--mono);font-size:11px;font-weight:500;
                   letter-spacing:.1em;text-transform:uppercase;
-                  color:var(--accent);margin-bottom:1rem">
+                  color:var(--accent);margin-bottom:1rem" data-i18n="docs.fields.label">
         Campos
       </div>
       <div style="background:var(--gray-1);border:1px solid var(--gray-3)">
@@ -484,7 +485,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--accent)">bias</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.bias.desc">
             Direção do sinal — buy · sell · neutral
           </span>
         </div>
@@ -493,7 +494,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--accent)">market_state</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.state.desc">
             Estado do mercado — active · transitioning · quiet
           </span>
         </div>
@@ -502,7 +503,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--accent)">signal_strength</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.strength.desc">
             Força do sinal — 0.0 a 1.0.
           </span>
         </div>
@@ -510,7 +511,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--accent)">as_of</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.asof.desc">
             UTC sem segundos.
           </span>
         </div>
@@ -519,7 +520,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--accent)">request_id</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.reqid.desc">
             ID único para suporte.
           </span>
         </div>
@@ -556,7 +557,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <div style="margin-bottom:3rem">
       <div style="font-family:var(--mono);font-size:11px;font-weight:500;
                   letter-spacing:.1em;text-transform:uppercase;
-                  color:var(--accent);margin-bottom:1rem">
+                  color:var(--accent);margin-bottom:1rem" data-i18n="docs.errors.label">
         Erros
       </div>
       <div style="background:var(--gray-1);border:1px solid var(--gray-3)">
@@ -565,7 +566,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--danger)">401</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.err401">
             API key inválida ou ausente.
           </span>
         </div>
@@ -574,7 +575,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--danger)">429</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.err429">
             Rate limit excedido. Aguarde e tente novamente.
           </span>
         </div>
@@ -582,7 +583,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                     padding:.875rem 1.5rem;gap:1rem">
           <span style="font-family:var(--mono);font-size:12px;
                        color:var(--danger)">503</span>
-          <span style="font-size:13px;color:var(--gray-5)">
+          <span style="font-size:13px;color:var(--gray-5)" data-i18n="docs.err503">
             Oracle inicializando. Tente novamente em segundos.
           </span>
         </div>
@@ -601,7 +602,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
                   font-size:13px;color:var(--white)">
         GET https://api.rsq.digital/health
       </div>
-      <div style="margin-top:.75rem;font-size:13px;color:var(--gray-5)">
+      <div style="margin-top:.75rem;font-size:13px;color:var(--gray-5)" data-i18n="docs.health.note">
         Sem autenticação. Retorna status do oracle, 
         pares ativos e uptime.
       </div>
@@ -612,12 +613,12 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 
 <!-- POLÍTICAS -->
 <section class="section" id="politicas">
-  <div class="section-label">Políticas e Avisos</div>
+  <div class="section-label" data-i18n="policies.label">Políticas e Avisos</div>
   <div style="max-width:1000px;display:grid;gap:1.25rem">
 
     <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
-      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Política de Privacidade</h3>
-      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem" data-i18n="pol.privacy.title">Política de Privacidade</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6" data-i18n-html="pol.privacy.content">
         <li>Coletamos: e-mail, uso de endpoints (timestamp, símbolo, status), billing via Stripe, cookies técnicos/Turnstile.</li>
         <li>Não coletamos: chaves de exchange, posições ou patrimônio do usuário.</li>
         <li>Finalidade: autenticação, antifraude, faturamento, melhoria de disponibilidade e desempenho.</li>
@@ -627,8 +628,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     </div>
 
     <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
-      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Termos de Uso (API)</h3>
-      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem" data-i18n="pol.terms.title">Termos de Uso (API)</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6" data-i18n-html="pol.terms.content">
         <li>Serviço de diagnóstico de fluxo; não é recomendação nem execução de ordens.</li>
         <li>Acesso por chave de API; confidencialidade da chave é sua responsabilidade; respeite rate limits.</li>
         <li>Proibido uso ilícito, scraping, engenharia reversa ou tentativa de burlar controles.</li>
@@ -638,8 +639,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     </div>
 
     <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
-      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Segurança de Chaves</h3>
-      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem" data-i18n="pol.keys.title">Segurança de Chaves</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6" data-i18n-html="pol.keys.content">
         <li>Chaves geradas e enviadas uma única vez; armazenamos apenas hash (SHA-256).</li>
         <li>Rotação recomendada a cada 90 dias; revogação imediata em suspeita de vazamento.</li>
         <li>Rate limiting, auditoria e bloqueio progressivo contra abuso.</li>
@@ -648,8 +649,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     </div>
 
     <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
-      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Aviso de Risco</h3>
-      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem" data-i18n="pol.risk.title">Aviso de Risco</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6" data-i18n-html="pol.risk.content">
         <li>Cripto e derivativos envolvem risco elevado, inclusive perda total.</li>
         <li>RSQ Signal não executa ordens; entrega apenas leitura de fluxo.</li>
         <li>Histórico não garante resultados futuros; eventos extremos podem invalidar sinais.</li>
@@ -658,8 +659,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     </div>
 
     <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
-      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Cookies e Consentimento</h3>
-      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem" data-i18n="pol.cookies.title">Cookies e Consentimento</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6" data-i18n-html="pol.cookies.content">
         <li>Apenas cookies essenciais de sessão e Turnstile anti-bot.</li>
         <li>Sem ads/retargeting; se adicionarmos métricas, informaremos e permitiremos opt-out.</li>
         <li>API keys nunca devem ser salvas em localStorage; usar apenas em memória da aba.</li>
@@ -671,9 +672,9 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 
 <footer>
 <div class="footer-logo">RSQ Signal</div>
-<div class="footer-copy">Diagnóstico de order flow. Não previsão.</div>
-<button class="footer-btn" onclick="openModal()">Contato</button>
-<div style="width:100%;text-align:center;font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.04em;margin-top:.5rem;padding-top:.75rem;border-top:1px solid var(--gray-3)">
+<div class="footer-copy" data-i18n="footer.copy">Diagnóstico de order flow. Não previsão.</div>
+<button class="footer-btn" onclick="openModal()" data-i18n="footer.contact">Contato</button>
+<div style="width:100%;text-align:center;font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.04em;margin-top:.5rem;padding-top:.75rem;border-top:1px solid var(--gray-3)" data-i18n-html="footer.disclaimer">
 RSQ Signal entrega diagnóstico de order flow.
 Não constitui recomendação de investimento.
 Resultados passados não garantem
@@ -687,29 +688,29 @@ resultados futuros.
     <h3 id="m-title">Solicitar acesso</h3>
     <p class="modal-sub" id="m-sub">Preencha os dados e entraremos em contato em até 24h.</p>
     <form onsubmit="submitForm(event)">
-      <div class="field"><label>Nome</label><input type="text" id="f-nome" placeholder="Seu nome" required></div>
+      <div class="field"><label data-i18n="modal.name.label">Nome</label><input type="text" id="f-nome" placeholder="Seu nome" data-i18n-placeholder="modal.name.ph" required></div>
       <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="seu@email.com" required></div>
-      <div class="field"><label>Interesse</label>
+      <div class="field"><label data-i18n="modal.interest.label">Interesse</label>
         <select id="f-plano">
-          <option value="free">Acesso Free</option>
-          <option value="pro">Plano Pro — R$297/mês</option>
-          <option value="enterprise">Enterprise — licença</option>
-          <option value="outro">Outro</option>
+          <option value="free" data-i18n="modal.opt.free">Acesso Free</option>
+          <option value="pro" data-i18n="modal.opt.pro">Plano Pro — R$297/mês</option>
+          <option value="enterprise" data-i18n="modal.opt.ent">Enterprise — licença</option>
+          <option value="outro" data-i18n="modal.opt.other">Outro</option>
         </select>
       </div>
-      <div class="field"><label>Mensagem <span style="color:var(--gray-4)">(opcional)</span></label>
-        <textarea id="f-msg" placeholder="Como pretende usar o RSQ Signal?"></textarea>
+      <div class="field"><label data-i18n="modal.msg.label">Mensagem <span style="color:var(--gray-4)" data-i18n="modal.optional">(opcional)</span></label>
+        <textarea id="f-msg" placeholder="Como pretende usar o RSQ Signal?" data-i18n-placeholder="modal.msg.ph"></textarea>
       </div>
       <div class="cf-turnstile" 
         data-sitekey="0x4AAAAAACy_7b4VhHrhS2uj" 
         data-theme="dark">
       </div>
-      <button type="submit" class="modal-btn" id="m-btn">Enviar solicitação</button>
+      <button type="submit" class="modal-btn" id="m-btn" data-i18n="modal.submit">Enviar solicitação</button>
     </form>
   </div>
 </div>
 
-<div class="toast" id="toast">✓ Solicitação enviada. Falaremos em breve.</div>
+<div class="toast" id="toast" data-i18n="toast.success">✓ Solicitação enviada. Falaremos em breve.</div>
 
 <script>
 const btcData=[
@@ -742,11 +743,11 @@ function toggleLive(){
   const open=panel.classList.contains('visible');
   if(open){
     panel.classList.remove('visible');
-    btn.textContent='Ver leitura ao vivo';
+    btn.textContent=translations[currentLang]['live.btn.open'];
     if(liveInterval){clearInterval(liveInterval);liveInterval=null;}
   } else {
     panel.classList.add('visible');
-    btn.textContent='Fechar painel';
+    btn.textContent=translations[currentLang]['live.btn.close'];
     updateLive();
     liveInterval=setInterval(updateLive,2500);
   }
@@ -791,13 +792,14 @@ setInterval(()=>{
 },2800);
 
 function openModal(plano){
-  const titles={free:'Solicitar acesso free',pro:'Solicitar acesso Pro',enterprise:'Falar com a equipe'};
-  const subs={free:'Acesso gratuito. Lista de espera aberta — capacidade limitada.',pro:'Plano Pro — R$297/mês. Tempo real, 60 req/min. Acesso prioritário no lançamento.',enterprise:'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.'};
-  document.getElementById('m-title').textContent=titles[plano]||'Entre em contato';
-  document.getElementById('m-sub').textContent=subs[plano]||'Preencha os dados e entraremos em contato em até 24h.';
-  if(plano)document.getElementById('f-plano').value=plano;
+  const t = translations[currentLang];
+  const titles = {free: t['modal.title.free'], pro: t['modal.title.pro'], enterprise: t['modal.title.enterprise']};
+  const subs = {free: t['modal.sub.free'], pro: t['modal.sub.pro'], enterprise: t['modal.sub.enterprise']};
+  document.getElementById('m-title').textContent = titles[plano] || t['modal.title.default'];
+  document.getElementById('m-sub').textContent = subs[plano] || t['modal.sub.default'];
+  if(plano) document.getElementById('f-plano').value = plano;
   document.getElementById('overlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
 function closeModal(){
   document.getElementById('overlay').classList.remove('open');
@@ -808,10 +810,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 function submitForm(e){
   e.preventDefault();
   const btn=document.getElementById('m-btn');
-  btn.textContent='Enviando...';btn.disabled=true;
+  btn.textContent=translations[currentLang]['form.sending'];btn.disabled=true;
   const cfToken=document.querySelector('[name=\"cf-turnstile-response\"]')?.value;
   if(!cfToken){
-    btn.textContent='Confirme que não é um robô';
+    btn.textContent=translations[currentLang]['form.error.robot'];
     btn.disabled=false;
     return;
   }
@@ -830,13 +832,305 @@ function submitForm(e){
       closeModal();
       const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
     } else {
-      btn.textContent='Erro — tente novamente';btn.disabled=false;
+      btn.textContent=translations[currentLang]['form.error.retry'];btn.disabled=false;
     }
   }).catch(()=>{
     closeModal();
     const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
-  }).finally(()=>{btn.textContent='Enviar solicitação';btn.disabled=false;e.target.reset();});
+  }).finally(()=>{btn.textContent=translations[currentLang]['modal.submit'];btn.disabled=false;e.target.reset();});
 }
+/* ===== i18n ===== */
+let currentLang = 'pt';
+
+const translations = {
+  pt: {
+    'nav.how': 'Como funciona',
+    'nav.who': 'Para quem é',
+    'nav.pricing': 'Planos',
+    'nav.policies': 'Políticas',
+    'nav.cta': 'Solicitar acesso',
+    'ticker.label': '——— atualizado por tick ———',
+    'hero.eyebrow': 'Order flow · Futuros USDT-M · Tick a tick',
+    'hero.headline': 'O fluxo fala antes<br>do preço se mover.',
+    'hero.sub': 'RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: bias, market_state e signal_strength. O desequilíbrio que antecede o move — antes do candle confirmar.',
+    'live.btn.open': 'Ver leitura ao vivo',
+    'live.btn.close': 'Fechar painel',
+    'hero.ghost': 'Como funciona',
+    'hero.spec': 'BTC · ETH · Futuros USDT-M<br>Tick a tick · &lt;2ms latência<br>Segredo industrial protegido',
+    'live.header.title': 'Leitura ao vivo — demonstração',
+    'live.badge': 'SIMULAÇÃO — dados ilustrativos',
+    'live.btc.name': 'BTCUSDT · Futuros USDT-M',
+    'live.eth.name': 'ETHUSDT · Futuros USDT-M',
+    'live.foot.note': 'Leitura ao vivo · acesso completo mediante assinatura',
+    'live.foot.btn': 'Solicitar acesso',
+    'problem.label': 'O problema',
+    'pain1.title': 'Análise técnica mostra o passado.',
+    'pain1.desc': 'Candles, médias, indicadores — todos calculados sobre o que já aconteceu. Você opera com retrovisor.',
+    'pain2.title': 'Mais dados não resolve. Mais ruído, sim.',
+    'pain2.desc': 'O trader experiente não precisa de mais uma tela. Precisa de uma leitura objetiva no momento que importa.',
+    'pain3.title': 'O dedo trava no gatilho.',
+    'pain3.desc': 'Você tem o setup. A estratégia diz entrar. Mas já viu rompimento falso demais para apertar sem confirmação.',
+    'pain4.title': 'A janela de liquidez não espera.',
+    'pain4.desc': 'Abertura NY, London fix — o move acontece antes do candle confirmar. Ou era fakeout. Difícil saber sem book.',
+    'problem.statement': 'A diferença entre reagir ao preço<br>e ler o <em>fluxo</em> que o antecede.',
+    'how.label': 'Como funciona',
+    'how1.title': 'Fonte direta',
+    'how1.text': 'Conexão direta aos futuros USDT-M. Sem intermediário, sem delay de agregador. Cada evento do book capturado como acontece, no momento em que acontece.',
+    'how1.spec': 'BTC · ETH · Futuros USDT-M',
+    'how2.title': 'Leitura evento a evento',
+    'how2.text': 'Cada evento é capturado e pesado pelo contexto dos ticks anteriores. Pressão compradora e vendedora mensuradas continuamente — não em intervalos fixos. Metodologia proprietária.',
+    'how2.spec': 'Atualização por tick',
+    'how3.title': 'Leitura estruturada',
+    'how3.text': 'Direção do fluxo, regime de mercado e intensidade do sinal — entregues via API em menos de 2ms. Você recebe a leitura. A decisão é sua.',
+    'how3.spec': 'Direção · Regime · Intensidade · <2ms',
+    'proof.label': 'Evidência',
+    'proof.quote': 'O desequilíbrio apareceu no fluxo. O candle confirmou depois. Essa sequência se repetiu — em produção, com dado real.',
+    'proof.context': 'Dado Binance Futures USDT-M — produção real, sem simulação · 900+ operações registradas',
+    'proof.metric1': 'Confiança baseada em evidência acumulada',
+    'proof.metric2': 'Frequência de atualização sem delay de intervalo fixo',
+    'proof.metric3': 'Futuros USDT-M ativos',
+    'who.label': 'Para quem é',
+    'who.yes.title': 'É para você se',
+    'who.yes.text': 'Você já opera com estratégia definida e quer confirmação de fluxo antes de entrar — o que mesas profissionais leem, em formato de API.',
+    'who.no.title': 'Não é para você se',
+    'who.no.text': 'Você busca automação de decisão ou promessa de resultado garantido. RSQ Signal lê o fluxo — a decisão continua sendo sua.',
+    'plans.label': 'Planos',
+    'plan.free.note': 'Lista de espera aberta',
+    'plan.free.feat3': 'Acesso limitado por capacidade',
+    'plan.free.feat4': 'Sem suporte',
+    'plan.free.cta': 'Solicitar acesso',
+    'plan.pro.badge': 'Mais escolhido',
+    'plan.pro.note': 'O padrão operacional',
+    'plan.pro.feat3': 'Tempo real absoluto',
+    'plan.pro.feat4': 'request_id para auditoria',
+    'plan.pro.cta': 'Garantir vaga Pro',
+    'plan.ent.note': 'Soluções white-label',
+    'plan.ent.feat1': 'Todos os pares via API',
+    'plan.ent.feat3': 'SLA contratual',
+    'plan.ent.feat4': 'Suporte dedicado',
+    'plan.ent.cta': 'Falar com a equipe',
+    'final.headline': 'O fluxo fala antes<br>do preço se mover.',
+    'final.sub': 'Key demo disponível para testar o endpoint antes de assinar. Pro: R$297/mês · 60 req/min · BTC + ETH Futuros USDT-M.',
+    'final.cta': 'Garantir acesso prioritário',
+    'final.note': 'BTC · ETH · Futuros USDT-M · Atualização por tick',
+    'docs.label': 'Documentação',
+    'docs.auth.label': 'Autenticação',
+    'docs.auth.note': 'Chave entregue por email após assinatura Pro.',
+    'docs.example.label': 'Exemplo de request',
+    'docs.fields.label': 'Campos',
+    'docs.bias.desc': 'Direção do sinal — buy · sell · neutral',
+    'docs.state.desc': 'Estado do mercado — active · transitioning · quiet',
+    'docs.strength.desc': 'Força do sinal — 0.0 a 1.0.',
+    'docs.asof.desc': 'UTC sem segundos.',
+    'docs.reqid.desc': 'ID único para suporte.',
+    'docs.errors.label': 'Erros',
+    'docs.err401': 'API key inválida ou ausente.',
+    'docs.err429': 'Rate limit excedido. Aguarde e tente novamente.',
+    'docs.err503': 'Oracle inicializando. Tente novamente em segundos.',
+    'docs.health.note': 'Sem autenticação. Retorna status do oracle, pares ativos e uptime.',
+    'policies.label': 'Políticas e Avisos',
+    'pol.privacy.title': 'Política de Privacidade',
+    'pol.privacy.content': '<li>Coletamos: e-mail, uso de endpoints (timestamp, símbolo, status), billing via Stripe, cookies técnicos/Turnstile.</li><li>Não coletamos: chaves de exchange, posições ou patrimônio do usuário.</li><li>Finalidade: autenticação, antifraude, faturamento, melhoria de disponibilidade e desempenho.</li><li>Compartilhamento: infraestrutura (Railway/Cloudflare), pagamento (Stripe), e-mail transacional (Resend). Sem venda de dados.</li><li>Retenção: logs 30 dias; backups 90 dias; faturamento conforme exigência legal. Contato: contato@rsq.digital.</li>',
+    'pol.terms.title': 'Termos de Uso (API)',
+    'pol.terms.content': '<li>Serviço de diagnóstico de fluxo; não é recomendação nem execução de ordens.</li><li>Acesso por chave de API; confidencialidade da chave é sua responsabilidade; respeite rate limits.</li><li>Proibido uso ilícito, scraping, engenharia reversa ou tentativa de burlar controles.</li><li>Disponibilidade best-effort; podemos pausar para manutenção ou incidentes.</li><li>Uso por sua conta e risco; histórico não garante resultados futuros.</li>',
+    'pol.keys.title': 'Segurança de Chaves',
+    'pol.keys.content': '<li>Chaves geradas e enviadas uma única vez; armazenamos apenas hash (SHA-256).</li><li>Rotação recomendada a cada 90 dias; revogação imediata em suspeita de vazamento.</li><li>Rate limiting, auditoria e bloqueio progressivo contra abuso.</li><li>Incidentes: contato@rsq.digital.</li>',
+    'pol.risk.title': 'Aviso de Risco',
+    'pol.risk.content': '<li>Cripto e derivativos envolvem risco elevado, inclusive perda total.</li><li>RSQ Signal não executa ordens; entrega apenas leitura de fluxo.</li><li>Histórico não garante resultados futuros; eventos extremos podem invalidar sinais.</li><li>Usuário é responsável por alavancagem, tamanho de posição, stops e compliance.</li>',
+    'pol.cookies.title': 'Cookies e Consentimento',
+    'pol.cookies.content': '<li>Apenas cookies essenciais de sessão e Turnstile anti-bot.</li><li>Sem ads/retargeting; se adicionarmos métricas, informaremos e permitiremos opt-out.</li><li>API keys nunca devem ser salvas em localStorage; usar apenas em memória da aba.</li>',
+    'footer.copy': 'Diagnóstico de order flow. Não previsão.',
+    'footer.contact': 'Contato',
+    'footer.disclaimer': 'RSQ Signal entrega diagnóstico de order flow.\nNão constitui recomendação de investimento.\nResultados passados não garantem\nresultados futuros.',
+    'modal.name.label': 'Nome',
+    'modal.interest.label': 'Interesse',
+    'modal.msg.label': 'Mensagem',
+    'modal.optional': '(opcional)',
+    'modal.name.ph': 'Seu nome',
+    'modal.msg.ph': 'Como pretende usar o RSQ Signal?',
+    'modal.opt.free': 'Acesso Free',
+    'modal.opt.pro': 'Plano Pro — R$297/mês',
+    'modal.opt.ent': 'Enterprise — licença',
+    'modal.opt.other': 'Outro',
+    'modal.submit': 'Enviar solicitação',
+    'toast.success': '✓ Solicitação enviada. Falaremos em breve.',
+    'modal.title.default': 'Entre em contato',
+    'modal.sub.default': 'Preencha os dados e entraremos em contato em até 24h.',
+    'modal.title.free': 'Solicitar acesso free',
+    'modal.sub.free': 'Acesso gratuito. Lista de espera aberta — capacidade limitada.',
+    'modal.title.pro': 'Solicitar acesso Pro',
+    'modal.sub.pro': 'Plano Pro — R$297/mês. Tempo real, 60 req/min. Acesso prioritário no lançamento.',
+    'modal.title.enterprise': 'Falar com a equipe',
+    'modal.sub.enterprise': 'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.',
+    'form.sending': 'Enviando...',
+    'form.error.robot': 'Confirme que não é um robô',
+    'form.error.retry': 'Erro — tente novamente',
+  },
+  en: {
+    'nav.how': 'How it works',
+    'nav.who': "Who it's for",
+    'nav.pricing': 'Pricing',
+    'nav.policies': 'Policies',
+    'nav.cta': 'Request access',
+    'ticker.label': '——— updated per tick ———',
+    'hero.eyebrow': 'Order flow · USDT-M Futures · Tick by tick',
+    'hero.headline': 'Flow speaks before<br>price moves.',
+    'hero.sub': 'RSQ Signal processes the BTC/ETH futures book event by event, in real time, and delivers via API: bias, market_state and signal_strength. The imbalance that precedes the move — before the candle confirms.',
+    'live.btn.open': 'See live reading',
+    'live.btn.close': 'Close panel',
+    'hero.ghost': 'How it works',
+    'hero.spec': 'BTC · ETH · USDT-M Futures<br>Tick by tick · &lt;2ms latency<br>Trade secret protected',
+    'live.header.title': 'Live reading — demo',
+    'live.badge': 'SIMULATION — illustrative data',
+    'live.btc.name': 'BTCUSDT · USDT-M Futures',
+    'live.eth.name': 'ETHUSDT · USDT-M Futures',
+    'live.foot.note': 'Live reading · full access requires subscription',
+    'live.foot.btn': 'Request access',
+    'problem.label': 'The problem',
+    'pain1.title': 'Technical analysis shows the past.',
+    'pain1.desc': 'Candles, moving averages, indicators — all calculated on what already happened. You trade with a rear-view mirror.',
+    'pain2.title': 'More data does not help. More noise, yes.',
+    'pain2.desc': 'The experienced trader does not need another screen. They need an objective reading at the moment that matters.',
+    'pain3.title': 'The finger freezes on the trigger.',
+    'pain3.desc': 'You have the setup. The strategy says enter. But you have seen too many false breakouts to press without confirmation.',
+    'pain4.title': 'The liquidity window does not wait.',
+    'pain4.desc': 'NY open, London fix — the move happens before the candle confirms. Or it was a fakeout. Hard to know without the book.',
+    'problem.statement': 'The difference between reacting to price<br>and reading the <em>flow</em> that precedes it.',
+    'how.label': 'How it works',
+    'how1.title': 'Direct source',
+    'how1.text': 'Direct connection to USDT-M futures. No intermediary, no aggregator delay. Every book event captured as it happens, at the moment it happens.',
+    'how1.spec': 'BTC · ETH · USDT-M Futures',
+    'how2.title': 'Event-by-event reading',
+    'how2.text': 'Each event is captured and weighted by the context of prior ticks. Buying and selling pressure measured continuously — not at fixed intervals. Proprietary methodology.',
+    'how2.spec': 'Tick-by-tick updates',
+    'how3.title': 'Structured reading',
+    'how3.text': 'Flow direction, market regime and signal intensity — delivered via API in under 2ms. You receive the reading. The decision is yours.',
+    'how3.spec': 'Direction · Regime · Intensity · <2ms',
+    'proof.label': 'Evidence',
+    'proof.quote': 'The imbalance appeared in the flow. The candle confirmed afterwards. This sequence repeated — in production, with real data.',
+    'proof.context': 'Binance Futures USDT-M data — real production, no simulation · 900+ recorded trades',
+    'proof.metric1': 'Confidence based on accumulated evidence',
+    'proof.metric2': 'Update frequency with no fixed-interval delay',
+    'proof.metric3': 'Active USDT-M futures',
+    'who.label': "Who it's for",
+    'who.yes.title': "It's for you if",
+    'who.yes.text': "You already trade with a defined strategy and want flow confirmation before entering — what professional desks read, in API format.",
+    'who.no.title': "It's not for you if",
+    'who.no.text': 'You seek automated decision-making or guaranteed returns. RSQ Signal reads the flow — the decision remains yours.',
+    'plans.label': 'Pricing',
+    'plan.free.note': 'Open waitlist',
+    'plan.free.feat3': 'Capacity-limited access',
+    'plan.free.feat4': 'No support',
+    'plan.free.cta': 'Request access',
+    'plan.pro.badge': 'Most popular',
+    'plan.pro.note': 'The operational standard',
+    'plan.pro.feat3': 'Absolute real time',
+    'plan.pro.feat4': 'request_id for audit',
+    'plan.pro.cta': 'Get Pro access',
+    'plan.ent.note': 'White-label solutions',
+    'plan.ent.feat1': 'All pairs via API',
+    'plan.ent.feat3': 'Contractual SLA',
+    'plan.ent.feat4': 'Dedicated support',
+    'plan.ent.cta': 'Talk to the team',
+    'final.headline': 'Flow speaks before<br>price moves.',
+    'final.sub': 'Demo key available to test the endpoint before subscribing. Pro: R$297/mo · 60 req/min · BTC + ETH USDT-M Futures.',
+    'final.cta': 'Get priority access',
+    'final.note': 'BTC · ETH · USDT-M Futures · Tick-by-tick updates',
+    'docs.label': 'Documentation',
+    'docs.auth.label': 'Authentication',
+    'docs.auth.note': 'Key delivered by email after Pro subscription.',
+    'docs.example.label': 'Request example',
+    'docs.fields.label': 'Fields',
+    'docs.bias.desc': 'Signal direction — buy · sell · neutral',
+    'docs.state.desc': 'Market state — active · transitioning · quiet',
+    'docs.strength.desc': 'Signal strength — 0.0 to 1.0.',
+    'docs.asof.desc': 'UTC without seconds.',
+    'docs.reqid.desc': 'Unique ID for support.',
+    'docs.errors.label': 'Errors',
+    'docs.err401': 'Invalid or missing API key.',
+    'docs.err429': 'Rate limit exceeded. Wait and try again.',
+    'docs.err503': 'Oracle initializing. Try again in seconds.',
+    'docs.health.note': 'No authentication required. Returns oracle status, active pairs and uptime.',
+    'policies.label': 'Policies & Notices',
+    'pol.privacy.title': 'Privacy Policy',
+    'pol.privacy.content': '<li>We collect: email, endpoint usage (timestamp, symbol, status), billing via Stripe, technical/Turnstile cookies.</li><li>We do not collect: exchange keys, positions or user assets.</li><li>Purpose: authentication, anti-fraud, billing, availability and performance improvement.</li><li>Sharing: infrastructure (Railway/Cloudflare), payment (Stripe), transactional email (Resend). No data sales.</li><li>Retention: logs 30 days; backups 90 days; billing per legal requirements. Contact: contato@rsq.digital.</li>',
+    'pol.terms.title': 'Terms of Use (API)',
+    'pol.terms.content': '<li>Flow diagnostics service; not a recommendation or order execution.</li><li>Access via API key; confidentiality of the key is your responsibility; respect rate limits.</li><li>Prohibited: unlawful use, scraping, reverse engineering or attempts to circumvent controls.</li><li>Best-effort availability; we may pause for maintenance or incidents.</li><li>Use at your own risk; past history does not guarantee future results.</li>',
+    'pol.keys.title': 'Key Security',
+    'pol.keys.content': '<li>Keys generated and sent once; we store only the hash (SHA-256).</li><li>Rotation recommended every 90 days; immediate revocation on suspected leak.</li><li>Rate limiting, auditing and progressive blocking against abuse.</li><li>Incidents: contato@rsq.digital.</li>',
+    'pol.risk.title': 'Risk Disclosure',
+    'pol.risk.content': '<li>Crypto and derivatives involve high risk, including total loss.</li><li>RSQ Signal does not execute orders; it delivers only flow readings.</li><li>Past history does not guarantee future results; extreme events may invalidate signals.</li><li>User is responsible for leverage, position sizing, stops and compliance.</li>',
+    'pol.cookies.title': 'Cookies & Consent',
+    'pol.cookies.content': '<li>Only essential session cookies and Turnstile anti-bot.</li><li>No ads/retargeting; if we add analytics, we will inform you and allow opt-out.</li><li>API keys must never be saved in localStorage; use only in tab memory.</li>',
+    'footer.copy': 'Order flow diagnostics. Not prediction.',
+    'footer.contact': 'Contact',
+    'footer.disclaimer': 'RSQ Signal delivers order flow diagnostics.\nNot investment advice.\nPast results do not guarantee\nfuture results.',
+    'modal.name.label': 'Name',
+    'modal.interest.label': 'Interest',
+    'modal.msg.label': 'Message',
+    'modal.optional': '(optional)',
+    'modal.name.ph': 'Your name',
+    'modal.msg.ph': 'How do you plan to use RSQ Signal?',
+    'modal.opt.free': 'Free Access',
+    'modal.opt.pro': 'Pro Plan — R$297/mo',
+    'modal.opt.ent': 'Enterprise — license',
+    'modal.opt.other': 'Other',
+    'modal.submit': 'Submit request',
+    'toast.success': "✓ Request submitted. We'll be in touch.",
+    'modal.title.default': 'Contact us',
+    'modal.sub.default': 'Fill in the details and we will get back to you within 24h.',
+    'modal.title.free': 'Request free access',
+    'modal.sub.free': 'Free access. Open waitlist — limited capacity.',
+    'modal.title.pro': 'Request Pro access',
+    'modal.sub.pro': 'Pro Plan — R$297/mo. Real time, 60 req/min. Priority access at launch.',
+    'modal.title.enterprise': 'Talk to the team',
+    'modal.sub.enterprise': 'Enterprise license with SLA and dedicated support. We will get in touch.',
+    'form.sending': 'Sending...',
+    'form.error.robot': "Please confirm you're not a robot",
+    'form.error.retry': 'Error — try again',
+  }
+};
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const text = translations[lang]?.[key];
+    if (text !== undefined) el.textContent = text;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    const html = translations[lang]?.[key];
+    if (html !== undefined) el.innerHTML = html;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const text = translations[lang]?.[key];
+    if (text !== undefined) el.placeholder = text;
+  });
+  const btnEn = document.getElementById('btn-lang-en');
+  const btnPt = document.getElementById('btn-lang-pt');
+  if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+  if (btnPt) btnPt.classList.toggle('active', lang === 'pt');
+  document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+  const livePanel = document.getElementById('live-panel');
+  const liveBtnEl = document.getElementById('live-btn');
+  if (liveBtnEl && livePanel) {
+    const isOpen = livePanel.classList.contains('visible');
+    liveBtnEl.textContent = translations[lang][isOpen ? 'live.btn.close' : 'live.btn.open'];
+  }
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('rsq_lang', lang);
+  applyLang(lang);
+}
+
+(function() {
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  currentLang = urlLang || localStorage.getItem('rsq_lang') || 'pt';
+  applyLang(currentLang);
+})();
 </script>
 </body>
 </html>
