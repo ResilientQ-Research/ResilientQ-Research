@@ -193,6 +193,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <a href="#para-quem">Para quem é</a>
     <a href="#planos">Planos</a>
     <a href="#docs">Docs</a>
+    <a href="#politicas">PolÃ­ticas</a>
     <a href="/dashboard.html" class="nav-link">Dashboard</a>
     <button class="nav-cta" onclick="openModal()">Solicitar acesso</button>
   </div>
@@ -584,6 +585,65 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         Sem autenticação. Retorna status do oracle, 
         pares ativos e uptime.
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- POLÍTICAS -->
+<section class="section" id="politicas">
+  <div class="section-label">Políticas e Avisos</div>
+  <div style="max-width:1000px;display:grid;gap:1.25rem">
+
+    <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Política de Privacidade</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+        <li>Coletamos: e-mail, uso de endpoints (timestamp, símbolo, status), billing via Stripe, cookies técnicos/Turnstile.</li>
+        <li>Não coletamos: chaves de exchange, posições ou patrimônio do usuário.</li>
+        <li>Finalidade: autenticação, antifraude, faturamento, melhoria de disponibilidade e desempenho.</li>
+        <li>Compartilhamento: infraestrutura (Railway/Cloudflare), pagamento (Stripe), e-mail transacional (Resend). Sem venda de dados.</li>
+        <li>Retenção: logs 30 dias; backups 90 dias; faturamento conforme exigência legal. Contato: contato@rsq.digital.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Termos de Uso (API)</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+        <li>Serviço de diagnóstico de fluxo; não é recomendação nem execução de ordens.</li>
+        <li>Acesso por chave de API; confidencialidade da chave é sua responsabilidade; respeite rate limits.</li>
+        <li>Proibido uso ilícito, scraping, engenharia reversa ou tentativa de burlar controles.</li>
+        <li>Disponibilidade best-effort; podemos pausar para manutenção ou incidentes.</li>
+        <li>Uso por sua conta e risco; histórico não garante resultados futuros.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Segurança de Chaves</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+        <li>Chaves geradas e enviadas uma única vez; armazenamos apenas hash (SHA-256).</li>
+        <li>Rotação recomendada a cada 90 dias; revogação imediata em suspeita de vazamento.</li>
+        <li>Rate limiting, auditoria e bloqueio progressivo contra abuso.</li>
+        <li>Incidentes: contato@rsq.digital.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Aviso de Risco</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+        <li>Cripto e derivativos envolvem risco elevado, inclusive perda total.</li>
+        <li>RSQ Signal não executa ordens; entrega apenas leitura de fluxo.</li>
+        <li>Histórico não garante resultados futuros; eventos extremos podem invalidar sinais.</li>
+        <li>Usuário é responsável por alavancagem, tamanho de posição, stops e compliance.</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--gray-1);border:1px solid var(--gray-3);padding:1.5rem">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:.5rem">Cookies e Consentimento</h3>
+      <ul style="margin-left:1.2rem;color:var(--gray-5);font-size:14px;line-height:1.6">
+        <li>Apenas cookies essenciais de sessão e Turnstile anti-bot.</li>
+        <li>Sem ads/retargeting; se adicionarmos métricas, informaremos e permitiremos opt-out.</li>
+        <li>API keys nunca devem ser salvas em localStorage; usar apenas em memória da aba.</li>
+      </ul>
     </div>
 
   </div>
