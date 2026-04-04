@@ -237,14 +237,137 @@
 
   /* ERROR */
   .error-msg { color: var(--red); font-size: 10px; }
+
+  /* LOGIN SCREEN */
+  #login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 24px;
+    padding: 24px;
+  }
+  .login-box {
+    border: 1px solid var(--border2);
+    padding: 40px;
+    width: 100%;
+    max-width: 440px;
+    background: var(--bg2);
+  }
+  .login-logo {
+    font-size: 11px;
+    letter-spacing: .2em;
+    color: var(--white2);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .login-logo span { color: var(--green); }
+  .login-label {
+    font-size: 10px;
+    letter-spacing: .15em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .login-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 12px 16px;
+    outline: none;
+    letter-spacing: .05em;
+  }
+  .login-input:focus { border-color: var(--green); }
+  .login-btn {
+    width: 100%;
+    margin-top: 16px;
+    background: var(--green);
+    color: #000;
+    border: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: 14px;
+    cursor: pointer;
+  }
+  .login-btn:hover { background: var(--green2); }
+  .login-error {
+    font-size: 11px;
+    color: var(--red);
+    margin-top: 12px;
+    display: none;
+    letter-spacing: .05em;
+  }
+  .login-note {
+    font-size: 10px;
+    color: var(--gray);
+    text-align: center;
+    letter-spacing: .05em;
+  }
+  .login-note a { color: var(--green); text-decoration: none; }
+
+  /* LIVE SCREEN */
+  #live-screen {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* LOGOUT BUTTON */
+  .topbar-logout {
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    padding: 4px 10px;
+  }
+  .topbar-logout:hover { color: var(--red); border-color: var(--red); }
 </style>
 </head>
 <body>
 
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo"><span>RSQ</span> Signal · Live Dashboard</div>
+    <div class="login-label">API Key</div>
+    <input
+      type="password"
+      class="login-input"
+      id="api-key-input"
+      placeholder="rsq_pro_..."
+      autocomplete="off"
+    >
+    <div class="login-error" id="login-error">Chave inválida ou sem permissão.</div>
+    <button class="login-btn" onclick="connect()">CONECTAR</button>
+  </div>
+  <div class="login-note">
+    Não tem acesso?
+    <a href="/#planos">Assine o plano Pro</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:contato@rsq.digital">contato@rsq.digital</a>
+  </div>
+</div>
+
+<div id="live-screen">
+
 <div class="topbar">
   <div class="topbar-brand">RSQ <span>SIGNAL</span> · LIVE DASHBOARD</div>
   <div><span class="live-dot"></span>BINANCE FUTURES USDT-M · BTC · ETH</div>
-  <div class="topbar-time" id="clock">--:-- Brasília</div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="topbar-time" id="clock">--:-- Brasília</div>
+    <button class="topbar-logout" onclick="logout()">SAIR</button>
+  </div>
 </div>
 
 <div class="main">
@@ -376,12 +499,15 @@
   <div>Order flow em tempo real · ResilientQ Research</div>
 </div>
 
+</div><!-- #live-screen -->
+
 <script>
-const API_KEY = 'rsq_demo_e29f930bbea110773a4a45f2320e2a9139d9839c8378fa91d542d7bd8ec39522';
 const RSQ_URL = 'https://api.rsq.digital/signal';
 const BNB_URL = 'https://fapi.binance.com/fapi/v1/ticker/24hr';
 
+let apiKey = '';
 let tick = 0;
+let updateInterval = null;
 
 // CLOCK
 function updateClock() {
@@ -394,6 +520,61 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 updateClock();
+
+// LOGIN
+async function connect() {
+  const input = document.getElementById('api-key-input');
+  const key = input.value.trim();
+  if (!key) return;
+
+  const err = document.getElementById('login-error');
+  err.style.display = 'none';
+
+  try {
+    const r = await fetch(`${RSQ_URL}?symbol=BTCUSDT`, {
+      headers: { 'X-API-Key': key }
+    });
+
+    if (r.status === 401 || r.status === 403) {
+      err.style.display = 'block';
+      return;
+    }
+
+    if (!r.ok) {
+      err.textContent = 'Erro no servidor. Tente novamente.';
+      err.style.display = 'block';
+      return;
+    }
+
+    apiKey = key;
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('live-screen').style.display = 'flex';
+
+    await update();
+    updateInterval = setInterval(update, 5000);
+
+  } catch(e) {
+    err.textContent = 'Erro de conexão.';
+    err.style.display = 'block';
+  }
+}
+
+function logout() {
+  apiKey = '';
+  clearInterval(updateInterval);
+  updateInterval = null;
+  tick = 0;
+  document.getElementById('live-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('api-key-input').value = '';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('api-key-input')
+    .addEventListener('keydown', e => {
+      if (e.key === 'Enter') connect();
+    });
+});
 
 // FORMAT PRICE
 function fmtPrice(p) {
@@ -412,7 +593,7 @@ function fmtVol(v) {
 async function fetchRSQ(symbol) {
   try {
     const r = await fetch(`${RSQ_URL}?symbol=${symbol}`, {
-      headers: { 'X-API-Key': API_KEY }
+      headers: { 'X-API-Key': apiKey }
     });
     if (!r.ok) return null;
     return await r.json();
@@ -510,10 +691,6 @@ async function update() {
   document.getElementById('last-update').textContent =
     'última atualização: ' + now.toLocaleTimeString('pt-BR');
 }
-
-// START
-update();
-setInterval(update, 5000);
 </script>
 </body>
 </html>
