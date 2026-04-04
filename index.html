@@ -855,6 +855,8 @@ const translations = {
     'form.sending': 'Enviando...',
     'form.robot': 'Confirme que não é um robô',
     'form.error': 'Erro — tente novamente',
+    'form.name.placeholder': 'Seu nome',
+    'form.msg.placeholder': 'Como pretende usar o RSQ Signal?',
   },
   en: {
     'nav.how': 'How it works',
@@ -996,6 +998,8 @@ const translations = {
     'form.sending': 'Sending...',
     'form.robot': "Please confirm you're not a robot",
     'form.error': 'Error — please try again',
+    'form.name.placeholder': 'Your name',
+    'form.msg.placeholder': 'How do you plan to use RSQ Signal?',
   }
 };
 
@@ -1013,9 +1017,9 @@ function applyLang(lang) {
   });
   /* placeholders */
   const nome = document.getElementById('f-nome');
-  if (nome) nome.placeholder = lang === 'en' ? 'Your name' : 'Seu nome';
+  if (nome) nome.placeholder = t['form.name.placeholder'];
   const msg = document.getElementById('f-msg');
-  if (msg) msg.placeholder = lang === 'en' ? 'How do you plan to use RSQ Signal?' : 'Como pretende usar o RSQ Signal?';
+  if (msg) msg.placeholder = t['form.msg.placeholder'];
   /* live btn state */
   const livePanel = document.getElementById('live-panel');
   const liveBtn = document.getElementById('live-btn');
@@ -1147,8 +1151,8 @@ function submitForm(e){
   const t=translations[currentLang]||translations['pt'];
   const btn=document.getElementById('m-btn');
   btn.textContent=t['form.sending'];btn.disabled=true;
-  const cfToken=document.querySelector('[name="cf-turnstile-response"]')?.value;
-  if(!cfToken){
+  const turnstileToken=document.querySelector('[name="cf-turnstile-response"]')?.value;
+  if(!turnstileToken){
     btn.textContent=t['form.robot'];
     btn.disabled=false;
     return;
@@ -1161,7 +1165,7 @@ function submitForm(e){
       email:document.getElementById('f-email').value,
       plano:document.getElementById('f-plano').value,
       mensagem:document.getElementById('f-msg').value,
-      turnstile_token:cfToken
+      turnstile_token:turnstileToken
     })
   }).then(r=>{
     if(r.ok){
