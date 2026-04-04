@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -189,14 +189,13 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 <nav>
   <div class="nav-logo">RSQ<span>.</span>signal</div>
   <div class="nav-links">
-    <a href="#como-funciona">Como funciona</a>
+    <a href="#como-funciona">How it works</a>
     <a href="#para-quem">Para quem é</a>
-    <a href="#planos">Planos</a>
+    <a href="#Plans">Plans</a>
     <a href="#docs">Docs</a>
     <a href="#politicas">Políticas</a>
     <a href="/dashboard.html" class="nav-link">Dashboard</a>
-    <a href="index_en.html">EN</a>
-    <button class="nav-cta" onclick="openModal()">Solicitar acesso</button>
+    <button class="nav-cta" onclick="openModal()">Request access</button>
   </div>
 </nav>
 
@@ -230,7 +229,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <p class="hero-sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: bias, market_state e signal_strength. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
     <div class="hero-actions">
       <button class="btn-primary" id="live-btn" onclick="toggleLive()">Ver leitura ao vivo</button>
-      <a href="#como-funciona" class="btn-ghost">Como funciona
+      <a href="#como-funciona" class="btn-ghost">How it works
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -256,7 +255,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
       </div>
       <div class="live-foot">
         <span class="live-foot-note">Leitura ao vivo · acesso completo mediante assinatura</span>
-        <button class="live-foot-btn" onclick="openModal('pro')">Solicitar acesso</button>
+        <button class="live-foot-btn" onclick="openModal('pro')">Request access</button>
       </div>
     </div>
   </div>
@@ -275,7 +274,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 </section>
 
 <section class="how-section" id="como-funciona">
-  <div class="section-label">Como funciona</div>
+  <div class="section-label">How it works</div>
   <div class="how-steps">
     <div class="step">
       <div class="step-num">01</div>
@@ -325,8 +324,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   </div>
 </section>
 
-<section class="plans-section" id="planos">
-  <div class="section-label">Planos</div>
+<section class="plans-section" id="Plans">
+  <div class="section-label">Plans</div>
   <div class="plans-grid">
     <div class="plan">
       <div class="plan-name">Free</div>
@@ -338,7 +337,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         <li>Acesso limitado por capacidade</li>
         <li>Sem suporte</li>
       </ul>
-      <button class="plan-cta" onclick="openModal('free')">Solicitar acesso</button>
+      <button class="plan-cta" onclick="openModal('free')">Request access</button>
     </div>
     <div class="plan featured">
       <div class="plan-badge">Mais escolhido</div>
@@ -665,7 +664,7 @@ resultados futuros.
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-x" onclick="closeModal()">×</button>
-    <h3 id="m-title">Solicitar acesso</h3>
+    <h3 id="m-title">Request access</h3>
     <p class="modal-sub" id="m-sub">Preencha os dados e entraremos em contato em até 24h.</p>
     <form onsubmit="submitForm(event)">
       <div class="field"><label>Nome</label><input type="text" id="f-nome" placeholder="Seu nome" required></div>
@@ -738,7 +737,7 @@ function updateLive(){
   setPair('btc',btcData[li]);
   setPair('eth',ethData[li]);
   const t=document.getElementById('live-time');
-  if(t){const n=new Date();t.textContent=n.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
+  if(t){const n=new Date();t.textContent=n.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
 }
 
 function setPair(sym,d){
@@ -772,7 +771,7 @@ setInterval(()=>{
 },2800);
 
 function openModal(plano){
-  const titles={free:'Solicitar acesso free',pro:'Solicitar acesso Pro',enterprise:'Falar com a equipe'};
+  const titles={free:'Request access free',pro:'Request access Pro',enterprise:'Falar com a equipe'};
   const subs={free:'Acesso gratuito. Lista de espera aberta — capacidade limitada.',pro:'Plano Pro — R$297/mês. Tempo real, 60 req/min. Acesso prioritário no lançamento.',enterprise:'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.'};
   document.getElementById('m-title').textContent=titles[plano]||'Entre em contato';
   document.getElementById('m-sub').textContent=subs[plano]||'Preencha os dados e entraremos em contato em até 24h.';
@@ -821,3 +820,5 @@ function submitForm(e){
 </script>
 </body>
 </html>
+
+
