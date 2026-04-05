@@ -38,7 +38,6 @@
     overflow: hidden;
   }
 
-  /* TOP BAR */
   .topbar {
     display: flex;
     align-items: center;
@@ -51,21 +50,17 @@
     letter-spacing: .06em;
     flex-shrink: 0;
   }
-  .topbar-brand {
-    font-weight: 600;
-    color: var(--white);
-    font-size: 12px;
-    letter-spacing: .12em;
-  }
+  .topbar-brand { font-weight: 600; color: var(--white); font-size: 12px; letter-spacing: .12em; }
   .topbar-brand span { color: var(--green); }
   .live-dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    background: var(--green);
-    border-radius: 50%;
-    margin-right: 6px;
+    display: inline-block; width: 6px; height: 6px;
+    background: var(--green); border-radius: 50%; margin-right: 6px;
     animation: pulse 2s infinite;
   }
+<<<<<<< HEAD
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+  .topbar-time { font-size: 14px; color: var(--white); font-weight: 500; letter-spacing: .08em; }
+=======
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: .3; }
@@ -77,9 +72,13 @@
     font-weight: 500;
     letter-spacing: .08em;
   }
+>>>>>>> origin/main
 
-  /* MAIN GRID */
   .main {
+<<<<<<< HEAD
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    flex: 1; min-height: 0; background: var(--border); overflow: hidden;
+=======
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
@@ -87,16 +86,17 @@
     min-height: 0;
     background: var(--border);
     overflow: hidden;
+>>>>>>> origin/main
   }
-
-  .panel {
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
+  .panel { background: var(--bg); display: flex; flex-direction: column; overflow: hidden; }
   .panel-header {
+<<<<<<< HEAD
+    padding: 12px 16px 10px; background: var(--bg2);
+    border-bottom: 1px solid var(--border); display: flex;
+    align-items: center; justify-content: space-between;
+    font-size: 10px; letter-spacing: .1em; color: var(--white2);
+    text-transform: uppercase; flex-shrink: 0;
+=======
     padding: 12px 16px 10px;
     background: var(--bg2);
     border-bottom: 1px solid var(--border);
@@ -113,9 +113,18 @@
     font-weight: 600;
     color: var(--white);
     font-size: 11px;
+>>>>>>> origin/main
   }
+  .panel-title { font-weight: 600; color: var(--white); font-size: 11px; }
   .panel-sub { font-size: 10px; color: var(--gray); }
 
+<<<<<<< HEAD
+  .rsq-panel { padding: 16px; gap: 10px; display: flex; flex-direction: column; overflow-y: auto; }
+
+  .pair-block {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px 16px;
+=======
   /* LEFT PANEL — RSQ SIGNAL */
   .rsq-panel { padding: 16px; gap: 10px; display: flex; flex-direction: column; overflow-y: auto; }
 
@@ -144,10 +153,32 @@
     font-weight: 600;
     letter-spacing: .04em;
     line-height: 1;
+>>>>>>> origin/main
   }
+  .pair-name { font-size: 10px; color: var(--white2); letter-spacing: .1em; margin-bottom: 8px; }
+
+  .bias-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .pair-bias { font-size: 28px; font-weight: 600; letter-spacing: .04em; line-height: 1; }
   .pair-bias.buy  { color: var(--green); }
   .pair-bias.sell { color: var(--red); }
   .pair-bias.neutral { color: var(--white2); }
+<<<<<<< HEAD
+  .bias-streak { font-size: 10px; font-family: var(--mono); font-weight: 400; letter-spacing: .04em; }
+
+  .bias-history { display: flex; gap: 3px; margin-bottom: 8px; min-height: 14px; }
+  .bias-history span { font-size: 12px; line-height: 1; }
+  .arrow-buy     { color: var(--green); }
+  .arrow-sell    { color: var(--red); }
+  .arrow-neutral { color: var(--gray); }
+
+  .pair-meta { display: flex; gap: 16px; font-size: 10px; color: var(--white2); margin-bottom: 6px; }
+  .pair-meta span { display: flex; flex-direction: column; gap: 2px; }
+  .pair-meta .label { color: var(--gray); font-size: 9px; letter-spacing: .08em; }
+  .pair-meta .value { color: var(--white); font-size: 11px; }
+  .pair-meta .value.badge-active       { color: var(--green); }
+  .pair-meta .value.badge-transitioning { color: var(--yellow); }
+  .pair-meta .value.badge-quiet        { color: var(--gray); }
+=======
   .bias-streak {
     font-size: 10px;
     font-family: var(--mono);
@@ -190,22 +221,21 @@
     letter-spacing: .05em;
     margin-bottom: 6px;
   }
+>>>>>>> origin/main
 
-  .strength-bar-wrap {
-    height: 3px;
-    background: var(--bg3);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .strength-bar {
-    height: 100%;
-    border-radius: 2px;
-    transition: width .8s ease;
-  }
+  .time-since { font-size: 9px; color: var(--gray); letter-spacing: .05em; margin-bottom: 6px; }
+
+  .strength-bar-wrap { height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+  .strength-bar { height: 100%; border-radius: 2px; transition: width .8s ease; }
   .strength-bar.buy  { background: var(--green); }
   .strength-bar.sell { background: var(--red); }
   .strength-bar.neutral { background: var(--gray); }
 
+<<<<<<< HEAD
+  .sparkline-wrap { margin-top: 6px; }
+  .sparkline-wrap canvas { display: block; width: 100%; height: 40px; }
+
+=======
   /* Feature 5: sparkline */
   .sparkline-wrap {
     margin-top: 6px;
@@ -217,6 +247,7 @@
   }
 
   /* Feature 3: flash animations */
+>>>>>>> origin/main
   @keyframes flash-buy {
     0%   { background-color: rgba(0, 208, 132, 0.18); }
     100% { background-color: transparent; }
@@ -234,6 +265,18 @@
   .flash-neutral { animation: flash-neutral 0.8s ease-out; }
 
   .rsq-footer {
+<<<<<<< HEAD
+    margin-top: auto; padding: 10px 0 0; font-size: 9px; color: var(--gray);
+    letter-spacing: .06em; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; flex-shrink: 0;
+  }
+
+  .binance-panel { padding: 16px; gap: 12px; display: flex; flex-direction: column; overflow-y: auto; }
+  .price-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 14px 16px; }
+  .price-symbol { font-size: 10px; color: var(--white2); letter-spacing: .1em; margin-bottom: 8px; }
+  .price-value { font-size: 28px; font-weight: 600; letter-spacing: .02em; line-height: 1; color: var(--white); margin-bottom: 6px; }
+  .price-change { font-size: 12px; font-weight: 500; }
+=======
     margin-top: auto;
     padding: 10px 0 0;
     font-size: 9px;
@@ -272,21 +315,23 @@
     font-size: 12px;
     font-weight: 500;
   }
+>>>>>>> origin/main
   .price-change.up   { color: var(--green); }
   .price-change.down { color: var(--red); }
-
   .price-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border);
   }
   .stat { display: flex; flex-direction: column; gap: 2px; }
   .stat .label { font-size: 9px; color: var(--gray); letter-spacing: .08em; }
   .stat .value { font-size: 11px; color: var(--white2); }
 
+<<<<<<< HEAD
+  .correlation-bar {
+    padding: 6px 20px; background: var(--bg2); border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: 10px; letter-spacing: .1em; flex-shrink: 0;
+=======
   /* Feature 8: correlation bar */
   .correlation-bar {
     padding: 6px 20px;
@@ -299,12 +344,26 @@
     font-size: 10px;
     letter-spacing: .1em;
     flex-shrink: 0;
+>>>>>>> origin/main
   }
   .corr-label { color: var(--gray); }
   .corr-aligned   { color: var(--green); font-weight: 600; }
   .corr-diverging { color: var(--yellow); font-weight: 600; }
   .corr-neutral   { color: var(--gray); font-weight: 600; }
 
+<<<<<<< HEAD
+  .signal-log {
+    height: 120px; background: var(--bg); border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; flex-shrink: 0;
+  }
+  .signal-log-header {
+    padding: 4px 16px; font-size: 9px; color: var(--gray); letter-spacing: .1em;
+    text-transform: uppercase; border-bottom: 1px solid var(--border);
+    background: var(--bg2); flex-shrink: 0; display: flex; justify-content: space-between;
+  }
+  .signal-log-feed { flex: 1; overflow-y: auto; padding: 4px 16px; }
+  .log-entry { font-size: 10px; font-family: var(--mono); padding: 1px 0; white-space: nowrap; letter-spacing: .04em; }
+=======
   /* Feature 9: signal log */
   .signal-log {
     height: 120px;
@@ -338,10 +397,17 @@
     white-space: nowrap;
     letter-spacing: .04em;
   }
+>>>>>>> origin/main
   .log-entry.buy     { color: var(--green); }
   .log-entry.sell    { color: var(--red); }
   .log-entry.neutral { color: var(--gray); }
 
+<<<<<<< HEAD
+  .statusbar {
+    padding: 8px 20px; background: var(--bg2); border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 9px; color: var(--gray); letter-spacing: .06em; flex-shrink: 0;
+=======
   /* BOTTOM STATUS */
   .statusbar {
     padding: 8px 20px;
@@ -354,114 +420,67 @@
     color: var(--gray);
     letter-spacing: .06em;
     flex-shrink: 0;
+>>>>>>> origin/main
   }
   .status-ok { color: var(--green); }
   .status-item { display: flex; align-items: center; gap: 6px; }
 
-  /* LOADING */
   .loading { color: var(--gray); font-size: 11px; letter-spacing: .06em; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
   .blink { animation: blink 1.2s infinite; }
-
-  /* ERROR */
   .error-msg { color: var(--red); font-size: 10px; }
 
-  /* LOGIN SCREEN */
   #login-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    gap: 24px;
-    padding: 24px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; flex: 1; gap: 24px; padding: 24px;
   }
-  .login-box {
-    border: 1px solid var(--border2);
-    padding: 40px;
-    width: 100%;
-    max-width: 440px;
-    background: var(--bg2);
-  }
-  .login-logo {
-    font-size: 11px;
-    letter-spacing: .2em;
-    color: var(--white2);
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
+  .login-box { border: 1px solid var(--border2); padding: 40px; width: 100%; max-width: 440px; background: var(--bg2); }
+  .login-logo { font-size: 11px; letter-spacing: .2em; color: var(--white2); text-transform: uppercase; margin-bottom: 32px; }
   .login-logo span { color: var(--green); }
-  .login-label {
-    font-size: 10px;
-    letter-spacing: .15em;
-    color: var(--gray);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
+  .login-label { font-size: 10px; letter-spacing: .15em; color: var(--gray); text-transform: uppercase; margin-bottom: 8px; }
   .login-input {
-    width: 100%;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    color: var(--white);
-    font-family: var(--mono);
-    font-size: 12px;
-    padding: 12px 16px;
-    outline: none;
-    letter-spacing: .05em;
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    color: var(--white); font-family: var(--mono); font-size: 12px;
+    padding: 12px 16px; outline: none; letter-spacing: .05em;
   }
   .login-input:focus { border-color: var(--green); }
   .login-btn {
-    width: 100%;
-    margin-top: 16px;
-    background: var(--green);
-    color: #000;
-    border: none;
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    padding: 14px;
-    cursor: pointer;
+    width: 100%; margin-top: 16px; background: var(--green); color: #000; border: none;
+    font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .15em;
+    text-transform: uppercase; padding: 14px; cursor: pointer;
   }
   .login-btn:hover { background: var(--green2); }
-  .login-error {
-    font-size: 11px;
-    color: var(--red);
-    margin-top: 12px;
-    display: none;
-    letter-spacing: .05em;
-  }
-  .login-note {
-    font-size: 10px;
-    color: var(--gray);
-    text-align: center;
-    letter-spacing: .05em;
-  }
+  .login-error { font-size: 11px; color: var(--red); margin-top: 12px; display: none; letter-spacing: .05em; }
+  .login-note { font-size: 10px; color: var(--gray); text-align: center; letter-spacing: .05em; }
   .login-note a { color: var(--green); text-decoration: none; }
 
-  /* LIVE SCREEN */
-  #live-screen {
-    display: none;
-    flex-direction: column;
-    flex: 1;
-    overflow: hidden;
-  }
+  #live-screen { display: none; flex-direction: column; flex: 1; overflow: hidden; }
 
-  /* LOGOUT BUTTON */
   .topbar-logout {
-    font-size: 10px;
-    color: var(--gray);
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    background: none;
-    border: 1px solid var(--border);
-    font-family: var(--mono);
-    padding: 4px 10px;
+    font-size: 10px; color: var(--gray); letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer; background: none; border: 1px solid var(--border);
+    font-family: var(--mono); padding: 4px 10px;
   }
   .topbar-logout:hover { color: var(--red); border-color: var(--red); }
 
+<<<<<<< HEAD
+  .btn-sound {
+    font-size: 14px; cursor: pointer; background: none; border: 1px solid var(--border);
+    font-family: var(--mono); padding: 3px 8px; color: var(--white2); line-height: 1.4;
+  }
+  .btn-sound:hover { border-color: var(--yellow); }
+
+  .btn-studio {
+    font-size: 10px; color: var(--gray); letter-spacing: .1em; text-transform: uppercase;
+    cursor: pointer; background: none; border: 1px solid var(--border);
+    font-family: var(--mono); padding: 4px 10px;
+  }
+  .btn-studio:hover { color: var(--blue); border-color: var(--blue); }
+
+  :fullscreen .topbar, :fullscreen .statusbar, :fullscreen .correlation-bar { display: none !important; }
+  :-webkit-full-screen .topbar, :-webkit-full-screen .statusbar, :-webkit-full-screen .correlation-bar { display: none !important; }
+  :-moz-full-screen .topbar, :-moz-full-screen .statusbar, :-moz-full-screen .correlation-bar { display: none !important; }
+=======
   /* Feature 6: sound toggle button */
   .btn-sound {
     font-size: 14px;
@@ -505,6 +524,7 @@
   :-moz-full-screen .correlation-bar {
     display: none !important;
   }
+>>>>>>> origin/main
 </style>
 </head>
 <body>
@@ -513,21 +533,12 @@
   <div class="login-box">
     <div class="login-logo"><span>RSQ</span> Signal · Studio Dashboard</div>
     <div class="login-label">API Key</div>
-    <input
-      type="password"
-      class="login-input"
-      id="api-key-input"
-      placeholder="rsq_pro_... ou rsq_demo_..."
-      autocomplete="off"
-    >
+    <input type="password" class="login-input" id="api-key-input" placeholder="rsq_pro_... ou rsq_demo_..." autocomplete="off">
     <div class="login-error" id="login-error">Chave inválida ou sem permissão.</div>
     <button class="login-btn" onclick="connect()">CONECTAR</button>
   </div>
   <div class="login-note">
-    Não tem acesso?
-    <a href="/#planos">Assine o plano Pro</a>
-    &nbsp;·&nbsp;
-    <a href="mailto:contato@rsq.digital">contato@rsq.digital</a>
+    Não tem acesso? <a href="/#planos">Assine o plano Pro</a> &nbsp;·&nbsp; <a href="mailto:contato@rsq.digital">contato@rsq.digital</a>
   </div>
 </div>
 
@@ -545,20 +556,26 @@
 </div>
 
 <div class="main">
-
-  <!-- LEFT: RSQ SIGNAL -->
   <div class="panel">
     <div class="panel-header">
-      <div>
-        <div class="panel-title">RSQ SIGNAL</div>
-        <div class="panel-sub">api.rsq.digital · order flow intelligence</div>
-      </div>
+      <div><div class="panel-title">RSQ SIGNAL</div><div class="panel-sub">api.rsq.digital · order flow intelligence</div></div>
       <div id="rsq-status" class="loading blink">conectando...</div>
     </div>
     <div class="rsq-panel" id="rsq-panel">
-
       <div class="pair-block" id="rsq-btc">
         <div class="pair-name">BTCUSDT · FUTUROS USDT-M</div>
+<<<<<<< HEAD
+        <div class="bias-row"><div class="pair-bias neutral" id="btc-bias">--</div><span class="bias-streak" id="btc-streak"></span></div>
+        <div class="bias-history" id="btc-history"></div>
+        <div class="pair-meta">
+          <span><span class="label">MARKET STATE</span><span class="value" id="btc-state">--</span></span>
+          <span><span class="label">STRENGTH</span><span class="value" id="btc-strength">--</span></span>
+          <span><span class="label">AS OF</span><span class="value" id="btc-asof">--</span></span>
+        </div>
+        <div class="time-since" id="btc-timesince"></div>
+        <div class="strength-bar-wrap"><div class="strength-bar neutral" id="btc-bar" style="width:0%"></div></div>
+        <div class="sparkline-wrap"><canvas id="btc-sparkline" height="40"></canvas></div>
+=======
         <div class="bias-row">
           <div class="pair-bias neutral" id="btc-bias">--</div>
           <span class="bias-streak" id="btc-streak"></span>
@@ -585,10 +602,22 @@
         <div class="sparkline-wrap">
           <canvas id="btc-sparkline" height="40"></canvas>
         </div>
+>>>>>>> origin/main
       </div>
-
       <div class="pair-block" id="rsq-eth">
         <div class="pair-name">ETHUSDT · FUTUROS USDT-M</div>
+<<<<<<< HEAD
+        <div class="bias-row"><div class="pair-bias neutral" id="eth-bias">--</div><span class="bias-streak" id="eth-streak"></span></div>
+        <div class="bias-history" id="eth-history"></div>
+        <div class="pair-meta">
+          <span><span class="label">MARKET STATE</span><span class="value" id="eth-state">--</span></span>
+          <span><span class="label">STRENGTH</span><span class="value" id="eth-strength">--</span></span>
+          <span><span class="label">AS OF</span><span class="value" id="eth-asof">--</span></span>
+        </div>
+        <div class="time-since" id="eth-timesince"></div>
+        <div class="strength-bar-wrap"><div class="strength-bar neutral" id="eth-bar" style="width:0%"></div></div>
+        <div class="sparkline-wrap"><canvas id="eth-sparkline" height="40"></canvas></div>
+=======
         <div class="bias-row">
           <div class="pair-bias neutral" id="eth-bias">--</div>
           <span class="bias-streak" id="eth-streak"></span>
@@ -615,78 +644,57 @@
         <div class="sparkline-wrap">
           <canvas id="eth-sparkline" height="40"></canvas>
         </div>
+>>>>>>> origin/main
       </div>
-
-      <div class="rsq-footer">
-        <span>Diagnostic. Not prediction.</span>
-        <span id="rsq-tick">tick --</span>
-      </div>
+      <div class="rsq-footer"><span>Diagnostic. Not prediction.</span><span id="rsq-tick">tick --</span></div>
     </div>
   </div>
 
-  <!-- RIGHT: BINANCE -->
   <div class="panel">
     <div class="panel-header">
-      <div>
-        <div class="panel-title">BINANCE FUTURES</div>
-        <div class="panel-sub">fapi.binance.com · preço em tempo real</div>
-      </div>
+      <div><div class="panel-title">BINANCE FUTURES</div><div class="panel-sub">fapi.binance.com · preço em tempo real</div></div>
       <div id="bnb-status" class="loading blink">conectando...</div>
     </div>
     <div class="binance-panel">
-
       <div class="price-block" id="bnb-btc">
         <div class="price-symbol">BTCUSDT PERP</div>
         <div class="price-value" id="btc-price">--</div>
         <div class="price-change" id="btc-chg">--</div>
         <div class="price-stats">
-          <div class="stat">
-            <span class="label">HIGH 24H</span>
-            <span class="value" id="btc-high">--</span>
-          </div>
-          <div class="stat">
-            <span class="label">LOW 24H</span>
-            <span class="value" id="btc-low">--</span>
-          </div>
-          <div class="stat">
-            <span class="label">VOL 24H</span>
-            <span class="value" id="btc-vol">--</span>
-          </div>
+          <div class="stat"><span class="label">HIGH 24H</span><span class="value" id="btc-high">--</span></div>
+          <div class="stat"><span class="label">LOW 24H</span><span class="value" id="btc-low">--</span></div>
+          <div class="stat"><span class="label">VOL 24H</span><span class="value" id="btc-vol">--</span></div>
         </div>
       </div>
-
       <div class="price-block" id="bnb-eth">
         <div class="price-symbol">ETHUSDT PERP</div>
         <div class="price-value" id="eth-price">--</div>
         <div class="price-change" id="eth-chg">--</div>
         <div class="price-stats">
-          <div class="stat">
-            <span class="label">HIGH 24H</span>
-            <span class="value" id="eth-high">--</span>
-          </div>
-          <div class="stat">
-            <span class="label">LOW 24H</span>
-            <span class="value" id="eth-low">--</span>
-          </div>
-          <div class="stat">
-            <span class="label">VOL 24H</span>
-            <span class="value" id="eth-vol">--</span>
-          </div>
+          <div class="stat"><span class="label">HIGH 24H</span><span class="value" id="eth-high">--</span></div>
+          <div class="stat"><span class="label">LOW 24H</span><span class="value" id="eth-low">--</span></div>
+          <div class="stat"><span class="label">VOL 24H</span><span class="value" id="eth-vol">--</span></div>
         </div>
       </div>
-
     </div>
   </div>
+</div>
 
+<<<<<<< HEAD
+=======
 </div><!-- .main -->
 
 <!-- Feature 8: Correlation bar -->
+>>>>>>> origin/main
 <div class="correlation-bar">
   <span class="corr-label">BTC ⟷ ETH</span>
   <span id="correlation-label" class="corr-neutral">— NEUTRO</span>
 </div>
 
+<<<<<<< HEAD
+=======
 <!-- Feature 9: Signal log -->
+>>>>>>> origin/main
 <div class="signal-log">
   <div class="signal-log-header">
     <span>SIGNAL LOG · ÚLTIMOS 50 EVENTOS</span>
@@ -696,15 +704,12 @@
 </div>
 
 <div class="statusbar">
-  <div class="status-item">
-    <span class="status-ok">●</span>
-    <span>rsq.digital · api.rsq.digital</span>
-  </div>
+  <div class="status-item"><span class="status-ok">●</span><span>rsq.digital · api.rsq.digital</span></div>
   <div id="last-update">última atualização: --</div>
   <div>Order flow em tempo real · ResilientQ Research</div>
 </div>
 
-</div><!-- #live-screen -->
+</div>
 
 <script>
 const RSQ_URL = 'https://api.rsq.digital/signal';
@@ -714,45 +719,175 @@ const LS_KEY  = 'rsq_api_key';
 let apiKey = '';
 let tick = 0;
 let updateInterval = null;
+let soundEnabled = false;
+let audioCtx = null;
 
+<<<<<<< HEAD
+=======
 // ── Feature 6: sound state ──────────────────────────────────────────────────
 let soundEnabled = false;
 let audioCtx = null;
 
+>>>>>>> origin/main
 function getAudioCtx() {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   return audioCtx;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
 function playBeep(bias) {
   if (!soundEnabled) return;
   try {
     const ctx = getAudioCtx();
+<<<<<<< HEAD
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination); osc.type = 'sine';
+=======
     const osc  = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.connect(gain);
     gain.connect(ctx.destination);
     osc.type = 'sine';
+>>>>>>> origin/main
     const freq = bias === 'buy' ? 880 : bias === 'sell' ? 440 : 660;
     osc.frequency.setValueAtTime(freq, ctx.currentTime);
     gain.gain.setValueAtTime(0.1, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+<<<<<<< HEAD
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.12);
+  } catch(e) {}
+}
+=======
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.12);
   } catch(e) {}
 }
 
+>>>>>>> origin/main
 function toggleSound() {
   soundEnabled = !soundEnabled;
   document.getElementById('sound-btn').textContent = soundEnabled ? '🔊' : '🔇';
 }
+<<<<<<< HEAD
+=======
 
 // ── Feature 11: fullscreen ──────────────────────────────────────────────────
+>>>>>>> origin/main
 function enterFullscreen() {
   const el = document.documentElement;
   if (el.requestFullscreen) el.requestFullscreen();
   else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
   else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+<<<<<<< HEAD
+}
+
+const pairState = {
+  btc: { biasHistory: [], strengthHistory: [], streak: 0, lastBias: null, asOfMs: 0 },
+  eth: { biasHistory: [], strengthHistory: [], streak: 0, lastBias: null, asOfMs: 0 }
+};
+const MAX_HISTORY = 10, MAX_STRENGTH = 20, MAX_LOG = 50;
+const signalLog = [];
+
+function addLogEntry(symbol, bias, strength) {
+  const time = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+  }).format(new Date());
+  const pct = (strength * 100).toFixed(0) + '%';
+  signalLog.unshift({ time, symbol, bias, pct });
+  if (signalLog.length > MAX_LOG) signalLog.pop();
+  renderLog();
+}
+function renderLog() {
+  const feed = document.getElementById('signal-log-feed');
+  if (!feed) return;
+  feed.innerHTML = signalLog.map(e =>
+    `<div class="log-entry ${e.bias}">${e.time} · ${e.symbol} · ${e.bias.toUpperCase()} · ${e.pct}</div>`
+  ).join('');
+  const cnt = document.getElementById('log-count');
+  if (cnt) cnt.textContent = `${signalLog.length} eventos`;
+}
+
+function renderHistory(prefix) {
+  const el = document.getElementById(`${prefix}-history`);
+  if (!el) return;
+  el.innerHTML = pairState[prefix].biasHistory.map(b => {
+    const arrow = b === 'buy' ? '↑' : b === 'sell' ? '↓' : '—';
+    const cls = b === 'buy' ? 'arrow-buy' : b === 'sell' ? 'arrow-sell' : 'arrow-neutral';
+    return `<span class="${cls}">${arrow}</span>`;
+  }).join('');
+}
+
+function drawSparkline(prefix) {
+  const ps = pairState[prefix];
+  const canvas = document.getElementById(`${prefix}-sparkline`);
+  if (!canvas || ps.strengthHistory.length < 2) return;
+  const dpr = window.devicePixelRatio || 1, w = canvas.parentElement.clientWidth || 200, h = 40;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr); ctx.clearRect(0, 0, w, h);
+  const data = ps.strengthHistory, last = data[data.length - 1];
+  const color = last >= 0.65 ? '#00d084' : last >= 0.45 ? '#f5c518' : '#ff4560';
+  const minV = Math.min(...data), maxV = Math.max(...data);
+  const range = (maxV - minV) || 0.01, xStep = w / (data.length - 1), pad = 3;
+  ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.lineJoin = 'round';
+  data.forEach((v, i) => {
+    const x = i * xStep, y = h - pad - ((v - minV) / range) * (h - pad * 2);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+}
+
+function updateTimeSince() {
+  const now = Date.now();
+  ['btc', 'eth'].forEach(prefix => {
+    const ps = pairState[prefix], el = document.getElementById(`${prefix}-timesince`);
+    if (!el || !ps.asOfMs) return;
+    el.textContent = `atualizado há ${Math.max(0, Math.round((now - ps.asOfMs) / 1000))}s`;
+  });
+}
+
+function triggerFlash(prefix, bias) {
+  const el = document.getElementById(`rsq-${prefix}`);
+  if (!el) return;
+  el.classList.remove('flash-buy', 'flash-sell', 'flash-neutral');
+  void el.offsetWidth;
+  el.classList.add(`flash-${bias}`);
+  setTimeout(() => el.classList.remove('flash-buy', 'flash-sell', 'flash-neutral'), 850);
+}
+
+function getStateBadge(state) {
+  return { active: '● ACTIVE', transitioning: '◐ TRANSITIONING', quiet: '○ QUIET' }[state] || state.toUpperCase();
+}
+function getStateBadgeClass(state) {
+  return { active: 'badge-active', transitioning: 'badge-transitioning', quiet: 'badge-quiet' }[state] || '';
+}
+
+function updateCorrelation() {
+  const bBias = pairState.btc.lastBias, eBias = pairState.eth.lastBias;
+  const el = document.getElementById('correlation-label');
+  if (!el) return;
+  if (!bBias || !eBias || bBias === 'neutral' || eBias === 'neutral') {
+    el.textContent = '— NEUTRO'; el.className = 'corr-neutral';
+  } else if (bBias === eBias) {
+    el.textContent = '⟳ ALINHADOS'; el.className = 'corr-aligned';
+  } else {
+    el.textContent = '⇅ DIVERGINDO'; el.className = 'corr-diverging';
+  }
+}
+
+function updateClock() {
+  const parts = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+  }).formatToParts(new Date());
+  const get = type => parts.find(p => p.type === type)?.value ?? '00';
+  document.getElementById('clock').textContent = `${get('hour')}:${get('minute')}:${get('second')} Brasília`;
+}
+setInterval(updateClock, 1000); updateClock();
+setInterval(updateTimeSince, 1000);
+
+=======
 }
 
 // ── Per-pair state ──────────────────────────────────────────────────────────
@@ -905,14 +1040,21 @@ updateClock();
 setInterval(updateTimeSince, 1000);
 
 // ── SHOW DASHBOARD ────────────────────────────────────────────────────────────
+>>>>>>> origin/main
 function showDashboard(key) {
   apiKey = key;
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('live-screen').style.display = 'flex';
-  update().catch(() => {}).then(() => {
-    updateInterval = setInterval(update, 5000);
-  });
+  update().catch(() => {}).then(() => { updateInterval = setInterval(update, 5000); });
 }
+<<<<<<< HEAD
+async function autoLoad() {
+  const qsKey = new URLSearchParams(window.location.search).get('key');
+  if (qsKey) { showDashboard(qsKey); return; }
+  const lsKey = localStorage.getItem(LS_KEY);
+  if (lsKey) { showDashboard(lsKey); return; }
+}
+=======
 
 // ── AUTO-LOAD KEY — 3-mode priority ──────────────────────────────────────────
 async function autoLoad() {
@@ -925,15 +1067,19 @@ async function autoLoad() {
 }
 
 // ── LOGIN ─────────────────────────────────────────────────────────────────────
+>>>>>>> origin/main
 async function connect() {
-  const input = document.getElementById('api-key-input');
-  const key = input.value.trim();
+  const input = document.getElementById('api-key-input'), key = input.value.trim();
   if (!key) return;
-
-  const err = document.getElementById('login-error');
-  err.style.display = 'none';
-
+  const err = document.getElementById('login-error'); err.style.display = 'none';
   try {
+<<<<<<< HEAD
+    const r = await fetch(`${RSQ_URL}?symbol=BTCUSDT`, { headers: { 'X-API-Key': key } });
+    if (r.status === 401 || r.status === 403) { err.style.display = 'block'; return; }
+    if (!r.ok) { err.textContent = 'Erro no servidor. Tente novamente.'; err.style.display = 'block'; return; }
+    localStorage.setItem(LS_KEY, key); showDashboard(key);
+  } catch(e) { err.textContent = 'Erro de conexão.'; err.style.display = 'block'; }
+=======
     const r = await fetch(`${RSQ_URL}?symbol=BTCUSDT`, {
       headers: { 'X-API-Key': key }
     });
@@ -952,55 +1098,78 @@ async function connect() {
     err.textContent = 'Erro de conexão.';
     err.style.display = 'block';
   }
+>>>>>>> origin/main
 }
-
 function logout() {
-  apiKey = '';
-  localStorage.removeItem(LS_KEY);
-  clearInterval(updateInterval);
-  updateInterval = null;
-  tick = 0;
+  apiKey = ''; localStorage.removeItem(LS_KEY); clearInterval(updateInterval); updateInterval = null; tick = 0;
+  pairState.btc = { biasHistory: [], strengthHistory: [], streak: 0, lastBias: null, asOfMs: 0 };
+  pairState.eth = { biasHistory: [], strengthHistory: [], streak: 0, lastBias: null, asOfMs: 0 };
+  signalLog.length = 0; renderLog();
   document.getElementById('live-screen').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('api-key-input').value = '';
 }
-
 document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
+  document.getElementById('api-key-input').addEventListener('keydown', e => { if (e.key === 'Enter') connect(); });
+  autoLoad();
+});
+
+=======
   document.getElementById('api-key-input')
     .addEventListener('keydown', e => { if (e.key === 'Enter') connect(); });
   autoLoad();
 });
 
 // ── FORMAT helpers ────────────────────────────────────────────────────────────
+>>>>>>> origin/main
 function fmtPrice(p) {
   const n = parseFloat(p);
-  if (n >= 1000) return n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
-  return n.toFixed(4);
+  return n >= 1000 ? n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}) : n.toFixed(4);
 }
 function fmtVol(v) {
   const n = parseFloat(v);
-  if (n >= 1e9) return (n/1e9).toFixed(2) + 'B';
-  if (n >= 1e6) return (n/1e6).toFixed(2) + 'M';
-  return n.toFixed(0);
+  return n >= 1e9 ? (n/1e9).toFixed(2) + 'B' : n >= 1e6 ? (n/1e6).toFixed(2) + 'M' : n.toFixed(0);
 }
 
+<<<<<<< HEAD
+=======
 // ── RSQ SIGNAL fetch & update ─────────────────────────────────────────────────
+>>>>>>> origin/main
 async function fetchRSQ(symbol) {
   try {
-    const r = await fetch(`${RSQ_URL}?symbol=${symbol}`, {
-      headers: { 'X-API-Key': apiKey }
-    });
-    if (!r.ok) return null;
-    return await r.json();
+    const r = await fetch(`${RSQ_URL}?symbol=${symbol}`, { headers: { 'X-API-Key': apiKey } });
+    if (!r.ok) return null; return await r.json();
   } catch(e) { return null; }
 }
 
 function updateRSQ(data, prefix) {
   if (!data) return;
+<<<<<<< HEAD
+  const bias = (data.bias || 'neutral').toLowerCase();
+  const state = data.market_state || '--';
+  const strength = data.signal_strength ?? 0;
+  const asofRaw = data.as_of || null;
+  const asofDisp = asofRaw ? asofRaw.substring(11, 16) + 'Z' : '--';
+  const ps = pairState[prefix];
+  const prevBias = ps.lastBias;
+  const biasChanged = prevBias !== null && prevBias !== bias;
+
+  if (prevBias === bias) { ps.streak++; } else { ps.streak = 1; }
+  ps.lastBias = bias;
+  if (asofRaw) { try { ps.asOfMs = new Date(asofRaw).getTime(); } catch(e) {} }
+  ps.biasHistory.push(bias); if (ps.biasHistory.length > MAX_HISTORY) ps.biasHistory.shift();
+  ps.strengthHistory.push(strength); if (ps.strengthHistory.length > MAX_STRENGTH) ps.strengthHistory.shift();
+
+  if (biasChanged) { triggerFlash(prefix, bias); playBeep(bias); }
+
+  addLogEntry(prefix.toUpperCase(), bias, strength);
+=======
   const bias     = (data.bias || 'neutral').toLowerCase();
   const state    = data.market_state || '--';
   const strength = data.signal_strength ?? 0;
   const asof     = data.as_of || null;
+>>>>>>> origin/main
 
   const ps       = pairState[prefix];
   const prevBias = ps.lastBias;
@@ -1030,8 +1199,15 @@ function updateRSQ(data, prefix) {
 
   // ── DOM updates ──
   const biasEl = document.getElementById(`${prefix}-bias`);
-  biasEl.textContent = bias.toUpperCase();
-  biasEl.className = `pair-bias ${bias}`;
+  biasEl.textContent = bias.toUpperCase(); biasEl.className = `pair-bias ${bias}`;
+
+  const streakEl = document.getElementById(`${prefix}-streak`);
+  if (streakEl) {
+    streakEl.textContent = ps.streak > 1 ? `×${ps.streak}` : '';
+    streakEl.style.color = bias === 'buy' ? 'var(--green)' : bias === 'sell' ? 'var(--red)' : 'var(--gray)';
+  }
+
+  renderHistory(prefix);
 
   // Feature 4: streak display
   const streakEl = document.getElementById(`${prefix}-streak`);
@@ -1046,6 +1222,19 @@ function updateRSQ(data, prefix) {
   // Feature 7: state badge
   const stateEl = document.getElementById(`${prefix}-state`);
   stateEl.textContent = getStateBadge(state);
+<<<<<<< HEAD
+  stateEl.className = `value ${getStateBadgeClass(state)}`;
+
+  document.getElementById(`${prefix}-strength`).textContent = (strength * 100).toFixed(1) + '%';
+  document.getElementById(`${prefix}-asof`).textContent = asofDisp;
+
+  const bar = document.getElementById(`${prefix}-bar`);
+  bar.style.width = (strength * 100) + '%'; bar.className = `strength-bar ${bias}`;
+
+  drawSparkline(prefix);
+}
+
+=======
   stateEl.className = `value badge-${state}`;
 
   document.getElementById(`${prefix}-strength`).textContent =
@@ -1071,16 +1260,23 @@ function updateRSQ(data, prefix) {
 }
 
 // ── BINANCE fetch & update ────────────────────────────────────────────────────
+>>>>>>> origin/main
 async function fetchBinance(symbol) {
   try {
     const r = await fetch(`${BNB_URL}?symbol=${symbol}`);
-    if (!r.ok) return null;
-    return await r.json();
+    if (!r.ok) return null; return await r.json();
   } catch(e) { return null; }
 }
 
 function updateBinance(data, prefix) {
   if (!data) return;
+<<<<<<< HEAD
+  const price = parseFloat(data.lastPrice), chg = parseFloat(data.priceChangePercent);
+  document.getElementById(`${prefix}-price`).textContent = fmtPrice(price);
+  const chgEl = document.getElementById(`${prefix}-chg`);
+  chgEl.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
+  chgEl.className = `price-change ${chg >= 0 ? 'up' : 'down'}`;
+=======
   const price = parseFloat(data.lastPrice);
   const chg   = parseFloat(data.priceChangePercent);
 
@@ -1090,41 +1286,41 @@ function updateBinance(data, prefix) {
   chgEl.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
   chgEl.className = `price-change ${chg >= 0 ? 'up' : 'down'}`;
 
+>>>>>>> origin/main
   document.getElementById(`${prefix}-high`).textContent = fmtPrice(data.highPrice);
   document.getElementById(`${prefix}-low`).textContent  = fmtPrice(data.lowPrice);
   document.getElementById(`${prefix}-vol`).textContent  = fmtVol(data.quoteVolume);
 }
 
+<<<<<<< HEAD
+=======
 // ── MAIN LOOP ─────────────────────────────────────────────────────────────────
+>>>>>>> origin/main
 async function update() {
   tick++;
   document.getElementById('rsq-tick').textContent = `tick ${tick.toString().padStart(4,'0')}`;
-
   const [btcRSQ, ethRSQ, btcBNB, ethBNB] = await Promise.all([
-    fetchRSQ('BTCUSDT'),
-    fetchRSQ('ETHUSDT'),
-    fetchBinance('BTCUSDT'),
-    fetchBinance('ETHUSDT')
+    fetchRSQ('BTCUSDT'), fetchRSQ('ETHUSDT'), fetchBinance('BTCUSDT'), fetchBinance('ETHUSDT')
   ]);
-
   if (btcRSQ || ethRSQ) {
     document.getElementById('rsq-status').textContent = 'LIVE ●';
     document.getElementById('rsq-status').className = 'status-ok';
+  } else {
+    document.getElementById('rsq-status').textContent = 'erro';
+    document.getElementById('rsq-status').className = 'error-msg';
   }
-
-  updateRSQ(btcRSQ, 'btc');
-  updateRSQ(ethRSQ, 'eth');
-
+  updateRSQ(btcRSQ, 'btc'); updateRSQ(ethRSQ, 'eth');
+  updateCorrelation();
   if (btcBNB || ethBNB) {
     document.getElementById('bnb-status').textContent = 'LIVE ●';
     document.getElementById('bnb-status').className = 'status-ok';
+  } else {
+    document.getElementById('bnb-status').textContent = 'erro';
+    document.getElementById('bnb-status').className = 'error-msg';
   }
-
-  updateBinance(btcBNB, 'btc');
-  updateBinance(ethBNB, 'eth');
-
-  document.getElementById('last-update').textContent =
-    'última atualização: ' + new Date().toLocaleTimeString('pt-BR');
+  updateBinance(btcBNB, 'btc'); updateBinance(ethBNB, 'eth');
+  const now = new Date().toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+  document.getElementById('last-update').textContent = `última atualização: ${now}`;
 }
 </script>
 </body>
