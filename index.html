@@ -124,6 +124,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .instant-json.loading{opacity:.6}
 .instant-aha{margin-top:1rem;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--green);display:flex;align-items:center;gap:8px}
 .instant-aha.neutral{color:var(--gray-5)}
+.instant-now{margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent)}
+.instant-note{margin-top:4px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--gray-5)}
 /* SECTIONS */
 .section{padding:7rem 3rem}
 .section-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-4);margin-bottom:3rem;display:flex;align-items:center;gap:12px}
@@ -324,7 +326,9 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   "market_state": "active",
   "signal_strength": 0.83
 }</pre>
-    <div class="instant-aha neutral" id="instant-aha">Fluxo neutro ou transição</div>
+    <div class="instant-aha neutral" id="instant-aha">Fluxo em transição — sem dominância clara</div>
+    <div class="instant-now">Detectado agora (tempo real)</div>
+    <div class="instant-note">Isso aparece antes do candle confirmar</div>
   </section>
   
   <section class="section">
@@ -882,7 +886,7 @@ function setAha(strength){
     aha.textContent='Fluxo forte detectado agora';
     aha.classList.remove('neutral');
   }else{
-    aha.textContent='Fluxo neutro ou transição';
+    aha.textContent='Fluxo em transição — sem dominância clara';
     aha.classList.add('neutral');
   }
 }
