@@ -13,17 +13,20 @@
     --bg3:      #111620;
     --border:   #1e2535;
     --border2:  #2a3448;
-    --green:    #00d084;
+    --green:    #3ddc97;
     --green2:   #00a866;
-    --red:      #ff4560;
-    --yellow:   #f5c518;
+    --red:      #ff5c5c;
+    --yellow:   #f4c95d;
     --blue:     #3b82f6;
-    --gray:     #4a5568;
-    --gray2:    #2d3748;
+    --gray:     #8a97ad;
+    --gray2:    #5a6475;
     --white:    #e8edf5;
     --white2:   #a0aec0;
     --mono:     'IBM Plex Mono', monospace;
     --sans:     'IBM Plex Sans', sans-serif;
+    --card-bg: rgba(12,16,24,0.78);
+    --card-border: #1f2633;
+    --shadow: 0 8px 24px rgba(0,0,0,0.15);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -119,11 +122,34 @@
   /* LEFT PANEL — RSQ SIGNAL */
   .rsq-panel { padding: 16px; gap: 10px; display: flex; flex-direction: column; overflow-y: auto; }
 
+  .mini-price-chart {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px 12px 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 8px;
+  }
+  .mini-price-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .06em;
+    color: var(--white2); margin-bottom: 6px;
+  }
+  .mini-price-top .value { font-size: 14px; font-weight: 700; color: var(--white); }
+  .tv-wrap { width: 100%; height: 160px; border: 1px solid var(--card-border); border-radius: 6px; overflow: hidden; }
+  .tv-wrap iframe { width: 100%; height: 100%; border: 0; }
+
   .pair-block {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
     padding: 14px 16px;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .pair-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
   }
   .pair-name {
     font-size: 10px;
@@ -140,8 +166,8 @@
     margin-bottom: 4px;
   }
   .pair-bias {
-    font-size: 28px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 700;
     letter-spacing: .04em;
     line-height: 1;
   }
@@ -213,7 +239,7 @@
   .sparkline-wrap canvas {
     display: block;
     width: 100%;
-    height: 40px;
+    height: 46px;
   }
 
   /* Feature 3: flash animations */
@@ -249,11 +275,14 @@
   .binance-panel { padding: 16px; gap: 12px; display: flex; flex-direction: column; overflow-y: auto; }
 
   .price-block {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
     padding: 14px 16px;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, box-shadow .15s ease;
   }
+  .price-block:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
   .price-symbol {
     font-size: 10px;
     color: var(--white2);
@@ -629,6 +658,16 @@
     </div>
     <div class="rsq-panel" id="rsq-panel">
 
+      <div class="mini-price-chart">
+        <div class="mini-price-top">
+          <span>BTCUSDT</span>
+          <span class="value" id="btc-mini-price">--</span>
+        </div>
+        <div class="tv-wrap">
+<iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_btcmini&symbol=BINANCE:BTCUSDT&interval=5&hidetoptoolbar=1&hidesidetoolbar=1&symboledit=0&saveimage=0&toolbarbg=rgba(0,0,0,0)&studies=[]&theme=dark&style=1&withdateranges=0&hideideas=1&locale=br" allowtransparency="true" scrolling="no"></iframe>
+        </div>
+      </div>
+
       <div class="pair-block" id="rsq-btc">
         <div class="pair-name">BTCUSDT · FUTUROS USDT-M</div>
         <div class="bias-row">
@@ -697,19 +736,19 @@
   </div>
 
   <!-- RIGHT: BINANCE -->
-  <div class="panel">
-    <div class="panel-header">
-      <div>
-        <div class="panel-title">BINANCE FUTURES</div>
-        <div class="panel-sub">fapi.binance.com · preço em tempo real</div>
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">BINANCE FUTURES</div>
+          <div class="panel-sub">fapi.binance.com · preço em tempo real</div>
+        </div>
+        <div id="bnb-status" class="loading blink">conectando...</div>
       </div>
-      <div id="bnb-status" class="loading blink">conectando...</div>
-    </div>
-    <div class="binance-panel">
+      <div class="binance-panel">
 
-      <div class="price-block" id="bnb-btc">
-        <div class="price-symbol">BTCUSDT PERP</div>
-        <div class="price-value" id="btc-price">--</div>
+        <div class="price-block" id="bnb-btc">
+          <div class="price-symbol">BTCUSDT PERP</div>
+          <div class="price-value" id="btc-price">--</div>
         <div class="price-change" id="btc-chg">--</div>
         <div class="price-stats">
           <div class="stat">
@@ -724,31 +763,11 @@
             <span class="label">VOL 24H</span>
             <span class="value" id="btc-vol">--</span>
           </div>
-        </div>
-      </div>
-
-      <div class="price-block" id="bnb-eth">
-        <div class="price-symbol">ETHUSDT PERP</div>
-        <div class="price-value" id="eth-price">--</div>
-        <div class="price-change" id="eth-chg">--</div>
-        <div class="price-stats">
-          <div class="stat">
-            <span class="label">HIGH 24H</span>
-            <span class="value" id="eth-high">--</span>
-          </div>
-          <div class="stat">
-            <span class="label">LOW 24H</span>
-            <span class="value" id="eth-low">--</span>
-          </div>
-          <div class="stat">
-            <span class="label">VOL 24H</span>
-            <span class="value" id="eth-vol">--</span>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
 
 </div><!-- .main -->
 
@@ -1166,10 +1185,12 @@ async function fetchBinance(symbol) {
 
 function updateBinance(data, prefix) {
   if (!data) return;
+  const priceEl = document.getElementById(`${prefix}-price`);
+  if (!priceEl) return;
   const price = parseFloat(data.lastPrice);
   const chg   = parseFloat(data.priceChangePercent);
 
-  document.getElementById(`${prefix}-price`).textContent = fmtPrice(price);
+  priceEl.textContent = fmtPrice(price);
 
   const chgEl = document.getElementById(`${prefix}-chg`);
   chgEl.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
@@ -1178,6 +1199,11 @@ function updateBinance(data, prefix) {
   document.getElementById(`${prefix}-high`).textContent = fmtPrice(data.highPrice);
   document.getElementById(`${prefix}-low`).textContent  = fmtPrice(data.lowPrice);
   document.getElementById(`${prefix}-vol`).textContent  = fmtVol(data.quoteVolume);
+
+  if (prefix === 'btc') {
+    const mini = document.getElementById('btc-mini-price');
+    if (mini) mini.textContent = fmtPrice(price);
+  }
 }
 
 // ── MAIN LOOP ─────────────────────────────────────────────────────────────────
