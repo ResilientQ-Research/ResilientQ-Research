@@ -184,6 +184,8 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 .footer-copy{font-size:20px;font-weight:700;color:var(--white);line-height:1.4}
 .footer-btn{background:none;border:none;color:var(--gray-5);font-family:var(--mono);font-size:11px;cursor:pointer;letter-spacing:.06em;transition:color .2s}
 .footer-btn:hover{color:var(--white)}
+.yt-embed{width:100%;max-width:480px;border:1px solid var(--gray-3);border-radius:8px;overflow:hidden;margin-top:10px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.yt-embed iframe{width:100%;aspect-ratio:16/9}
 .toast{position:fixed;bottom:32px;right:32px;z-index:999;background:var(--green-dim);border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:12px;padding:14px 20px;letter-spacing:.04em;transform:translateY(80px);opacity:0;transition:all .3s}
 .toast.show{transform:translateY(0);opacity:1}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -683,11 +685,14 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
               <stop offset="0%" stop-color="#ff4e45"/>
               <stop offset="100%" stop-color="#e71613"/>
             </linearGradient>
-            <rect x="5" y="8" rx="14" ry="14" width="110" height="68" fill="url(#yt-red)"/>
-            <polygon points="50,26 50,58 78,42" fill="#fff"/>
+              <rect x="5" y="8" rx="14" ry="14" width="110" height="68" fill="url(#yt-red)"/>
+              <polygon points="50,26 50,58 78,42" fill="#fff"/>
           </svg>
           Como funciona
         </a>
+      </div>
+      <div class="yt-embed">
+        <iframe src="https://www.youtube.com/embed/E3VWacPVYOw?rel=0&modestbranding=1" title="Como funciona" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div style="width:100%;text-align:center;font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.04em;margin-top:.5rem;padding-top:.75rem;border-top:1px solid var(--gray-3)">
       RSQ Signal entrega diagnóstico de order flow.
