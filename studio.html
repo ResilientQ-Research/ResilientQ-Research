@@ -505,6 +505,42 @@
   :-moz-full-screen .correlation-bar {
     display: none !important;
   }
+
+  /* --- Visual polish overrides --- */
+  :root {
+    --green:    #3ddc97;
+    --green2:   #00a866;
+    --red:      #ff5c5c;
+    --yellow:   #f4c95d;
+    --gray:     #8a97ad;
+    --gray2:    #5a6475;
+    --card-bg: rgba(12,16,24,0.78);
+    --card-border: #1f2633;
+    --shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .pair-block,
+  .price-block {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .pair-block:hover,
+  .price-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+  }
+  .pair-bias { font-size: 32px; font-weight: 700; }
+  .pair-meta .label { color: var(--gray2); }
+  .badge-active{color:var(--green);background:rgba(61,220,151,0.12);padding:2px 8px;border-radius:12px;}
+  .badge-transitioning{color:var(--yellow);background:rgba(244,201,93,0.12);padding:2px 8px;border-radius:12px;}
+  .badge-quiet{color:var(--gray);background:rgba(138,151,173,0.12);padding:2px 8px;border-radius:12px;}
+  .strength-bar-wrap{height:5px;border-radius:3px;background:#0f1320;}
+  .strength-bar{transition:width .4s ease;}
+  .sparkline-wrap canvas{height:46px;}
+  .live-dot{box-shadow:0 0 8px rgba(61,220,151,0.8);}
 </style>
 </head>
 <body>
@@ -803,6 +839,7 @@ function renderHistory(prefix) {
 }
 
 // ── Feature 5: sparkline ────────────────────────────────────────────────────
+const colorByBias = b => b === 'buy' ? '#3ddc97' : b === 'sell' ? '#ff5c5c' : '#8a97ad';
 function drawSparkline(prefix) {
   const ps     = pairState[prefix];
   const canvas = document.getElementById(`${prefix}-sparkline`);
@@ -810,7 +847,7 @@ function drawSparkline(prefix) {
 
   const dpr  = window.devicePixelRatio || 1;
   const w    = canvas.parentElement.clientWidth || 200;
-  const h    = 40;
+  const h    = 46;
   canvas.width  = w * dpr;
   canvas.height = h * dpr;
   canvas.style.width  = w + 'px';
@@ -821,18 +858,30 @@ function drawSparkline(prefix) {
   ctx.clearRect(0, 0, w, h);
 
   const data = ps.strengthHistory;
-  const last = data[data.length - 1];
-  const color = last >= 0.65 ? '#00d084' : last >= 0.45 ? '#f5c518' : '#ff4560';
-
   const minV = Math.min(...data);
   const maxV = Math.max(...data);
   const range = (maxV - minV) || 0.01;
+  const pad   = 4;
   const xStep = w / (data.length - 1);
-  const pad   = 3;
+  const color = colorByBias(ps.lastBias || 'neutral');
 
+  // fill
+  ctx.beginPath();
+  data.forEach((v, i) => {
+    const x = i * xStep;
+    const y = h - pad - ((v - minV) / range) * (h - pad * 2);
+    if (i === 0) ctx.moveTo(x, h - pad);
+    ctx.lineTo(x, y);
+  });
+  ctx.lineTo(w, h - pad);
+  ctx.closePath();
+  ctx.fillStyle = color + '22';
+  ctx.fill();
+
+  // stroke
   ctx.beginPath();
   ctx.strokeStyle = color;
-  ctx.lineWidth   = 1.5;
+  ctx.lineWidth   = 2;
   ctx.lineJoin    = 'round';
   data.forEach((v, i) => {
     const x = i * xStep;
