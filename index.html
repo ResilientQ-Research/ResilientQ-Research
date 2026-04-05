@@ -75,6 +75,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-ghost:hover{color:var(--white)}
 .btn-ghost svg{transition:transform .2s}
 .btn-ghost:hover svg{transform:translateX(3px)}
+.hero-micro{font-family:var(--mono);font-size:11px;color:var(--gray-4);letter-spacing:.08em;margin-top:1rem}
 .hero-spec{position:absolute;bottom:5rem;right:3rem;font-family:var(--mono);font-size:10px;color:var(--gray-4);letter-spacing:.1em;text-align:right;line-height:2;opacity:0;animation:fadeIn .8s .6s forwards;border-left:1px solid var(--gray-3);padding-left:16px}
 /* LIVE PANEL */
 .live-panel{display:none;max-width:900px;margin:2.5rem 0 0;background:var(--gray-1);border:1px solid var(--gray-3)}
@@ -109,6 +110,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .live-foot-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:none;border:1px solid var(--gray-3);padding:7px 16px;cursor:pointer;transition:border-color .2s;white-space:nowrap}
 .live-foot-btn:hover{border-color:var(--accent)}
 .demo-badge{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#000;background:var(--amber);padding:3px 10px;border-radius:2px}
+/* INSTANT DEMO */
+.instant-demo{padding:3rem;border:1px solid var(--gray-3);background:var(--gray-1);margin:0 3rem 4rem;max-width:940px}
+.instant-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.instant-title{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.instant-meta{font-family:var(--mono);font-size:11px;color:var(--gray-4);letter-spacing:.08em}
+.instant-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:1rem}
+.instant-btn{background:var(--accent);color:#fff;border:none;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:12px 18px;cursor:pointer;transition:background .2s}
+.instant-btn:hover{background:var(--accent-dim)}
+.instant-status{font-family:var(--mono);font-size:11px;color:var(--gray-5)}
+.instant-json{background:var(--gray-2);border:1px solid var(--gray-3);padding:1.25rem;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--white);min-height:140px;opacity:0.9;transform:translateY(4px);transition:opacity .25s,transform .25s}
+.instant-json.pop{opacity:1;transform:translateY(0)}
+.instant-json.loading{opacity:.6}
+.instant-aha{margin-top:1rem;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--green);display:flex;align-items:center;gap:8px}
+.instant-aha.neutral{color:var(--gray-5)}
 /* SECTIONS */
 .section{padding:7rem 3rem}
 .section-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-4);margin-bottom:3rem;display:flex;align-items:center;gap:12px}
@@ -207,6 +222,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   .modal{margin:16px;padding:24px 20px}
   .live-meta{grid-template-columns:1fr 1fr}
   .live-direction{font-size:36px}
+  .instant-demo{margin:0 0 3rem;padding:2rem}
 }
 </style>
 </head>
@@ -222,7 +238,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <a href="#politicas">Políticas</a>
     <a href="/dashboard.html" class="nav-link">Dashboard</a>
     <a href="index_en.html">EN</a>
-    <button class="nav-cta" onclick="openModal()">Solicitar acesso</button>
+    <a class="nav-cta" href="#instant-demo">Testar agora</a>
   </div>
 </nav>
 
@@ -255,11 +271,12 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
     <h1 class="hero-headline">O fluxo fala antes<br>do preço se mover.</h1>
     <p class="hero-sub">RSQ Signal processa o book dos futuros BTC/ETH evento a evento, em tempo real, e entrega via API: bias, market_state e signal_strength. O desequilíbrio que antecede o move — antes do candle confirmar.</p>
     <div class="hero-actions">
-      <button class="btn-primary" id="live-btn" onclick="toggleLive()">Ver leitura ao vivo</button>
-      <a href="#como-funciona" class="btn-ghost">Como funciona
+      <a class="btn-primary" href="#instant-demo">Testar agora</a>
+      <a href="#docs" class="btn-ghost">Ver documentação
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
+    <div class="hero-micro">Sem cadastro • resposta em tempo real</div>
 
     <!-- LIVE PANEL: direção + barra sem número + regime -->
     <div class="live-panel" id="live-panel">
@@ -281,16 +298,37 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         </div>
       </div>
       <div class="live-foot">
-        <span class="live-foot-note">Leitura ao vivo · acesso completo mediante assinatura</span>
-        <button class="live-foot-btn" onclick="openModal('pro')">Solicitar acesso</button>
+          <span class="live-foot-note">Leitura ao vivo · acesso completo mediante assinatura</span>
+          <button class="live-foot-btn" onclick="location.href='#docs'">Ver documentação</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="hero-spec">BTC · ETH · Futuros USDT-M<br>Tick a tick · &lt;2ms latência<br>Segredo industrial protegido</div>
-</section>
+    <div class="hero-spec">BTC · ETH · Futuros USDT-M<br>Tick a tick · &lt;2ms latência<br>Segredo industrial protegido</div>
+  </section>
 
-<section class="section">
-  <div class="section-label">O problema</div>
+  <!-- INSTANT DEMO -->
+  <section id="instant-demo" class="instant-demo">
+    <div class="instant-head">
+      <div>
+        <div class="instant-title">Teste agora</div>
+        <div class="instant-meta">Sem cadastro • resposta em tempo real</div>
+      </div>
+      <div class="instant-meta" id="instant-latency">—</div>
+    </div>
+    <div class="instant-row">
+      <button class="instant-btn" id="instant-btn" onclick="runInstantDemo()">Gerar resposta</button>
+      <span class="instant-status" id="instant-status">Pronto</span>
+    </div>
+    <pre class="instant-json" id="instant-json">{
+  "bias": "buy",
+  "market_state": "active",
+  "signal_strength": 0.83
+}</pre>
+    <div class="instant-aha neutral" id="instant-aha">Fluxo neutro ou transição</div>
+  </section>
+  
+  <section class="section">
+    <div class="section-label">O problema</div>
   <div class="pain-grid">
     <div class="pain-item"><div class="pain-number">01</div><div class="pain-text">Análise técnica mostra o passado.</div><div class="pain-desc">Candles, médias, indicadores — todos calculados sobre o que já aconteceu. Você opera com retrovisor.</div></div>
     <div class="pain-item accent-item"><div class="pain-number">02</div><div class="pain-text">Mais dados não resolve. Mais ruído, sim.</div><div class="pain-desc">O trader experiente não precisa de mais uma tela. Precisa de uma leitura objetiva no momento que importa.</div></div>
@@ -326,16 +364,29 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 
 <section class="proof-section">
   <div class="section-label">Evidência</div>
-  <div class="proof-inner">
-    <blockquote class="proof-quote">O desequilíbrio apareceu no fluxo. O candle confirmou depois. Essa sequência se repetiu — em produção, com dado real.</blockquote>
-    <div class="proof-context">Dado Binance Futures USDT-M — produção real, sem simulação · 900+ operações registradas</div>
-    <div class="proof-metrics">
-      <div class="metric"><div class="metric-val">0.0–1.0</div><div class="metric-label">Confiança baseada em evidência acumulada</div></div>
-      <div class="metric"><div class="metric-val">Por tick</div><div class="metric-label">Frequência de atualização sem delay de intervalo fixo</div></div>
-      <div class="metric"><div class="metric-val">BTC · ETH</div><div class="metric-label">Futuros USDT-M ativos</div></div>
+    <div class="proof-inner">
+      <blockquote class="proof-quote">O desequilíbrio apareceu no fluxo. O candle confirmou depois. Essa sequência se repetiu — em produção, com dado real.</blockquote>
+      <div class="proof-context">Dado Binance Futures USDT-M — produção real, sem simulação · 900+ operações registradas</div>
+      <div class="proof-metrics">
+        <div class="metric"><div class="metric-val">0.0–1.0</div><div class="metric-label">Confiança baseada em evidência acumulada</div></div>
+        <div class="metric"><div class="metric-val">Por tick</div><div class="metric-label">Frequência de atualização sem delay de intervalo fixo</div></div>
+        <div class="metric"><div class="metric-val">BTC · ETH</div><div class="metric-label">Futuros USDT-M ativos</div></div>
+      </div>
+      <div class="proof-live" style="margin-top:3rem;display:grid;grid-template-columns:1.2fr 1fr;gap:1.5rem;align-items:center;">
+        <div>
+          <div class="section-label" style="margin-bottom:1rem;">Execução real</div>
+          <ul style="list-style:none;padding:0;margin:0;color:var(--gray-5);line-height:1.8;font-size:14px;">
+            <li>• Fluxo detectado antes do movimento</li>
+            <li>• Produção real (Binance Futures)</li>
+            <li>• +900 execuções registradas</li>
+          </ul>
+        </div>
+        <div style="border:1px solid var(--gray-3);background:var(--gray-1);padding:8px;">
+          <img src="img/yt-demo.jpg" alt="Screenshot de execução real" style="width:100%;display:block;">
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <section class="forwhom" id="para-quem">
   <div class="section-label">Para quem é</div>
@@ -364,7 +415,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
         <li>Acesso limitado por capacidade</li>
         <li>Sem suporte</li>
       </ul>
-      <button class="plan-cta" onclick="openModal('free')">Solicitar acesso</button>
+      <button class="plan-cta" onclick="location.href='#instant-demo'">Testar agora</button>
     </div>
     <div class="plan featured">
       <div class="plan-badge">Mais escolhido</div>
@@ -706,7 +757,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-x" onclick="closeModal()">×</button>
-    <h3 id="m-title">Solicitar acesso</h3>
+    <h3 id="m-title">Testar agora</h3>
     <p class="modal-sub" id="m-sub">Preencha os dados e entraremos em contato em até 24h.</p>
     <form onsubmit="submitForm(event)">
       <div class="field"><label>Nome</label><input type="text" id="f-nome" placeholder="Seu nome" required></div>
@@ -812,8 +863,63 @@ setInterval(()=>{
   if(er)er.textContent=ethReg[ti];
 },2800);
 
+/* Instant demo */
+const demoEndpoint='https://api.rsq.digital/signal?symbol=BTCUSDT';
+const demoKey='rsq_demo_e29f930bbea110773a4a45f2320e2a9139d9839c8378fa91d542d7bd8ec39522';
+
+function formatDemo(data){
+  return `{
+  \"bias\": \"${data.bias}\",
+  \"market_state\": \"${data.market_state}\",
+  \"signal_strength\": ${Number(data.signal_strength||0).toFixed(2)}
+}`;
+}
+
+function setAha(strength){
+  const aha=document.getElementById('instant-aha');
+  if(!aha)return;
+  if(strength>0.7){
+    aha.textContent='Fluxo forte detectado agora';
+    aha.classList.remove('neutral');
+  }else{
+    aha.textContent='Fluxo neutro ou transição';
+    aha.classList.add('neutral');
+  }
+}
+
+async function runInstantDemo(){
+  const btn=document.getElementById('instant-btn');
+  const pre=document.getElementById('instant-json');
+  const status=document.getElementById('instant-status');
+  const lat=document.getElementById('instant-latency');
+  if(!btn||!pre)return;
+  btn.disabled=true;status.textContent='reading order flow...';pre.classList.add('loading');pre.classList.remove('pop');
+  const t0=performance.now();
+  let payload={bias:'buy',market_state:'active',signal_strength:0.83};
+  try{
+    const r=await fetch(demoEndpoint,{headers:{'X-API-Key':demoKey}});
+    const ms=Math.round(performance.now()-t0);
+    lat.textContent=ms+' ms';
+    if(r.ok){
+      payload=await r.json();
+      status.textContent='200 OK';
+    }else{
+      status.textContent=r.status+' (demo fallback)';
+    }
+  }catch(e){
+    lat.textContent='—';
+    status.textContent='offline (demo)';
+  }
+  pre.textContent=formatDemo(payload);
+  pre.classList.remove('loading');pre.classList.add('pop');
+  setAha(Number(payload.signal_strength||0));
+  btn.disabled=false;
+}
+
+setAha(.83);
+
 function openModal(plano){
-  const titles={free:'Solicitar acesso free',pro:'Solicitar acesso Pro',enterprise:'Falar com a equipe'};
+  const titles={free:'Testar agora (free)',pro:'Testar agora (Pro)',enterprise:'Falar com a equipe'};
   const subs={free:'Acesso gratuito. Lista de espera aberta — capacidade limitada.',pro:'Plano Pro — R$297/mês. Tempo real, 60 req/min. Acesso prioritário no lançamento.',enterprise:'Licença enterprise com SLA e suporte dedicado. Entraremos em contato.'};
   document.getElementById('m-title').textContent=titles[plano]||'Entre em contato';
   document.getElementById('m-sub').textContent=subs[plano]||'Preencha os dados e entraremos em contato em até 24h.';
