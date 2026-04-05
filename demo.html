@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSQ Signal — Live Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0a0a0a;
+    --bg2:     #111111;
+    --bg3:     #1a1a1a;
+    --border:  #222222;
+    --green:   #00ff88;
+    --red:     #ff4444;
+    --gray:    #555555;
+    --white:   #e8e8e8;
+    --white2:  #888888;
+    --mono:    'JetBrains Mono', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--mono);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  /* HERO */
+  .hero {
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero-headline {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--white2);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity .15s;
+  }
+  .btn-primary:hover { opacity: .85; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white2);
+    border: 1px solid var(--border);
+    padding: 12px 24px;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .06em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color .15s, color .15s;
+  }
+  .btn-secondary:hover { border-color: var(--white2); color: var(--white); }
+
+  .cta-hint {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: .04em;
+  }
+
+  /* PROOF */
+  .proof {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .proof-item {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: .06em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .proof-item::before {
+    content: '●';
+    color: var(--green);
+    font-size: 8px;
+  }
+
+  /* DEMO */
+  .demo {
+    width: 100%;
+    max-width: 720px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .demo-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: .08em;
+  }
+  .demo-header-left { display: flex; align-items: center; gap: 8px; }
+  .demo-dot { width: 8px; height: 8px; background: var(--green); }
+
+  .demo-request {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--white2);
+    line-height: 1.6;
+  }
+  .demo-request .method { color: var(--green); }
+  .demo-request .url { color: var(--white); }
+  .demo-request .key { color: var(--gray); font-size: 11px; }
+
+  .demo-run {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-run {
+    background: var(--bg3);
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 8px 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .btn-run:hover { background: rgba(0,255,136,.08); }
+  .btn-run:disabled { opacity: .4; cursor: not-allowed; }
+
+  .demo-latency {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: .04em;
+  }
+
+  .demo-response {
+    padding: 20px;
+    min-height: 120px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .demo-placeholder {
+    color: var(--gray);
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .json-key   { color: var(--white2); }
+  .json-str   { color: var(--white); }
+  .json-num   { color: #f0c070; }
+  .json-buy   { color: var(--green); font-weight: 600; }
+  .json-sell  { color: var(--red); font-weight: 600; }
+  .json-neutral { color: var(--gray); }
+  .json-active { color: var(--green); }
+  .json-transitioning { color: #f0c070; }
+  .json-quiet { color: var(--gray); }
+
+  .demo-error {
+    color: var(--red);
+    font-size: 12px;
+  }
+
+  /* BEFORE/AFTER */
+  .bafore {
+    width: 100%;
+    max-width: 720px;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .ba-col {
+    background: var(--bg2);
+    padding: 20px;
+  }
+  .ba-label {
+    font-size: 10px;
+    letter-spacing: .12em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .ba-text {
+    font-size: 13px;
+    color: var(--white2);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .ba-text strong { color: var(--white); font-weight: 500; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 48px;
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: .06em;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .bafore { grid-template-columns: 1fr; }
+    .hero-headline { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Order Flow Intelligence · API</div>
+  <h1 class="hero-headline">O fluxo aparece<br>antes do preço.</h1>
+  <p class="hero-sub">
+    API que entrega leitura de order flow em tempo real —<br>
+    bias, estado de mercado e intensidade do sinal em &lt;2ms.
+  </p>
+  <div class="cta-row">
+    <a href="#demo" class="btn-primary">TESTAR AGORA</a>
+    <a href="/#docs" class="btn-secondary">VER DOCUMENTAÇÃO</a>
+  </div>
+  <div class="cta-hint">Sem cadastro · resposta em tempo real · Binance Futures USDT-M</div>
+  <div class="proof">
+    <span class="proof-item">Execução real — Binance Futures</span>
+    <span class="proof-item">BTC + ETH USDT-M</span>
+    <span class="proof-item">Latência &lt;2ms</span>
+    <span class="proof-item">Atualização por tick</span>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="demo" id="demo">
+  <div class="demo-header">
+    <div class="demo-header-left">
+      <div class="demo-dot"></div>
+      <span>LIVE DEMO · api.rsq.digital</span>
+    </div>
+    <span id="demo-status">pronto</span>
+  </div>
+
+  <div class="demo-request">
+    <span class="method">GET</span>
+    <span class="url"> https://api.rsq.digital/signal?symbol=BTCUSDT</span><br>
+    <span class="key">X-API-Key: rsq_demo_••••••••••••••••</span>
+  </div>
+
+  <div class="demo-run">
+    <button class="btn-run" id="btn-run" onclick="runDemo()">▶ GERAR RESPOSTA</button>
+    <span class="demo-latency" id="latency"></span>
+  </div>
+
+  <div class="demo-response" id="response">
+    <span class="demo-placeholder">// clique em "Gerar resposta" para chamar a API ao vivo</span>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<div class="bafore">
+  <div class="ba-col">
+    <div class="ba-label">Sem order flow</div>
+    <div class="ba-text">
+      Você vê o <strong>candle fechar</strong>.<br>
+      O indicador calcula.<br>
+      Você decide.<br>
+      O move <strong>já aconteceu</strong>.
+    </div>
+  </div>
+  <div class="ba-col">
+    <div class="ba-label">Com RSQ Signal</div>
+    <div class="ba-text">
+      O fluxo detecta o <strong>desequilíbrio</strong>.<br>
+      O sinal muda.<br>
+      Você entra.<br>
+      O candle <strong>confirma depois</strong>.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  RSQ Signal · rsq.digital · Diagnostic. Not prediction.
+</div>
+
+<script>
+const API_KEY = 'rsq_demo_e29f930bbea110773a4a45f2320e2a9139d9839c8378fa91d542d7bd8ec39522';
+
+function biasClass(bias) {
+  if (bias === 'buy') return 'json-buy';
+  if (bias === 'sell') return 'json-sell';
+  return 'json-neutral';
+}
+
+function stateClass(state) {
+  if (state === 'active') return 'json-active';
+  if (state === 'transitioning') return 'json-transitioning';
+  return 'json-quiet';
+}
+
+function renderJSON(data) {
+  const bias = data.bias || 'neutral';
+  const state = data.market_state || 'quiet';
+  const strength = typeof data.signal_strength === 'number'
+    ? data.signal_strength.toFixed(4) : '0.0000';
+  const asof = data.as_of || '--';
+  const rid = data.request_id
+    ? data.request_id.substring(0, 18) + '...' : '--';
+
+  return `{
+  <span class="json-key">"symbol"</span>:           <span class="json-str">"${data.symbol || 'BTCUSDT'}"</span>,
+  <span class="json-key">"bias"</span>:             <span class="${biasClass(bias)}">"${bias}"</span>,
+  <span class="json-key">"market_state"</span>:     <span class="${stateClass(state)}">"${state}"</span>,
+  <span class="json-key">"signal_strength"</span>:  <span class="json-num">${strength}</span>,
+  <span class="json-key">"as_of"</span>:            <span class="json-str">"${asof}"</span>,
+  <span class="json-key">"request_id"</span>:       <span class="json-str">"${rid}"</span>
+}`;
+}
+
+async function runDemo() {
+  const btn = document.getElementById('btn-run');
+  const resp = document.getElementById('response');
+  const lat = document.getElementById('latency');
+  const status = document.getElementById('demo-status');
+
+  btn.disabled = true;
+  btn.textContent = '⟳ fetching...';
+  resp.innerHTML = '<span class="demo-placeholder">// aguardando resposta...</span>';
+  lat.textContent = '';
+  status.textContent = 'chamando api...';
+
+  const t0 = performance.now();
+
+  try {
+    const r = await fetch(
+      'https://api.rsq.digital/signal?symbol=BTCUSDT',
+      { headers: { 'X-API-Key': API_KEY } }
+    );
+    const ms = Math.round(performance.now() - t0);
+
+    if (r.status === 401) {
+      resp.innerHTML = '<span class="demo-error">// 401 — Invalid API key</span>';
+      status.textContent = 'erro';
+    } else if (r.status === 429) {
+      resp.innerHTML = '<span class="demo-error">// 429 — Rate limit exceeded. Aguarde 60s.</span>';
+      status.textContent = 'rate limit';
+    } else if (r.status === 503) {
+      resp.innerHTML = '<span class="demo-error">// 503 — Service warming up. Tente novamente.</span>';
+      status.textContent = 'warming';
+    } else if (r.ok) {
+      const data = await r.json();
+      resp.innerHTML = renderJSON(data);
+      lat.textContent = `${ms}ms`;
+      status.textContent = `200 OK · ${ms}ms`;
+    } else {
+      resp.innerHTML = `<span class="demo-error">// ${r.status} — Erro inesperado</span>`;
+      status.textContent = 'erro';
+    }
+  } catch(e) {
+    resp.innerHTML = '<span class="demo-error">// Erro de conexão — verifique sua rede</span>';
+    status.textContent = 'erro';
+  }
+
+  btn.disabled = false;
+  btn.textContent = '▶ GERAR RESPOSTA';
+}
+</script>
+</body>
+</html>
