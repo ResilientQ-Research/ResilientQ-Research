@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" href="https://rsq.digital/index_en.html" hreflang="en">
+<link rel="alternate" href="https://rsq.digital/" hreflang="pt-BR">
+<link rel="alternate" href="https://rsq.digital/index_en.html" hreflang="x-default">
 <title>RSQ Signal — Order Flow Intelligence API for BTC/ETH USDT‑M</title>
 <meta name="description" content="RSQ Signal is a REST API that delivers bias (buy/sell/neutral), market_state (active/transitioning/quiet), and signal_strength (0–1) for BTC/ETH USDT‑M on Binance. Tick-level updates, target latency <2ms." />
 <meta name="keywords" content="order flow API, order book, order flow signals, crypto futures signals, Binance futures, BTCUSDT, ETHUSDT, USDT-M, market microstructure, low latency trading signals, algorithmic trading" />
@@ -41,7 +44,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-logo{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
 .nav-logo span{color:var(--green)}
 .nav-links{display:flex;gap:2rem;align-items:center}
-.nav-links a{font-size:13px;font-weight:400;color:var(--gray-5);text-decoration:none;letter-spacing:.02em;transition:color .2s}
+.nav-links a{font-size:13px;font-weight:400;color:var(--gray-5);text-decoration:none;letter-spacing:.02em;transition:color .2s ease, text-decoration-color .2s ease}
+.nav-links a:hover{color:var(--accent);text-decoration:underline;text-decoration-color:var(--accent)}
 .nav-links a:hover{color:var(--white)}
 .nav-cta{font-family:var(--mono);font-size:12px;font-weight:500;color:#fff;background:var(--accent);border:none;padding:8px 20px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:background .2s}
 .nav-cta:hover{background:var(--accent-dim)}
