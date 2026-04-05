@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #0a0a0a;
+    font-family: 'IBM Plex Mono', monospace;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,208,132,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,208,132,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .glow {
+    position: absolute;
+    top: -120px;
+    left: -120px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,208,132,0.12) 0%, transparent 70%);
+  }
+
+  .glow2 {
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,208,132,0.07) 0%, transparent 70%);
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 52px 64px;
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00d084;
+    box-shadow: 0 0 12px rgba(0,208,132,0.8);
+  }
+
+  .logo-text {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: #00d084;
+    border: 1px solid rgba(0,208,132,0.35);
+    padding: 5px 14px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  .middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: #00d084;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .headline {
+    font-size: 58px;
+    font-weight: 300;
+    line-height: 1.12;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .headline em {
+    font-style: normal;
+    color: #00d084;
+  }
+
+  .sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: #6b6b6b;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .specs {
+    display: flex;
+    gap: 32px;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .spec-label {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: #3a3a3a;
+    text-transform: uppercase;
+  }
+
+  .spec-value {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #8a8a8a;
+  }
+
+  .divider-v {
+    width: 1px;
+    height: 32px;
+    background: #1e1e1e;
+    align-self: center;
+  }
+
+  .url {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: #3a3a3a;
+  }
+
+  .accent-line {
+    position: absolute;
+    left: 0;
+    top: 80px;
+    bottom: 80px;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #00d084, transparent);
+    opacity: 0.6;
+  }
+
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="glow2"></div>
+  <div class="accent-line"></div>
+
+  <div class="content">
+    <div class="top">
+      <div class="logo">
+        <div class="logo-dot"></div>
+        <span class="logo-text">RSQ Signal</span>
+      </div>
+      <div class="badge">API · Order Flow Intelligence</div>
+    </div>
+
+    <div class="middle">
+      <div class="eyebrow">Order flow · Futuros USDT-M · Tick a tick</div>
+      <div class="headline">
+        O fluxo fala antes<br>
+        do preço se <em>mover.</em>
+      </div>
+      <div class="sub">
+        Diagnóstico de order flow em tempo real via API.<br>
+        BTC · ETH · Futuros USDT-M · &lt;2ms latência
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="specs">
+        <div class="spec-item">
+          <span class="spec-label">Pares ativos</span>
+          <span class="spec-value">BTC · ETH</span>
+        </div>
+        <div class="divider-v"></div>
+        <div class="spec-item">
+          <span class="spec-label">Mercado</span>
+          <span class="spec-value">USDT-M Futures</span>
+        </div>
+        <div class="divider-v"></div>
+        <div class="spec-item">
+          <span class="spec-label">Latência</span>
+          <span class="spec-value">&lt;2ms</span>
+        </div>
+        <div class="divider-v"></div>
+        <div class="spec-item">
+          <span class="spec-label">Metodologia</span>
+          <span class="spec-value">Proprietária</span>
+        </div>
+      </div>
+      <div class="url">rsq.digital</div>
+    </div>
+  </div>
+</body>
+</html>
