@@ -326,9 +326,9 @@ footer{padding:2rem 3rem;border-top:1px solid var(--gray-3);display:flex;align-i
   "market_state": "active",
   "signal_strength": 0.83
 }</pre>
-    <div class="instant-aha neutral" id="instant-aha">Fluxo em transição — sem dominância clara</div>
+    <div class="instant-aha neutral" id="instant-aha">Fluxo em transição — possível mudança de direção</div>
     <div class="instant-now">Detectado agora (tempo real)</div>
-    <div class="instant-note">Isso aparece antes do candle confirmar</div>
+    <div class="instant-note">Leitura em tempo real — antes do candle confirmar</div>
   </section>
   
   <section class="section">
@@ -879,16 +879,23 @@ function formatDemo(data){
 }`;
 }
 
-function setAha(strength){
+function setInterpretation(state,strength){
   const aha=document.getElementById('instant-aha');
   if(!aha)return;
-  if(strength>0.7){
-    aha.textContent='Fluxo forte detectado agora';
+  const s=Number(strength||0);
+  let text='Fluxo em transição — possível mudança de direção';
+  aha.classList.add('neutral');
+  if(state==='quiet'){
+    text='Mercado sem pressão relevante · baixa atividade no fluxo';
+  }else if(state==='transitioning'){
+    text='Fluxo em transição — possível mudança de direção';
+  }else if(state==='active' && s>=0.7){
+    text='Pressão clara no fluxo';
     aha.classList.remove('neutral');
-  }else{
-    aha.textContent='Fluxo em transição — sem dominância clara';
-    aha.classList.add('neutral');
+  }else if(state==='active'){
+    text='Pressão moderada';
   }
+  aha.textContent=text;
 }
 
 async function runInstantDemo(){
@@ -916,11 +923,11 @@ async function runInstantDemo(){
   }
   pre.textContent=formatDemo(payload);
   pre.classList.remove('loading');pre.classList.add('pop');
-  setAha(Number(payload.signal_strength||0));
+  setInterpretation(payload.market_state,Number(payload.signal_strength||0));
   btn.disabled=false;
 }
 
-setAha(.83);
+setInterpretation('active',.83);
 
 function openModal(plano){
   const titles={free:'Testar agora (free)',pro:'Testar agora (Pro)',enterprise:'Falar com a equipe'};
